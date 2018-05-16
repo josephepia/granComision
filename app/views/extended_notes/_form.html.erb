@@ -1,0 +1,42 @@
+<%= form_with(model: extended_note, local: true) do |form| %>
+  <% if extended_note.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(extended_note.errors.count, "error") %> prohibited this extended_note from being saved:</h2>
+
+      <ul>
+      <% extended_note.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :definitiva %>
+    <%= form.text_field :definitiva, id: :extended_note_definitiva %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fecha %>
+    <%= form.date_select :fecha, id: :extended_note_fecha %>
+  </div>
+
+  <div class="field">
+    <%= form.label :idGrupo %>
+    <%= form.text_field :idGrupo, id: :extended_note_idGrupo %>
+  </div>
+
+  <div class="field">
+    <%= form.label :discipleship_id %>
+    <%= form.text_field :discipleship_id, id: :extended_note_discipleship_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :student_id %>
+    <%= form.text_field :student_id, id: :extended_note_student_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

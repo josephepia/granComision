@@ -1,0 +1,1 @@
+json.array! @address_church_and_document_expeditions, partial: 'address_church_and_document_expeditions/address_church_and_document_expedition', as: :address_church_and_document_expedition

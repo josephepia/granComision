@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  definitiva: MyString
+  discipleship: one
+  student: one
+
+two:
+  definitiva: MyString
+  discipleship: two
+  student: two

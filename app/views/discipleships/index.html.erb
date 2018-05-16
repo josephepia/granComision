@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Discipulados</h1><div class="row">
+    
+
+
+ 
+          
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Rangootorgado</th>
+      <th>Descripcion</th>
+      <th>Descripcionpacto</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @discipleships.each do |discipleship| %>
+      <tr>
+        <td><%= discipleship.nombre %></td>
+        <td><%= discipleship.rangoOtorgado %></td>
+        <td><%= discipleship.descripcion %></td>
+        <td><%= discipleship.descripcionPacto %></td>
+        <td><%= link_to 'Show', discipleship %></td>
+        <td><%= link_to 'Edit', edit_discipleship_path(discipleship) %></td>
+        <td><%= link_to 'Destroy', discipleship, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Discipleship', new_discipleship_path %>

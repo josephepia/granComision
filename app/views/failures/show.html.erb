@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Fecha:</strong>
+  <%= @failure.fecha %>
+</p>
+
+<p>
+  <strong>Enroll:</strong>
+  <%= @failure.enroll %>
+</p>
+
+<p>
+  <strong>Session:</strong>
+  <%= @failure.session %>
+</p>
+
+<%= link_to 'Edit', edit_failure_path(@failure) %> |
+<%= link_to 'Back', failures_path %>

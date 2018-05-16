@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Failures</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Fecha</th>
+      <th>Enroll</th>
+      <th>Session</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @failures.each do |failure| %>
+      <tr>
+        <td><%= failure.fecha %></td>
+        <td><%= failure.enroll %></td>
+        <td><%= failure.session %></td>
+        <td><%= link_to 'Show', failure %></td>
+        <td><%= link_to 'Edit', edit_failure_path(failure) %></td>
+        <td><%= link_to 'Destroy', failure, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Failure', new_failure_path %>

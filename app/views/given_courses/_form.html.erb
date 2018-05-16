@@ -1,0 +1,42 @@
+<%= form_with(model: given_course, local: true) do |form| %>
+  <% if given_course.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(given_course.errors.count, "error") %> prohibited this given_course from being saved:</h2>
+
+      <ul>
+      <% given_course.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :idGrupo %>
+    <%= form.text_field :idGrupo, id: :given_course_idGrupo %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fechaInicio %>
+    <%= form.date_select :fechaInicio, id: :given_course_fechaInicio %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fechaCierre %>
+    <%= form.date_select :fechaCierre, id: :given_course_fechaCierre %>
+  </div>
+
+  <div class="field">
+    <%= form.label :discipleship_id %>
+    <%= form.text_field :discipleship_id, id: :given_course_discipleship_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :teacher_id %>
+    <%= form.text_field :teacher_id, id: :given_course_teacher_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,12 @@
+$colors :(
+    negro: #000000
+);
+
+@each $color_name,$color in $colors{
+    .#{$color_name}{
+        background-color: $color;
+    }
+    .#{$color_name}-text{
+        color: $color;
+    }
+}

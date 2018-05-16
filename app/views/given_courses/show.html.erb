@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Idgrupo:</strong>
+  <%= @given_course.idGrupo %>
+</p>
+
+<p>
+  <strong>Fechainicio:</strong>
+  <%= @given_course.fechaInicio %>
+</p>
+
+<p>
+  <strong>Fechacierre:</strong>
+  <%= @given_course.fechaCierre %>
+</p>
+
+<p>
+  <strong>Discipleship:</strong>
+  <%= @given_course.discipleship %>
+</p>
+
+<p>
+  <strong>Teacher:</strong>
+  <%= @given_course.teacher %>
+</p>
+
+<%= link_to 'Edit', edit_given_course_path(@given_course) %> |
+<%= link_to 'Back', given_courses_path %>

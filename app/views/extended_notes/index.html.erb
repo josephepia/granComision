@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Extended Notes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Definitiva</th>
+      <th>Fecha</th>
+      <th>Idgrupo</th>
+      <th>Discipleship</th>
+      <th>Student</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @extended_notes.each do |extended_note| %>
+      <tr>
+        <td><%= extended_note.definitiva %></td>
+        <td><%= extended_note.fecha %></td>
+        <td><%= extended_note.idGrupo %></td>
+        <td><%= extended_note.discipleship %></td>
+        <td><%= extended_note.student %></td>
+        <td><%= link_to 'Show', extended_note %></td>
+        <td><%= link_to 'Edit', edit_extended_note_path(extended_note) %></td>
+        <td><%= link_to 'Destroy', extended_note, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Extended Note', new_extended_note_path %>

@@ -1,0 +1,1 @@
+json.partial! "address_church_and_document_expeditions/address_church_and_document_expedition", address_church_and_document_expedition: @address_church_and_document_expedition

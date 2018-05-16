@@ -1,0 +1,34 @@
+// Place all the styles related to the Principal controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+html,body{
+	height: 100%;
+	width: 100%;
+}
+.no-margin{
+	margin: 0;
+}
+.no-padding{
+	padding: 0;
+}
+.altocompleto{
+	max-height: 100%;
+}
+.anchocompleto{
+	max-width: 100%;
+}
+.fondo-login{
+	background-image: url(#{asset_path('reserva2.jpg')});
+	background-size:cover;
+	background-repeat: none;
+}
+.margen-boton{
+	margin: 5;
+}
+.no-margin-bottom{
+	margin-bottom: 0;
+}
+.logo-img{
+	max-height: 64px!important;
+    //padding: 15px 0!important;
+}

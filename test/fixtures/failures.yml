@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  fecha: 2018-05-09 11:49:25
+  enroll: one
+  session: one
+
+two:
+  fecha: 2018-05-09 11:49:25
+  enroll: two
+  session: two

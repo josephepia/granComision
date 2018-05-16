@@ -1,0 +1,2 @@
+module CovenantsHelper
+end

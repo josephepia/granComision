@@ -1,0 +1,43 @@
+<div class="row middle-xs no-margin" style="height: 80%">
+  <div class="container">
+  <div class="row center-xs">
+    <div class="col-xs-12 col-sm-8 col-md-6 col-lg-4">
+      <div class="card ">
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <div class="card-content ">
+            <span class="card-title">Inicia sesion</span>
+              <div class="row around-xs">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                  <div class="box">
+                    <div class="input-field">
+                      <i class="material-icons prefix">assignment</i>
+                      <%= f.label :identificacion, "Identificacion" %>
+                      <%= f.number_field :identificacion %>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                  <div class="box">
+                    <div class="input-field">
+                      <i class="material-icons prefix">vpn_key</i>
+                      <%= f.label :password , "contraseña"%>
+                      <%= f.password_field :password, autocomplete: "off" %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          
+              
+          </div>
+          <div class="card-action">
+            <%= link_to "Registrarme",new_user_registration_path ,class: "btn waves-light margen-boton"%>
+            <%= f.submit "Iniciar",class: "btn  waves-light  " %>
+          </div>  
+        <% end %>
+      </div>
+    </div>
+  </div>
+  </div>
+  
+</div>
+

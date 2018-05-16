@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @discipleship.nombre %>
+</p>
+
+<p>
+  <strong>Rangootorgado:</strong>
+  <%= @discipleship.rangoOtorgado %>
+</p>
+
+<p>
+  <strong>Descripcion:</strong>
+  <%= @discipleship.descripcion %>
+</p>
+
+<p>
+  <strong>Descripcionpacto:</strong>
+  <%= @discipleship.descripcionPacto %>
+</p>
+
+<%= link_to 'Edit', edit_discipleship_path(@discipleship) %> |
+<%= link_to 'Back', discipleships_path %>

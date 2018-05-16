@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Covenants</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Urlmultimedia</th>
+      <th>Discipleship</th>
+      <th>Student</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @covenants.each do |covenant| %>
+      <tr>
+        <td><%= covenant.urlMultimedia %></td>
+        <td><%= covenant.discipleship %></td>
+        <td><%= covenant.student %></td>
+        <td><%= link_to 'Show', covenant %></td>
+        <td><%= link_to 'Edit', edit_covenant_path(covenant) %></td>
+        <td><%= link_to 'Destroy', covenant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Covenant', new_covenant_path %>

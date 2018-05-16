@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  idGrupo: MyString
+  fechaInicio: 2018-05-09
+  fechaCierre: 2018-05-09
+  discipleship: one
+  teacher: one
+
+two:
+  idGrupo: MyString
+  fechaInicio: 2018-05-09
+  fechaCierre: 2018-05-09
+  discipleship: two
+  teacher: two

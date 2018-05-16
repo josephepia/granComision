@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Definitiva:</strong>
+  <%= @extended_note.definitiva %>
+</p>
+
+<p>
+  <strong>Fecha:</strong>
+  <%= @extended_note.fecha %>
+</p>
+
+<p>
+  <strong>Idgrupo:</strong>
+  <%= @extended_note.idGrupo %>
+</p>
+
+<p>
+  <strong>Discipleship:</strong>
+  <%= @extended_note.discipleship %>
+</p>
+
+<p>
+  <strong>Student:</strong>
+  <%= @extended_note.student %>
+</p>
+
+<%= link_to 'Edit', edit_extended_note_path(@extended_note) %> |
+<%= link_to 'Back', extended_notes_path %>

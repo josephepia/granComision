@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Address Church And Document Expeditions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nombreiglesiaanterior</th>
+      <th>Direccioniglesia</th>
+      <th>User</th>
+      <th>City</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @address_church_and_document_expeditions.each do |address_church_and_document_expedition| %>
+      <tr>
+        <td><%= address_church_and_document_expedition.nombreIglesiaAnterior %></td>
+        <td><%= address_church_and_document_expedition.direccionIglesia %></td>
+        <td><%= address_church_and_document_expedition.user %></td>
+        <td><%= address_church_and_document_expedition.city %></td>
+        <td><%= link_to 'Show', address_church_and_document_expedition %></td>
+        <td><%= link_to 'Edit', edit_address_church_and_document_expedition_path(address_church_and_document_expedition) %></td>
+        <td><%= link_to 'Destroy', address_church_and_document_expedition, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Address Church And Document Expedition', new_address_church_and_document_expedition_path %>

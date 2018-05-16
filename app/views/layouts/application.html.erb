@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>GranComision</title>
+    <%= csrf_meta_tags %>
+    
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>            
+    
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    
+  </head>
+
+  <body>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <div class="navbar-fixed">
+     <nav class="white ">
+        <div class="nav-wrapper">
+          <a href="/" class="brand-logo center"><%= image_tag "logoGranComision.png", class: "circle logo-img" %></a>
+          <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons  green-text" >menu</i></a>
+          <ul class="right hide-on-med-and-down negro-text">
+            <li><a href="sass.html" class="green-text">sobre nostros</a></li>
+            <li><a href="badges.html" class="green-text">opcion2</a></li>
+            <li><a href="collapsible.html" class="green-text">opcion3</a></li>
+            <li><a href="mobile.html" class="green-text">opcion4</a></li>   
+            <%if user_signed_in?%>
+            <%=link_to "Cerrar sesion", destroy_user_session_path, class: "btn waves-effect waves-light ", method: :delete %>
+            <%else%>
+            <li><%= link_to "Iniciar",new_user_session_path ,class: "btn waves-light margen-boton"%></li>        
+            <li><%= link_to "Registrarme",new_user_registration_path ,class: "btn waves-light margen-boton"%></li>                
+            <%end%>
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+  <ul class="sidenav" id="mobile-demo">
+    <br>
+    <%if user_signed_in?%>
+    <li class="center-xs"><%= image_tag "avatar.png", class: "circle logo-img" %></li>
+    <%end%>
+    <li><a href="sass.html">sobre nosostros</a></li>
+    <li><a href="badges.html">opcion2</a></li>
+    <li><a href="collapsible.html">opcion3</a></li>
+    <li><a href="mobile.html">opcion4</a></li>
+    <%if user_signed_in?%>    
+    <%=link_to "Cerrar sesion", destroy_user_session_path, class: "btn waves-effect waves-light ", method: :delete %>
+    <%else%>
+    <li><%= link_to "Iniciar",new_user_session_path ,class: "btn waves-light margen-boton"%></li>    
+    <%end%>
+  </ul>
+  
+    <%= yield %>
+    
+    
+    <script type="text/javascript">
+      <%if !notice.nil?%>
+        M.toast({html: "<%= notice %>",displayLength: 4000});
+      <%end%>
+      <%if !alert.nil?%>
+        M.toast({html: "<%= alert %>",displayLength: 4000});
+      <%end%>
+     $(document).ready(function(){
+  M.AutoInit();
+});
+    </script>
+  </body>
+  
+</html>

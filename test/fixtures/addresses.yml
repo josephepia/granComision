@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  direccion: MyString
+  origen: false
+  nombreBarrio: MyString
+  user: one
+  district: one
+
+two:
+  direccion: MyString
+  origen: false
+  nombreBarrio: MyString
+  user: two
+  district: two

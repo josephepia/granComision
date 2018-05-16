@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nombre: MyString
+  rangoOtorgado: MyString
+  descripcion: MyString
+  descripcionPacto: MyString
+
+two:
+  nombre: MyString
+  rangoOtorgado: MyString
+  descripcion: MyString
+  descripcionPacto: MyString

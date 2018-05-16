@@ -1,0 +1,32 @@
+<%= form_with(model: failure, local: true) do |form| %>
+  <% if failure.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(failure.errors.count, "error") %> prohibited this failure from being saved:</h2>
+
+      <ul>
+      <% failure.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :fecha %>
+    <%= form.datetime_select :fecha, id: :failure_fecha %>
+  </div>
+
+  <div class="field">
+    <%= form.label :enroll_id %>
+    <%= form.text_field :enroll_id, id: :failure_enroll_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :session_id %>
+    <%= form.text_field :session_id, id: :failure_session_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

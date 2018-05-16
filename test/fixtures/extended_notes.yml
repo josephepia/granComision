@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  definitiva: 9.99
+  fecha: 2018-05-09
+  idGrupo: MyString
+  discipleship: one
+  student: one
+
+two:
+  definitiva: 9.99
+  fecha: 2018-05-09
+  idGrupo: MyString
+  discipleship: two
+  student: two

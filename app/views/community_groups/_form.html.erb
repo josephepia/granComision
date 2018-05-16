@@ -1,0 +1,22 @@
+<%= form_with(model: community_group, local: true) do |form| %>
+  <% if community_group.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(community_group.errors.count, "error") %> prohibited this community_group from being saved:</h2>
+
+      <ul>
+      <% community_group.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :nombre %>
+    <%= form.text_field :nombre, id: :community_group_nombre %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

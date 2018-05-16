@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Horaries</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Lunes</th>
+      <th>Martes</th>
+      <th>Miercoles</th>
+      <th>Jueves</th>
+      <th>Viernes</th>
+      <th>Sabado</th>
+      <th>Domingo</th>
+      <th>Group</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @horaries.each do |horary| %>
+      <tr>
+        <td><%= horary.lunes %></td>
+        <td><%= horary.martes %></td>
+        <td><%= horary.miercoles %></td>
+        <td><%= horary.jueves %></td>
+        <td><%= horary.viernes %></td>
+        <td><%= horary.sabado %></td>
+        <td><%= horary.domingo %></td>
+        <td><%= horary.group %></td>
+        <td><%= link_to 'Show', horary %></td>
+        <td><%= link_to 'Edit', edit_horary_path(horary) %></td>
+        <td><%= link_to 'Destroy', horary, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Horary', new_horary_path %>

@@ -1,0 +1,27 @@
+<%= form_with(model: ministery, local: true) do |form| %>
+  <% if ministery.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(ministery.errors.count, "error") %> prohibited this ministery from being saved:</h2>
+
+      <ul>
+      <% ministery.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :nombre %>
+    <%= form.text_field :nombre, id: :ministery_nombre %>
+  </div>
+
+  <div class="field">
+    <%= form.label :text %>
+    <%= form.text_field :text, id: :ministery_text %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

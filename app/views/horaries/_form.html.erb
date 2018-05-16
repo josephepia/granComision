@@ -1,0 +1,57 @@
+<%= form_with(model: horary, local: true) do |form| %>
+  <% if horary.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(horary.errors.count, "error") %> prohibited this horary from being saved:</h2>
+
+      <ul>
+      <% horary.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :lunes %>
+    <%= form.text_field :lunes, id: :horary_lunes %>
+  </div>
+
+  <div class="field">
+    <%= form.label :martes %>
+    <%= form.text_field :martes, id: :horary_martes %>
+  </div>
+
+  <div class="field">
+    <%= form.label :miercoles %>
+    <%= form.text_field :miercoles, id: :horary_miercoles %>
+  </div>
+
+  <div class="field">
+    <%= form.label :jueves %>
+    <%= form.text_field :jueves, id: :horary_jueves %>
+  </div>
+
+  <div class="field">
+    <%= form.label :viernes %>
+    <%= form.text_field :viernes, id: :horary_viernes %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sabado %>
+    <%= form.text_field :sabado, id: :horary_sabado %>
+  </div>
+
+  <div class="field">
+    <%= form.label :domingo %>
+    <%= form.text_field :domingo, id: :horary_domingo %>
+  </div>
+
+  <div class="field">
+    <%= form.label :group_id %>
+    <%= form.text_field :group_id, id: :horary_group_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

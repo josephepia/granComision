@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Lunes:</strong>
+  <%= @horary.lunes %>
+</p>
+
+<p>
+  <strong>Martes:</strong>
+  <%= @horary.martes %>
+</p>
+
+<p>
+  <strong>Miercoles:</strong>
+  <%= @horary.miercoles %>
+</p>
+
+<p>
+  <strong>Jueves:</strong>
+  <%= @horary.jueves %>
+</p>
+
+<p>
+  <strong>Viernes:</strong>
+  <%= @horary.viernes %>
+</p>
+
+<p>
+  <strong>Sabado:</strong>
+  <%= @horary.sabado %>
+</p>
+
+<p>
+  <strong>Domingo:</strong>
+  <%= @horary.domingo %>
+</p>
+
+<p>
+  <strong>Group:</strong>
+  <%= @horary.group %>
+</p>
+
+<%= link_to 'Edit', edit_horary_path(@horary) %> |
+<%= link_to 'Back', horaries_path %>

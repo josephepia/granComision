@@ -1,0 +1,2 @@
+class CommunityGroup < ApplicationRecord
+end

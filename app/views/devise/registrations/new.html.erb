@@ -1,0 +1,336 @@
+<div class="row middle-xs no-margin">
+  <div class="container ">
+  <div class="row center-xs">
+    <div class=" col-xs-12 col-sm-8 col-md-6 col-lg-10">
+      <div class="card ">
+        <div class="card-content no-padding">
+          <span class="card-title">Regístrate</span>
+          <p>Queremos saber un poco mas de ti</p>
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          
+          <ul class="collapsible">
+            <li>
+              <div class="collapsible-header"><i class="material-icons prefix">account_circle</i>Datos basicos</div>
+              <div class="collapsible-body">
+              
+              <%= devise_error_messages! %>
+              <div class="row around-xs">
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4">
+                  <div class="box">
+                  
+                  <div class="input-field col s12">
+                               
+                    <select>
+                      <option value="" disabled selected>Seleccione</option>
+                      <option value="CC">Cedula</option>
+                      <option value="TI">Tarjeta de identidad</option>
+                      <option value="PASAPORTE">Pasaporte</option>
+                    </select>
+                    <label>Tipo de documento</label>
+                  </div>
+                    
+                  </div>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4"> 
+                  <div class="box">                               
+                    <div class="input-field">
+                      <%= f.label :identificacion, "Identificacion" %>
+                      <%= f.number_field :identificacion, autofocus: true %>
+                    </div>
+                  </div>
+                </div>
+              
+              
+                <div class="col-xs-12 col-sm-8 col-md-6 col-lg-4">
+                  <div class="box">
+                    <div class="input-field">
+                      <i class="material-icons prefix">assignment</i>
+                      <%= f.label :primerNombre, "Nombre"%>
+                      <%= f.text_field :primerNombre, class: "validate" %>
+                    </div>
+                  </div>
+                </div>
+             
+
+                <div class="col-xs-12 col-sm-8 col-md-6 col-lg-4">
+                  <div class="box">
+                    <div class="input-field">
+                      <i class="material-icons prefix">assignment</i>
+                      <%= f.label :primerApellido, "Apellido" %>
+                      <%= f.text_field :primerApellido%>
+                    </div>
+                  </div>
+                </div>
+              
+              
+              
+                <div class="col-xs-12 col-sm-8 col-md-6 col-lg-4">
+                  <div class="box">
+                    <div class="input-field validate">
+                      <i class="material-icons prefix">phone_android</i>
+                      <%= f.number_field :telefono, class: "validate"%>
+                      <%= f.label :telefono, "Celular" %>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xs-12 col-sm-8 col-md-6 col-lg-4">
+                  <div class="box">
+                    <div class="input-field">
+                      
+                      <%= f.select :sexo, [['Seleccione',''],['Masculino','masculino'],['Femenino','femenino']]%>
+                      <%= f.label :sexo, "Sexo" %>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xs-12 col-sm-8 col-md-6 col-lg-4">
+                  <div class="box">
+                    <div class="no-autoinit input-field">
+                      <%= f.label :fechaNacimiento, "Fecha de nacimiento" %>
+                      <%= f.text_field :fechaNacimiento, class: "no-autoinit datepicker"%>
+                    </div>
+                  </div>
+                </div>
+              
+              
+             
+        
+            
+            </div>
+            <%= f.collection_select(:tipoDocumento, Country.all, :id, :nombre, {prompt: 'Seleccione'},remote: true) %>
+            <%= f.collection_select(:tipo,Country.all, :id, :nombre, {},{:data => {  :remote => true, :url => url_for(:controller => "/departments",:action => "nuestro")}})%>
+                  })%>
+              </div>
+            </li>
+            <li>
+              <div class="collapsible-header"><i class="material-icons">place</i>Estado civil</div>
+              <div class="collapsible-body">
+              <div class="row around-xs">
+              <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4"> 
+                  <div class="box">                               
+                    <div class="input-field">
+                      <%= f.label :estadoCivil, "Estado civil" %>
+                      <%= f.email_field :estadoCivil%>
+                    </div>
+                  </div>
+                </div>
+              <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4"> 
+                  <div class="box">                               
+                    <div class="input-field">
+                      <%= f.label :primerNombreConyuge, "Nombre conyuge" %>
+                      <%= f.email_field :primerNombreConyuge%>
+                    </div>
+                  </div>
+                </div>
+              <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4"> 
+                  <div class="box">                               
+                    <div class="input-field">
+                      <%= f.label :primerApellidoConyuge, "Apellido conyuge" %>
+                      <%= f.email_field :primerApellidoConyuge%>
+                    </div>
+                  </div>
+              </div>
+              <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4"> 
+                  <div class="box">                               
+                    <div class="input-field">
+                      <%= f.label :fechaAniversario, "Fecha de aniversario" %>
+                      <%= f.email_field :fechaAniversario%>
+                    </div>
+                  </div>
+              </div>
+              
+              </div>
+              </div>
+            </li>
+            <li>
+              <div class="collapsible-header"><i class="material-icons">account_balance</i>Has sido miembro de otra iglesia?</div>
+              <div class="collapsible-body">
+                <div class="row around-xs">
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4"> 
+                    <div class="box">                               
+                      <div class="input-field">
+                        <%= f.label :confesionReligiosa, "Confesion religiosa" %>
+                        <%= f.email_field :confesionReligiosa%>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4"> 
+                    <div class="box">                               
+                      <div class="input-field">
+                        <%= f.label :fueMiembroOtraIglesia, "Ha sido miembro de otra iglesia?" %>
+                        <%= f.email_field :fueMiembroOtraIglesia%>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4"> 
+                    <div class="box">                               
+                      <div class="input-field">
+                        <%= f.label :tiempoOtraIglesia, "Tiempo aproximado en la iglesia" %>
+                        <%= f.email_field :tiempoOtraIglesia%>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="collapsible-header"><i class="material-icons">school</i>Academico</div>
+              <div class="collapsible-body">
+                <div class="row around-xs">
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4">
+                    <div class="box">                               
+                      <div class="input-field">
+                        <%= f.label :nivelAcademico, "Nivel academico" %>
+                        <%= f.email_field :nivelAcademico%>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4">
+                    <div class="box">                               
+                      <div class="input-field">
+                        <%= f.label :profesionOficio, "Cual es su profesion, a quese dedica" %>
+                        <%= f.email_field :profesionOficio%>
+                      </div>
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="collapsible-header"><i class="material-icons">assignment_ind</i>Cuenta</div>
+              <div class="collapsible-body">
+                <div class="row around-xs">
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4">
+                    <div class="box">                               
+                      <div class="input-field">
+                        <%= f.label :password, "Contraseña" %>
+                        <% if @minimum_password_length %>
+                        <em>(<%= @minimum_password_length %> characters minimum)</em>
+                        <% end %>
+                        <%= f.password_field :password, autocomplete: "off" %>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4">
+                    <div class="box">                               
+                      <div class="input-field">
+                        <%= f.label :password_confirmation, "Confirmar contraseña" %>
+                        <%= f.password_field :password_confirmation, autocomplete: "off" %>
+                      </div>
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+            </li>
+          </ul>
+            
+                      
+            
+            
+            
+            
+            
+           
+            
+            
+            
+            
+
+            
+
+            <div class="actions ">
+            
+            
+              <%= link_to "Iniciar",new_user_session_path ,class: "btn waves-light margen-boton"%>
+              <%= f.submit "Registrar",class: "btn  waves-light  " %>
+              <br><br>
+            
+              
+              
+            </div>
+          <% end %>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+</div>     
+  <script type="text/javascript">
+      $(document).ready(function() {
+         var elem = document.querySelector('.datepicker');
+          var instance = M.Datepicker.init(elem,{
+            disableWeekends: true,
+            format: 'dd-mmmm-yyyy',
+            i18n: {
+              cancel: 'Cancelar',
+              clear:	'Limpiar',
+              done:	'Ok',
+              weekdaysAbbrev: ['D','L','M','M','J','V','S'],
+              months: [
+                'Enero',
+                'Febrero',
+                'Marzo',
+                'Abril',
+                'Mayo',
+                'Junio',
+                'Julio',
+                'Agosto',
+                'Septiembre',
+                'Octubre',
+                'Noviembre',
+                'Diciembre'
+              ],
+              monthsShort:
+              [
+                'Ene',
+                'Feb',
+                'Mar',
+                'Abr',
+                'May',
+                'Jun',
+                'Jul',
+                'Ago',
+                'Sep',
+                'Oct',
+                'Nov',
+                'Dic'
+              ],
+                                
+              weekdays:
+              [
+                'Domingo',
+                'Lunes',
+                'Martes',
+                'Miercoles',
+                'Jueves',
+                'Viernes',
+                'Sabado'
+              ],
+                                
+              weekdaysShort:
+              [
+                'Dom',
+                'Lun',
+                'Mar',
+                'Mie',
+                'Jue',
+                'Vie',
+                'Sab'
+              ],
+                                
+              weekdaysAbbrev:	['D','L','M','X','J','V','S']
+            }
+            
+
+          });
+
+
+          console.log('mi instancia ', instance);
+        });  
+    
+  </script> 
+
+
+
