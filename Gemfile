@@ -25,7 +25,9 @@ gem 'jquery-ui-rails'
 gem 'material_icons'
 gem 'devise'
 gem 'flexbox_rb'
-gem 'bcrypt', platforms: :ruby
+#gem 'bcrypt', '~> 3.1', '>= 3.1.12'
+gem 'bcrypt', git: 'https://github.com/codahale/bcrypt-ruby.git', require: 'bcrypt'
+#gem 'bcrypt', platforms: :ruby
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
@@ -54,7 +56,7 @@ group :development do
   gem 'web-console', '>= 3.3.0'
 end
 group :production do
-  gem 'pg'       
+  gem 'pg', '1.0.0'       
   gem 'rails_12factor', '0.0.2'
 end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
