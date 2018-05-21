@@ -1,37 +1,63 @@
-<%= form_with(model: discipleship, local: true) do |form| %>
-  <% if discipleship.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(discipleship.errors.count, "error") %> prohibited this discipleship from being saved:</h2>
-
-      <ul>
-      <% discipleship.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<div class="row middle-xs no-margin">
+  <div class="container ">
+    <div class="row center-xs">
+        <div class=" col-xs-12 col-sm-8 col-md-6 col-lg-6">
+            <div class="card z-depth-3">
+                <div class="card-content ">
+                    <span class="card-title"><%=@texto%></span>
+                    <p>Datos</p>
+                    <%= form_with(model: discipleship, local: true) do |f| %>
+                <div class="row around-xs">
+                    
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+                    <div class="box">                               
+                      <div class="input-field">
+                        <i class="material-icons prefix">border_color</i>
+                        <%= f.label :nombre , "Nombre"%>
+                        <%= f.text_field :nombre, id: :discipleship_nombre %>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+                    <div class="box">                               
+                      <div class="input-field">
+                        <i class="material-icons prefix">local_offer</i>
+                        <%= f.label :rangoOtorgado ,"Rango otorgado"%>
+                        <%= f.text_field :rangoOtorgado, id: :discipleship_rangoOtorgado %>
+                      </div>
+                    </div>
+                  </div> 
+                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="box">                               
+                      <div class="input-field">
+                        <i class="material-icons prefix">assignment</i>
+                        <%= f.label :descripcion %>
+                        <%= f.text_area :descripcion, id: :discipleship_descripcion, class: "materialize-textarea" %>
+                      </div>
+                    </div>
+                  </div> 
+                  
+                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="box">                               
+                      <div class="input-field">
+                        <i class="material-icons prefix">assignment</i>
+                        <%= f.label :descripcionPacto, "Descripcion del compromiso" %>
+                        <%= f.text_area :descripcionPacto, id: :discipleship_descripcionPacto, class: "materialize-textarea" %>
+                      </div>
+                    </div>
+                  </div>    
+                  </div>
+                  <div class="actions ">
+                    <%= link_to 'Volver', discipleships_path , class: "btn  waves-light   "%>
+                    <%= f.submit "Aceptar",class: "btn  waves-light  " %>
+                    <br><br>
+                    
+                    
+                    
+                    </div>
+                    <%end%>
+                </div>
+            </div>
+        </div>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :nombre %>
-    <%= form.text_field :nombre, id: :discipleship_nombre %>
-  </div>
-
-  <div class="field">
-    <%= form.label :rangoOtorgado %>
-    <%= form.text_field :rangoOtorgado, id: :discipleship_rangoOtorgado %>
-  </div>
-
-  <div class="field">
-    <%= form.label :descripcion %>
-    <%= form.text_field :descripcion, id: :discipleship_descripcion %>
-  </div>
-
-  <div class="field">
-    <%= form.label :descripcionPacto %>
-    <%= form.text_field :descripcionPacto, id: :discipleship_descripcionPacto %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

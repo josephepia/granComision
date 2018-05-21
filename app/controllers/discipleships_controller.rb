@@ -10,6 +10,7 @@ class DiscipleshipsController < ApplicationController
   # GET /discipleships/1
   # GET /discipleships/1.json
   def show
+    @group= @discipleship.group
   end
 
   # GET /discipleships/new

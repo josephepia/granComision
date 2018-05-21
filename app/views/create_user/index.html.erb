@@ -1,13 +1,14 @@
+
 <div class="row middle-xs no-margin">
   <div class="container ">
   <div class="row center-xs">
-  <%= devise_error_messages! %>
+  
     <div class=" col-xs-12 col-sm-8 col-md-6 col-lg-12">
       <div class="card ">
         <div class="card-content no-padding">
           <span class="card-title">Regístrate</span>
           <p>Queremos saber sobre ti</p>
-          <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <%= form_for(:user,  method: :post) do |f| %>
           
           <ul class="collapsible">
             <li>

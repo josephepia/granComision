@@ -1,6 +1,11 @@
 <h1>Pagina principal</h1>
 <p>Informacion principal</p>
 <%= user.inspect%>
-<%= user.teacher.inspect%>
+<% if user.teacher%>
+<h1>soy un docente</h1>
+<%end%>
+<% if user.administrator%>
+<h1>soy un administrador</h1>
+<%end%>
 
 

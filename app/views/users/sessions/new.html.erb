@@ -6,6 +6,7 @@
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <div class="card-content ">
             <span class="card-title">Inicia sesion</span>
+            
               <div class="row around-xs">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                   <div class="box">
@@ -40,4 +41,8 @@
   </div>
   
 </div>
-
+<script>
+    $(document).ready(function(){
+    $('.sidenav').sidenav();
+  });
+    </script>

@@ -6,6 +6,7 @@ class User < ApplicationRecord
   has_and_belongs_to_many :ministeries
   has_one :teacher
   has_one :student
+  has_one :administrator
   has_many :addresschurchanddocumentexpeditions
   has_many :address
   has_many :groups, :through => :teacher

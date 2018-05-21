@@ -18,7 +18,19 @@ class Users::SessionsController < Devise::SessionsController
     #     format.json { render :show, status: :created, location: @user }
     #   end
     # end
-    super
+    self.resource = warden.authenticate!(auth_options)
+    set_flash_message!(:notice, :signed_in)
+    sign_in(resource_name, resource)
+    if current_user.confirmado?
+      redirect_to root_path
+      
+    else
+      redirect_to password_index_path
+      
+    end
+    
+    
+   # super
   end
 
   # DELETE /resource/sign_out

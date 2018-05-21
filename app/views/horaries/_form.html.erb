@@ -1,4 +1,4 @@
-<%= form_with(model: horary, local: true) do |form| %>
+<%= form_for( [:discipleship,:group,@horary], local: true) do |form| %>
   <% if horary.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(horary.errors.count, "error") %> prohibited this horary from being saved:</h2>

@@ -32,3 +32,12 @@ html,body{
 	max-height: 64px!important;
     //padding: 15px 0!important;
 }
+.avatar-img{
+	max-height: 50px!important;
+}
+@for $i from 1 through 1000{
+	.ancho-#{$i}{
+		width: #{$i}px;
+	}
+}
+	

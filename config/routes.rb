@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :create_user
+  resources :password
   resources :lessons
   resources :commentaries
   resources :publications
@@ -6,8 +8,6 @@ Rails.application.routes.draw do
   resources :failures
   resources :enrolls
   resources :extended_notes
-  resources :horaries
-  resources :groups
   resources :covenants
   resources :given_courses
   resources :students
@@ -17,7 +17,11 @@ Rails.application.routes.draw do
   resources :districts
   resources :address_church_and_document_expeditions
   
-  resources :discipleships
+  resources :discipleships do
+    resources :groups do
+      resources :horaries
+    end
+  end  
   resources :ministeries
   resources :community_groups
   resources :cities

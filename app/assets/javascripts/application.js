@@ -10,11 +10,11 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery-ui
 //= require rails-ujs
 //= require materialize
 //= require turbolinks
 //= require_tree .
-$(document).ready(function(){
+$(document).ready(function(){  
   M.AutoInit();
-});
+    
+  });
