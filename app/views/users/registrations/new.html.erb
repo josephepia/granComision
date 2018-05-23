@@ -9,7 +9,7 @@
           <p>Queremos saber sobre ti</p>
           <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
           
-          <ul class="collapsible">
+          <ul class="collapsible no-autoinit">
             <li>
               <div class="collapsible-header"><i class="material-icons prefix">account_circle</i>Datos basicos</div>
               <div class="collapsible-body">
@@ -474,6 +474,8 @@
           
           console.log('mi instancia ', instance);
         });  
+    $('.collapsible').collapsible();
+        
      function update_versions_div(location_i, comb) { 
 
           jQuery.ajax({
@@ -519,8 +521,10 @@
             }
           });
            $('select').formSelect();
+           
           console.log('entre a la funcion con ajax');
         }
+        $('select').formSelect();
   </script> 
 
 

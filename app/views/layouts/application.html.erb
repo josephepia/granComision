@@ -3,13 +3,9 @@
   <head>
     <title>GranComision</title>
     <%= csrf_meta_tags %>
-    
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>            
-    
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    
-    
   </head>
 
   <body>
@@ -87,7 +83,9 @@
       </ul>
   
     <%= yield %>
-    
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.1/js/materialize.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.1/js/materialize.min.js"></script>
     <script>
     $(document).ready(function(){
     $('.sidenav').sidenav();
