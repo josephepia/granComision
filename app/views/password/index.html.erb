@@ -1,15 +1,16 @@
 <div class="row middle-xs no-margin">
   <div class="container ">
     <div class="row center-xs">
-        <div class=" col-xs-12 col-sm-8 col-md-6 col-lg-12">
+        <div class=" col-xs-12 col-sm-8 col-md-6 col-lg-8">
             <div class="card ">
                 <div class="card-content ">
                     <span class="card-title">Actualizar datos</span>
                     <p>Es necesario actualizar tu contrasena para poder continuar</p>
+                    <i><small>Su contrasena debe contener minimo 6 caracteres</small></i>
                     <%= form_for(:user,  method: :post) do |f| %>
                 <div class="row around-xs">
                     
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-5">
                     <div class="box">                               
                       <div class="input-field">
                         <i class="material-icons prefix">vpn_key</i>
@@ -17,15 +18,12 @@
                         <%= f.label :password, "Nueva contraseña" %>
                       
                         <% if @minimum_password_length %>
-                        <%= f.label :password, "Contraseña (#{@minimum_password_length} caracteres minimos)" %>
                         
-                        
-                        <% end %>
                         <%= f.password_field :password, autocomplete: "off" %>
                       </div>
                     </div>
                   </div>
-                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3">
+                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-5">
                     <div class="box">                               
                       <div class="input-field">
                         <i class="material-icons prefix">vpn_key</i>

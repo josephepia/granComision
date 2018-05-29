@@ -6,7 +6,7 @@ class CreateUserController < ApplicationController
 
     def create
         @usuario = User.new(params_user)
-        
+        @usuario.password = @usuario.identificacion
         respond_to do |format|
             if @usuario.save
               format.html { redirect_to create_user_index_path, notice: 'Usuario creado correctamente' }
@@ -20,7 +20,7 @@ class CreateUserController < ApplicationController
 
     private
         def params_user
-            params.require(:user).permit(:identificacion, :primernombre, :password,:email)
+            params.require(:user).permit(:identificacion, :primernombre,:email)
         end
         
 end

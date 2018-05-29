@@ -4,7 +4,6 @@
     <title>GranComision</title>
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
@@ -68,24 +67,19 @@
         <%if user_signed_in?%>
         <li class="center-xs"><%= image_tag "avatar.png", class: "circle logo-img" %></li>
         <%end%>
-        <li><a href="sass.html">sobre nosostros</a></li>
-        <li><a href="badges.html">opcion2</a></li>
-        <li><a href="collapsible.html">opcion3</a></li>
-        <li><a class="green-text">Iniciar sesion </a></li>   
-        
+        <li><%= link_to  "Discipulados", discipleships_path,class:"green-text" %></li>
         <%if user_signed_in?%>  
         <%=link_to "Cerrar sesion", destroy_user_session_path, class: "btn waves-effect waves-light ", method: :delete %>
         <%= image_tag "avatar.png", class: "circle logo-img" %>  
         
         <%else%>
-        <li><%= link_to "Iniciar",new_user_session_path ,{class: "btn waves-light margen-boton",id:"iniciar"}%></li>    
+        <li><%= link_to "Iniciar sesion",new_user_session_path, class: "green-text"%></li>    
         <%end%>
       </ul>
   
     <%= yield %>
 
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.1/js/materialize.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.1/js/materialize.min.js"></script>
+   
     <script>
     $(document).ready(function(){
     $('.sidenav').sidenav();

@@ -1,4 +1,4 @@
-<div class="row grey lighten-5 middle-xs no-margin" style="height: 80%;">    
+<div class="row grey lighten-5 middle-xs no-margin">    
   <div class="container">
     <div class="row center-xs" >
       
@@ -25,7 +25,33 @@
             </div>
           </div>
         </div>
-      
     </div>
+    <div class="row center-xs">
+      <% @discipleship.groups.each do |grupo|%>
+        <div class="col-xs-12
+                      col-sm-8
+                      col-md-6
+                      col-lg-4 ">
+            <div class="box">
+              <div class="card z-depth-3">
+                <div class="card-content black-text start-xs">
+                  <span class="card-title center"><%=grupo.nombre%></span>
+                  <b>Discipulado: </b><p><%=@discipleship.nombre%></p>
+                  <b>Rango otorgado: </b><p><%=@discipleship.rangoOtorgado%></p>
+                  <b>Pacto asociado: </b><p>Pacto de compromiso</p>
+                  <b>Descripcion del convenio: </b><p><%=@discipleship.descripcionPacto%></p>
+                  <div class="actions center">
+                  <%= link_to  "Ver detalles", discipleship_group_path(@discipleship,grupo), class: "waves-effect waves-teal btn-flat green-text" %>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+      <%end%>
+    </div>
+    
+      
+   
   </div>   
 </div>

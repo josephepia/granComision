@@ -26,4 +26,9 @@ class User < ApplicationRecord
   def will_save_change_to_email?
     false
   end
+
+  def nombre_completo
+    "#{primerNombre} #{primerApellido}"
+  end
+  
 end

@@ -1,14 +1,14 @@
 <div class="row middle-xs no-margin">
   <div class="container ">
     <div class="row center-xs">
-        <div class=" col-xs-12 col-sm-8 col-md-6 col-lg-6">
+        <div class=" col-xs-12 col-sm-8 col-md-6 col-lg-8">
             <div class="card z-depth-3">
                 <div class="card-content ">
                     <span class="card-title"><%=@texto%></span>
                     
-                    <%= form_for([:discipleship,@group], local: true) do |f| %>
-                      <div class="row around-xs">
-                          
+                    <%= form_for([@discipleship,@group]) do |f| %>
+                      <div class="row center-xs">
+                         
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
                           <div class="box">                               
                             <div class="input-field">
@@ -18,18 +18,188 @@
                             </div>
                           </div>
                         </div>
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+                        
+                        <div class="col-xs-11 col-sm-11 col-md-11 col-lg-6">
                           <div class="box">                               
                             <div class="input-field">
-                              <%= f.collection_select(:teacher_id, User.joins(:teacher), :id, :primerNombre,options = {prompt: "Seleccione"} ) %>
+                              <%= f.collection_select(:teacher_id, User.joins(:teacher), :id, :nombre_completo,options = {prompt: "Seleccione"},html:{class: "no-autoinit"} ) %>
                               <%= f.label :teacher_id , "Nombre docente"%>
-                              
                             </div>
                           </div>
                         </div>
-
+                        <label class="col-xs-12">Horario</label>
                         
-                            
+                        <ul class="collapsible col-xs-12 no-autoinit">
+                          <li>
+                            <div class="collapsible-header"><i class="material-icons">event</i>Lunes</div>
+                            <div class="collapsible-body">
+                              <div class= "row">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                  <div class="box">      
+                                    <div class="input-field">   
+                                    <%= text_field :horary, :lunesInicio,class: "timepicker" %>                      
+                                    <%= label(:horay,:lunesInicio, "Inicio") %>                             
+                                    </div>
+                                  </div>
+                                </div>
+                                
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                  <div class="box">                               
+                                    <div class="input-field">                         
+                                      <%= text_field :horary, :lunesFinal,class: "timepicker" %>                      
+                                      <%= label(:horay,:lunesFinal, "Inicio") %>                                   
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </li>
+                          <li>
+                            <div class="collapsible-header"><i class="material-icons">event</i>Martes</div>
+                            <div class="collapsible-body">
+                              <div class= "row">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                  <div class="box">      
+                                    <div class="input-field">                         
+                                      <%= text_field :horary, :martesInicio,class: "timepicker" %>                      
+                                      <%= label(:horay,:martesInicio, "Inicio") %>                                   
+                                    </div>
+                                  </div>
+                                </div>
+                                
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                  <div class="box">                               
+                                    <div class="input-field">                         
+                                      <%= text_field :horary, :martesFinal,class: "timepicker" %>                      
+                                      <%= label(:horay,:martesFinal, "Inicio") %>                                   
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </li>
+                          <li>
+                            <div class="collapsible-header"><i class="material-icons">event</i>Miercoles</div>
+                            <div class="collapsible-body">
+                              <div class= "row">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                  <div class="box">      
+                                    <div class="input-field">                         
+                                      <%= text_field :horary, :miercolesInicio,class: "timepicker" %>                      
+                                      <%= label(:horay,:miercolesInicio, "Inicio") %>                                   
+                                    </div>
+                                  </div>
+                                </div>
+                                
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                  <div class="box">                               
+                                    <div class="input-field">                         
+                                      <%= text_field :horary, :miercolesFinal,class: "timepicker" %>                      
+                                      <%= label(:horay,:miercolesFinal, "Inicio") %>                                   
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </li>
+                          <li>
+                            <div class="collapsible-header"><i class="material-icons">event</i>Jueves</div>
+                            <div class="collapsible-body">
+                              <div class= "row">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                  <div class="box">      
+                                    <div class="input-field">                         
+                                      <%= text_field :horary, :juevesInicio,class: "timepicker" %>                      
+                                      <%= label(:horay,:juevesInicio, "Inicio") %>                                   
+                                    </div>
+                                  </div>
+                                </div>
+                                
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                  <div class="box">                               
+                                    <div class="input-field">                         
+                                      <%= text_field :horary, :juevesFinal,class: "timepicker" %>                      
+                                      <%= label(:horay,:juevesFinal, "Inicio") %>                                    
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </li>
+                          <li>
+                            <div class="collapsible-header"><i class="material-icons">event</i>Viernes</div>
+                            <div class="collapsible-body">
+                              <div class= "row">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                  <div class="box">      
+                                    <div class="input-field">                         
+                                      <%= text_field :horary, :viernesInicio,class: "timepicker" %>                      
+                                      <%= label(:horay,:viernesInicio, "Inicio") %>                                   
+                                    </div>
+                                  </div>
+                                </div>
+                                
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                  <div class="box">                               
+                                    <div class="input-field">                         
+                                      <%= text_field :horary, :viernesFinal,class: "timepicker" %>                      
+                                      <%= label(:horay,:viernesFinal, "Inicio") %>                                  
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </li>
+                          <li>
+                            <div class="collapsible-header"><i class="material-icons">event</i>Sabado</div>
+                            <div class="collapsible-body">
+                              <div class= "row">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                  <div class="box">      
+                                    <div class="input-field">                         
+                                      <%= text_field :horary, :sabadoInicio,class: "timepicker" %>                      
+                                      <%= label(:horay,:sabadoInicio, "Inicio") %>                                   
+                                    </div>
+                                  </div>
+                                </div>
+                                
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                  <div class="box">                               
+                                    <div class="input-field">                         
+                                      <%= text_field :horary, :sabadoFinal,class: "timepicker" %>                      
+                                      <%= label(:horay,:sabadoFinal, "Inicio") %>                                   
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </li>
+                          <li>
+                            <div class="collapsible-header"><i class="material-icons">event</i>Domingo</div>
+                            <div class="collapsible-body">
+                              <div class= "row">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                  <div class="box">      
+                                    <div class="input-field">                         
+                                      <%= text_field :horary, :domingoInicio,class: "timepicker" %>                      
+                                      <%= label(:horay,:domingoInicio, "Inicio") %>                                   
+                                    </div>
+                                  </div>
+                                </div>
+                                
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                  <div class="box">                               
+                                    <div class="input-field">                         
+                                      <%= text_field :horary, :domingoFinal,class: "timepicker" %>                      
+                                      <%= label(:horay,:domingoFinal, "Inicio") %>                                   
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </li>
+                         
+                        </ul>   
                       </div>
                       <div class="actions ">
                         <%= link_to 'Volver', discipleship_groups_path , class: "btn  waves-light   "%>
@@ -43,30 +213,16 @@
     </div>
 </div>
 
-<%= form_for([:discipleship,@group], local: true) do |form| %>
-  
 
-  <div class="field">
-    <%= form.label :nombre %>
-    <%= form.text_field :nombre, id: :group_nombre %>
-  </div>
+<script type="text/javascript">
 
-  <div class="field">
-    <%= form.label :activo %>
-    <%= form.check_box :activo, id: :group_activo %>
-  </div>
+$(document).ready(function(){
+  $('.collapsible').collapsible();
+    $('select').formSelect();
+    $('.timepicker').timepicker({
+  min: [8,0],
+  max: [18,50]
+});
+  });
 
-  <div class="field">
-    <%= form.label :discipleship_id %>
-    <%= form.text_field :discipleship_id, id: :group_discipleship_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :teacher_id %>
-    <%= form.text_field :teacher_id, id: :group_teacher_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</script>
