@@ -45,6 +45,7 @@ class GroupsController < ApplicationController
   def update
     respond_to do |format|
       if @group.update(group_params)
+        @horary.update(horary_params)
         format.html { redirect_to @group, notice: 'Group was successfully updated.' }
         format.json { render :show, status: :ok, location: @group }
       else
@@ -72,6 +73,7 @@ class GroupsController < ApplicationController
     
     def set_group
       @group = Group.find(params[:id])
+      @horary = Horary.find_by(group_id: params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
@@ -80,7 +82,7 @@ class GroupsController < ApplicationController
     end
 
     def horary_params
-      params.require(:horary).permit(:lunesInicio,:lunesfinal,:martesInicio,:miercolesInicio,:miercolesFinal,:juevesInicio,:juevesFinal,:viernesInicio,:viernesFinal,:sabadoInicio,:sabadoFinal,:domingoinicio,:domingoFinal)      
+      params.require(:horary).permit(:lunesInicio,:lunesFinal,:martesInicio,:martesFinal,:miercolesInicio,:miercolesFinal,:juevesInicio,:juevesFinal,:viernesInicio,:viernesFinal,:sabadoInicio,:sabadoFinal,:domingoInicio,:domingoFinal)      
     end
     
 end

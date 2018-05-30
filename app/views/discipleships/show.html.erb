@@ -37,9 +37,8 @@
                 <div class="card-content black-text start-xs">
                   <span class="card-title center"><%=grupo.nombre%></span>
                   <b>Discipulado: </b><p><%=@discipleship.nombre%></p>
-                  <b>Rango otorgado: </b><p><%=@discipleship.rangoOtorgado%></p>
-                  <b>Pacto asociado: </b><p>Pacto de compromiso</p>
-                  <b>Descripcion del convenio: </b><p><%=@discipleship.descripcionPacto%></p>
+                  <b>Docente a cargo: </b><p><%= grupo.teacher.presence ? grupo.teacher.user.nombre_completo : "Sin docente asignado" %></p>
+                  <b>Estudiantes inscritos: </b><p><%=Enroll.where(group_id: grupo.id).count %></p>
                   <div class="actions center">
                   <%= link_to  "Ver detalles", discipleship_group_path(@discipleship,grupo), class: "waves-effect waves-teal btn-flat green-text" %>
                     

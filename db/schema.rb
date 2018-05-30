@@ -111,11 +111,11 @@ ActiveRecord::Schema.define(version: 20180514155226) do
 
   create_table "enrolls", force: :cascade do |t|
     t.string "definitiva"
-    t.integer "discipleship_id"
+    t.integer "group_id"
     t.integer "student_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["discipleship_id"], name: "index_enrolls_on_discipleship_id"
+    t.index ["group_id"], name: "index_enrolls_on_group_id"
     t.index ["student_id"], name: "index_enrolls_on_student_id"
   end
 
