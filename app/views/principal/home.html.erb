@@ -7,5 +7,19 @@
 <% if user.administrator%>
 <h1>soy un administrador</h1>
 <%end%>
+<% if user.is_teacher%>
+<h1>soy un docente con el neuvo metodo</h1>
+<%end%>
+<% if user.is_enrolled%>
+    <h1>estoy matriculado</h1>
+<%else%>
+    <h1>No estoy matriculado</h1>
+    <%if user.is_student%>
+        <h1>y soy estudiante</h1>
+    <%else%>
+        <h1>No soy estudiante</h1>
+    <%end%>
+<%end%>
+
 
 

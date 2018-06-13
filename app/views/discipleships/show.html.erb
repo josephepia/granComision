@@ -19,7 +19,7 @@
                   <%= link_to  "Volver", discipleships_path, class: "waves-effect waves-teal btn-flat green-text" %>                
                   <%= link_to  "Editar", edit_discipleship_path, class: "waves-effect waves-teal btn-flat green-text" %>
                   <%= link_to  "Eliminar", @discipleship, data: { confirm: 'Esta seguro?' },class: "waves-effect waves-teal btn-flat green-text", method: :delete %>
-                  
+                  <%= link_to  "Inscribirme", controller: "groups", action: "inscribirme", discipleship_id: @discipleship.id %>
                 </div>
               </div>
             </div>
@@ -27,7 +27,7 @@
         </div>
     </div>
     <div class="row center-xs">
-      <% @discipleship.groups.each do |grupo|%>
+      <% @discipleship.groups.sort_by{|a| a.activo ? 0 : 1}.each do |grupo|%>
         <div class="col-xs-12
                       col-sm-8
                       col-md-6
@@ -39,6 +39,17 @@
                   <b>Discipulado: </b><p><%=@discipleship.nombre%></p>
                   <b>Docente a cargo: </b><p><%= grupo.teacher.presence ? grupo.teacher.user.nombre_completo : "Sin docente asignado" %></p>
                   <b>Estudiantes inscritos: </b><p><%=Enroll.where(group_id: grupo.id).count %></p>
+                  <div class="center-xs">
+                    <%if grupo.activo?%>
+                      <div class="chip verdeAdo white-text">
+                        Activo
+                      </div>
+                    <%else%>
+                      <div class="chip">
+                        Inactivo
+                      </div>
+                    <%end%>
+                  </div>
                   <div class="actions center">
                   <%= link_to  "Ver detalles", discipleship_group_path(@discipleship,grupo), class: "waves-effect waves-teal btn-flat green-text" %>
                     

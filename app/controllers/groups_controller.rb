@@ -7,6 +7,20 @@ class GroupsController < ApplicationController
     @groups = @discipleship.groups
   end
 
+  def inscribirme
+    
+    
+    if( @user.enrolled_in_discipleship(params[:discipleship_id]))
+      respond_to do |format|
+        format.html { redirect_to discipleships_path, notice: 'Ya estas inscrito' }    
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to discipleships_path, notice: 'Inscrito exitosamente' }    
+      end
+    end
+  end
+  
   # GET /groups/1
   # GET /groups/1.json
   def show

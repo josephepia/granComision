@@ -30,5 +30,34 @@ class User < ApplicationRecord
   def nombre_completo
     "#{primerNombre} #{primerApellido}"
   end
+
+  def is_student
+    Student.exists?(user_id: self.id)
+  end
+
+  def is_teacher
+    Teacher.exists?(user_id: self.id)
+  end
+  
+  def is_enrolled
+    if self.is_student
+      Enroll.exists?(student_id: self.student.id)
+    else
+      return false
+    end
+  end
+
+  def enrolled_in_discipleship(discipleship_id)
+    
+    Enroll.where(student_id: self.student.id).all.each do |grupo|
+      if (Group.find(grupo.group_id)).discipleship.id == discipleship_id
+        return true
+      end
+    end
+    return false
+  end
+  
+  
+  
   
 end

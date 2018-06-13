@@ -1,5 +1,8 @@
 $colors :(
-    negro: #000000
+    negro: #000000,
+    rojoBri: #ED0900,
+    verdeBri: #339900,
+    verdeAdo: #51B133
 );
 
 @each $color_name,$color in $colors{

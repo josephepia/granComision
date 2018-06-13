@@ -1,31 +1,40 @@
-<p id="notice"><%= notice %></p>
 
-<h1>Enrolls</h1>
+<div class="container">
 
-<table>
-  <thead>
-    <tr>
-      <th>Definitiva</th>
-      <th>Discipleship</th>
-      <th>Student</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<h1 >Matriculados</h1>
+<table class="highlight striped">
+        <thead>
+          <tr>
+              <th>Identificacion</th>
+              <th>Nombre</th>
+              <th>Grupo</th>
+              <th>Discipulado</th>
+              <th>Estado</th>
+              <th>Fecha de inscripcion</th>
+              <th>Accion</th>
+              
+              
+          </tr>
+        </thead>
 
-  <tbody>
+        <tbody>
     <% @enrolls.each do |enroll| %>
-      <tr>
-        <td><%= enroll.definitiva %></td>
-        <td><%= enroll.discipleship %></td>
-        <td><%= enroll.student %></td>
-        <td><%= link_to 'Show', enroll %></td>
-        <td><%= link_to 'Edit', edit_enroll_path(enroll) %></td>
-        <td><%= link_to 'Destroy', enroll, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
+        
+          <tr>
+            <td><%=enroll.student.user.identificacion%></td>
+            <td><%=enroll.student.user.nombre_completo%></td>
+            <td><%=enroll.group.nombre%></td>
+            <td><%=enroll.group.discipleship.nombre%></td>
+            <td><%=enroll.definitiva%></td>
+            <td><%=enroll.created_at%></td>
+            <td><%= link_to 'Show', enroll %> </td>
+            <td><%= link_to 'Edit', edit_enroll_path(enroll) %></td>
+            <td><%= link_to 'Destroy', enroll, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            
+          </tr>
+    <%end%>
+          
+        </tbody>
+      </table>
+</div>
 <br>
-
-<%= link_to 'New Enroll', new_enroll_path %>
