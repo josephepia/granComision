@@ -1,4 +1,14 @@
-
+<div class="fixed-action-btn click-to-toggle">
+  <a class="btn-floating btn-large red">
+    <i class="large material-icons">mode_edit</i>
+  </a>
+  <ul>
+    <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
+    <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
+    <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
+    <li><a href="/enrolls/new" class="btn-floating blue"><i class="material-icons">add</i></a></li>
+  </ul>
+</div>
 <div class="container">
 
 <h1 >Matriculados</h1>
@@ -21,8 +31,8 @@
     <% @enrolls.each do |enroll| %>
         
           <tr>
-            <td><%=enroll.student.user.identificacion%></td>
-            <td><%=enroll.student.user.nombre_completo%></td>
+            <td><%=enroll.user.identificacion%></td>
+            <td><%=enroll.user.nombre_completo%></td>
             <td><%=enroll.group.nombre%></td>
             <td><%=enroll.group.discipleship.nombre%></td>
             <td><%=enroll.definitiva%></td>

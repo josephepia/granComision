@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
-  before_action :set_group, only: [:show, :edit, :update, :destroy]
   before_action :set_discipleship
+  before_action :set_group, only: [:show, :edit, :update, :destroy]
   # GET /groups
   # GET /groups.json
   def index
@@ -31,6 +31,7 @@ class GroupsController < ApplicationController
   def new
     @group = Group.new
     @horary = Horary.new
+    @docentes= User.joins(:roles).where(roles: { nombre: 'docente' })
   end
 
   # GET /groups/1/edit
@@ -45,7 +46,7 @@ class GroupsController < ApplicationController
     @group.horary = Horary.new(horary_params)
     respond_to do |format|
       if @group.save
-        format.html { redirect_to discipleship_groups_path(@group.discipleship), notice: 'Gropo creado exitosamente' }
+        format.html { redirect_to discipleship_path(@group.discipleship), notice: 'Gropo creado exitosamente' }
         format.json { render :show, status: :created, location: @group }
       else
         format.html { render :new }
@@ -60,7 +61,7 @@ class GroupsController < ApplicationController
     respond_to do |format|
       if @group.update(group_params)
         @horary.update(horary_params)
-        format.html { redirect_to @group, notice: 'Group was successfully updated.' }
+        format.html { redirect_to discipleship_group_path(@group.discipleship,@group), notice: 'El grupo fue actualizado correctamente.' }
         format.json { render :show, status: :ok, location: @group }
       else
         format.html { render :edit }
@@ -88,11 +89,13 @@ class GroupsController < ApplicationController
     def set_group
       @group = Group.find(params[:id])
       @horary = Horary.find_by(group_id: params[:id])
+      #@docentes= @group.user
+      @docentes= User.joins(:roles).where(roles: { nombre: 'docente' })
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def group_params
-      params.require(:group).permit(:nombre, :teacher_id)
+      params.require(:group).permit(:nombre, :user_id,:activo)
     end
 
     def horary_params

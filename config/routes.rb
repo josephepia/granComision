@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :solicits
+  resources :permissions
+  resources :roles
   resources :create_user
   resources :password
   resources :lessons
@@ -10,11 +13,10 @@ Rails.application.routes.draw do
   resources :extended_notes
   resources :covenants
   resources :given_courses
-  resources :students
-  resources :administrators
-  resources :teachers
   resources :addresses
   resources :districts
+  resources :perfil
+
   get '/inscribirme', to: 'groups#inscribirme'
   resources :address_church_and_document_expeditions
   
@@ -38,6 +40,8 @@ Rails.application.routes.draw do
   get '/cargar_departamentos' => 'users/registrations#cargar_departamentos'
     
   end
+  get '/cargar_grupos' => 'enrolls#cargar_grupos'
+
   authenticated :user do
     root 'principal#home'
   end

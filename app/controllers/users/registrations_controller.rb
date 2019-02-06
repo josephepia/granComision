@@ -35,7 +35,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       
     end
     if params[:combo]== 'paisNacimiento'
-    @department = Department.where(country_id: params[:location_id]).all
+    @departments = Department.where(country_id: params[:location_id]).all
       
     end
     if params[:combo]== 'departamentoNacimiento'
@@ -43,7 +43,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       
     end
     if params[:combo]== 'paisIglesia'
-    @department = Department.where(country_id: params[:location_id]).all
+    @departments = Department.where(country_id: params[:location_id]).all
       
     end
     if params[:combo]== 'departamentoIglesia'
@@ -58,7 +58,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
 
     @user = build_resource(devise_parameter_sanitizer.sanitize(:sign_up))
-    @user.confirmado = true
+    #@user.confirmado = true
     if User.exists?(identificacion: @user.identificacion)
       respond_to do |format|
         flash.now[:notice] = "Esta identificacion ya se encuentra registrada"
@@ -106,7 +106,32 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:tipoDocumento,:identificacion,:primerNombre,:segundoNombre,:primerApellido,:segundoApellido,:telefono,:sexo,:fechaNacimiento,:fechaRegistro,:estadoCivil,:fechaAniversario,:primerNombreConyuge,:segundoNombreConyuge,:primerApellidoConyuge,:segundoApellidoConyuge,:confesionReligiosa,:fueMiembroOtraIglesia,:tiempoOtraIglesia,:nivelAcademico,:profesionOficio,:email,:encrypted_password,:password_confirmation, :created_at,:updated_at,])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:tipoDocumento,
+      :identificacion,
+      :primerNombre,
+      :segundoNombre,
+      :primerApellido,
+      :segundoApellido,
+      :telefono,
+      :sexo,
+      :fechaNacimiento,
+      :fechaRegistro,
+      :estadoCivil,
+      :fechaAniversario,
+      :primerNombreConyuge,
+      :segundoNombreConyuge,
+      :primerApellidoConyuge,
+      :segundoApellidoConyuge,
+      :confesionReligiosa,
+      :fueMiembroOtraIglesia,
+      :tiempoOtraIglesia,
+      :nivelAcademico,
+      :profesionOficio,
+      :email,
+      :encrypted_password,
+      :password_confirmation, 
+      :created_at,
+      :updated_at,])
   end
 
   # If you have extra params to permit, append them to the sanitizer.

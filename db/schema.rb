@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180514155226) do
+ActiveRecord::Schema.define(version: 20190203080633) do
 
   create_table "address_church_and_document_expeditions", force: :cascade do |t|
     t.string "nombreIglesiaAnterior"
@@ -34,13 +34,6 @@ ActiveRecord::Schema.define(version: 20180514155226) do
     t.datetime "updated_at", null: false
     t.index ["district_id"], name: "index_addresses_on_district_id"
     t.index ["user_id"], name: "index_addresses_on_user_id"
-  end
-
-  create_table "administrators", force: :cascade do |t|
-    t.integer "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_administrators_on_user_id"
   end
 
   create_table "cities", force: :cascade do |t|
@@ -76,11 +69,11 @@ ActiveRecord::Schema.define(version: 20180514155226) do
   create_table "covenants", force: :cascade do |t|
     t.string "urlMultimedia"
     t.integer "discipleship_id"
-    t.integer "student_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["discipleship_id"], name: "index_covenants_on_discipleship_id"
-    t.index ["student_id"], name: "index_covenants_on_student_id"
+    t.index ["user_id"], name: "index_covenants_on_user_id"
   end
 
   create_table "departments", force: :cascade do |t|
@@ -112,11 +105,11 @@ ActiveRecord::Schema.define(version: 20180514155226) do
   create_table "enrolls", force: :cascade do |t|
     t.string "definitiva"
     t.integer "group_id"
-    t.integer "student_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["group_id"], name: "index_enrolls_on_group_id"
-    t.index ["student_id"], name: "index_enrolls_on_student_id"
+    t.index ["user_id"], name: "index_enrolls_on_user_id"
   end
 
   create_table "extended_notes", force: :cascade do |t|
@@ -124,11 +117,11 @@ ActiveRecord::Schema.define(version: 20180514155226) do
     t.date "fecha"
     t.string "idGrupo"
     t.integer "discipleship_id"
-    t.integer "student_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["discipleship_id"], name: "index_extended_notes_on_discipleship_id"
-    t.index ["student_id"], name: "index_extended_notes_on_student_id"
+    t.index ["user_id"], name: "index_extended_notes_on_user_id"
   end
 
   create_table "failures", force: :cascade do |t|
@@ -146,22 +139,22 @@ ActiveRecord::Schema.define(version: 20180514155226) do
     t.date "fechaInicio"
     t.date "fechaCierre"
     t.integer "discipleship_id"
-    t.integer "teacher_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["discipleship_id"], name: "index_given_courses_on_discipleship_id"
-    t.index ["teacher_id"], name: "index_given_courses_on_teacher_id"
+    t.index ["user_id"], name: "index_given_courses_on_user_id"
   end
 
   create_table "groups", force: :cascade do |t|
     t.string "nombre"
-    t.boolean "activo"
+    t.boolean "activo", default: false
     t.integer "discipleship_id"
-    t.integer "teacher_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["discipleship_id"], name: "index_groups_on_discipleship_id"
-    t.index ["teacher_id"], name: "index_groups_on_teacher_id"
+    t.index ["user_id"], name: "index_groups_on_user_id"
   end
 
   create_table "horaries", force: :cascade do |t|
@@ -209,6 +202,19 @@ ActiveRecord::Schema.define(version: 20180514155226) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "permissions", force: :cascade do |t|
+    t.string "nombre"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "permissions_users", force: :cascade do |t|
+    t.integer "permission_id"
+    t.integer "user_id"
+    t.index ["permission_id"], name: "index_permissions_users_on_permission_id"
+    t.index ["user_id"], name: "index_permissions_users_on_user_id"
+  end
+
   create_table "publications", force: :cascade do |t|
     t.text "descripcion"
     t.integer "material_id"
@@ -219,19 +225,26 @@ ActiveRecord::Schema.define(version: 20180514155226) do
     t.index ["material_id"], name: "index_publications_on_material_id"
   end
 
-  create_table "students", force: :cascade do |t|
-    t.string "rango"
-    t.integer "user_id"
+  create_table "roles", force: :cascade do |t|
+    t.string "nombre"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_students_on_user_id"
   end
 
-  create_table "teachers", force: :cascade do |t|
+  create_table "roles_users", id: false, force: :cascade do |t|
+    t.integer "role_id"
     t.integer "user_id"
+    t.index ["role_id"], name: "index_roles_users_on_role_id"
+    t.index ["user_id"], name: "index_roles_users_on_user_id"
+  end
+
+  create_table "solicits", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "discipleship_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_teachers_on_user_id"
+    t.index ["discipleship_id"], name: "index_solicits_on_discipleship_id"
+    t.index ["user_id"], name: "index_solicits_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -270,6 +283,7 @@ ActiveRecord::Schema.define(version: 20180514155226) do
     t.boolean "activo", default: true
     t.boolean "suspendido", default: false
     t.boolean "liderComunitario", default: false
+    t.string "rango"
     t.integer "community_group_id"
     t.integer "ministery_id"
     t.datetime "created_at", null: false

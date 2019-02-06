@@ -1,50 +1,45 @@
 <div class="row middle-xs no-margin">
   <div class="container ">
     <div class="row center-xs">
-        <div class=" col-xs-12 col-sm-8 col-md-6 col-lg-8">
-            <div class="card ">
-                <div class="card-content ">
-                    <span class="card-title">Actualizar datos</span>
-                    <p>Es necesario actualizar tu contrasena para poder continuar</p>
-                    <i><small>Su contrasena debe contener minimo 6 caracteres</small></i>
-                    <%= form_for(:user,  method: :post) do |f| %>
-                <div class="row around-xs">
+      <div class=" col-xs-12 col-sm-8 col-md-6 col-lg-8">
+        <div class="card ">
+          <div class="card-content ">
+            <span class="card-title">Actualizar datos</span>
+            <p>Es necesario actualizar tu contrasena para poder continuar</p>
+            <i><small>Su contrasena debe contener minimo 6 caracteres</small></i>
+            <%= form_for(:user,  method: :post) do |f| %>
+              <div class="row around-xs">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-5">
+                  <div class="box">                               
+                    <div class="input-field">
+                      <i class="material-icons prefix">vpn_key</i>
                     
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-5">
-                    <div class="box">                               
-                      <div class="input-field">
-                        <i class="material-icons prefix">vpn_key</i>
+                      <%= f.label :password, "Nueva contraseña" %>
+                    
                       
-                        <%= f.label :password, "Nueva contraseña" %>
                       
-                        <% if @minimum_password_length %>
-                        
-                        <%= f.password_field :password, autocomplete: "off" %>
-                      </div>
+                      <%= f.password_field :password, autocomplete: "off" %>
                     </div>
                   </div>
-                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-5">
-                    <div class="box">                               
-                      <div class="input-field">
-                        <i class="material-icons prefix">vpn_key</i>
-                      
-                        <%= f.label :password_confirmation, "Confirmar nueva contraseña" %>
-                        <%= f.password_field :password_confirmation, autocomplete: "off" %>
-                      </div>
-                    </div>
-                  </div>    
-                  </div>
-                  <div class="actions ">
-            
-                    <%= f.submit "Aceptar",class: "btn  waves-light  " %>
-                    <br><br>
-                    
-                    
-                    
-                    </div>
-                    <%end%>
                 </div>
-            </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-5">
+                  <div class="box">                               
+                    <div class="input-field">
+                      <i class="material-icons prefix">vpn_key</i>
+                      <%= f.label :password_confirmation, "Confirmar nueva contraseña" %>
+                      <%= f.password_field :password_confirmation, autocomplete: "off" %>
+                    </div>
+                  </div>
+                </div>    
+              </div>
+              <div class="actions ">
+                <%= f.submit "Aceptar",class: "btn  waves-light  " %>
+                <br><br>
+              </div>
+            <%end%>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>

@@ -5,7 +5,7 @@ class CreateGivenCourses < ActiveRecord::Migration[5.1]
       t.date :fechaInicio
       t.date :fechaCierre
       t.references :discipleship, foreign_key: true
-      t.references :teacher, foreign_key: true
+      t.references :user, foreign_key: true
 
       t.timestamps
     end

@@ -7,43 +7,54 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="blue-grey lighten-5" >
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
-    <header>
-      <div class="navbar-fixed">
-        <nav class="white green-text">
+    <header class="">
+      <div class="navbar-fixed ">
+        <nav class="white-text blue-grey darken-2">
           <div class="nav-wrapper">
-            <a href="/" class="brand-logo center"><%= image_tag "logoGranComision.png", class: "circle logo-img" %></a>
+            <a href="/" class="brand-logo center"><%= image_tag "logoGranComision.jpg", class: "circle logo-img" %></a>
             <a href="" data-target="mobile-demo" class="sidenav-trigger no-autoinit" id="abrir"><i class="material-icons  green-text" >menu</i></a>
             <ul class="right hide-on-med-and-down negro-text">
               
               <%if user_signed_in?%>
 
                 
-              <li><a  class="dropdown-trigger no-autoinit logo-img green-text" data-target='dropdown1'><div class="row middle-xs no-margin"><p class="no-margin"><%=user.primerNombre%></p><%= image_tag "avatar.png", class: "circle avatar-img" %></div></a></li>
+              <li>
+                <a  class="dropdown-trigger no-autoinit logo-img " data-target='dropdown1'>
+                  <div class="row middle-xs no-margin">
+                    <div class="col-xs no-margin">
+                      <p class="no-margin"><%=user.primerNombre%></p>
+                    </div>
+                    <div class="col-xs no-margin">
+                      <%= image_tag "avatar.png", class: "circle avatar-img" %>
+                    </div>
+                  </div>
+                </a>
+              </li>
               
         
               
               <%else%>
-              <li><%= link_to "Iniciar",new_user_session_path ,class: "btn waves-light margen-boton"%></li>        
-              <li><%= link_to "Registrarme",new_user_registration_path ,class: "btn waves-light margen-boton"%></li>                
+              <li><%= link_to "Iniciar",new_user_session_path ,class: "btn waves-light margen-boton borde-radio-5"%></li>        
+              <li><%= link_to "Registrarme",new_user_registration_path ,class: "btn waves-light margen-boton borde-radio-5"%></li>                
               <%end%>
             </ul>
           </div>
         </nav>
       </div>
       
-      <ul id='dropdown1' class='dropdown-content ' >
-        <%if user.student%>
+      <ul id='dropdown1' class='dropdown-content borde-radio-5' >
+        <%if user%>
                   <li><a href="#!">Material de apoyo</a></li>
                   
                 <%end%>
-                <%if user.teacher%>
-                  <li><a href="#!">Discipulados</a></li>  
+                <%if user%>
+                  <li><a href="/discipleships">Discipulados</a></li>  
                   <li><a href="#!">Subir notar</a></li>
                   
                 <%end%>
-                <%if user.administrator%>
+                <%if user%>
                   <li><%= link_to  "Discipulados", discipleships_path %></li>                  
                 
                   <li><a href="#!">Docentes</a></li>
@@ -54,9 +65,9 @@
                   
                 <%end%>
         <li class="divider" tabindex="-1"></li>
-        <li><a href="#!">Editar perfil</a></li>
+        <li><a href="#!" class="green-text">Editar perfil</a></li>
         
-        <li><%=link_to "Cerrar sesion", destroy_user_session_path,  method: :delete %></li>
+        <li><%=link_to "Cerrar sesion", destroy_user_session_path,  method: :delete,class: "green-text" %></li>
         
       </ul>
       
@@ -78,8 +89,8 @@
       </ul>
   
     <%= yield %>
-
-   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.1/js/materialize.js"></script>    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.1/js/materialize.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
    <script>
     $(document).ready(function(){
     $('.sidenav').sidenav();

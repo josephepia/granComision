@@ -43,7 +43,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.1]
       t.boolean   :activo, default: true
       t.boolean   :suspendido, default: false
       t.boolean   :liderComunitario, default: false
-
+      t.string    :rango
 
 
       t.references :community_group, foreign_key: true

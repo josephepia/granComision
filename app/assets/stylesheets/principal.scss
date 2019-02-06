@@ -38,6 +38,24 @@ html,body{
 .avatar-img{
 	max-height: 50px!important;
 }
+@for $i from 0 through 100{
+	.borde-radio-#{$i}{
+		border-radius: #{$i}px;
+	}
+	.borde-radio-top-#{$i}{
+		border-radius: #{$i}px #{$i}px 0px 0px; 
+	}
+	.borde-radio-buton-#{$i}{
+		border-radius: 0px 0px #{$i}px #{$i}px; 
+	}
+	.margin-#{$i}{
+		margin: #{$i}px;
+	}
+	.padding-#{$i}{
+		padding: #{$i}px;
+	}
+}
+
 @for $i from 1 through 1000{
 	.ancho-#{$i}{
 		width: #{$i}px;

@@ -3,8 +3,9 @@
   <div class="row center-xs">
   <%= devise_error_messages! %>
     <div class=" col-xs-12 col-sm-8 col-md-6 col-lg-12">
-      <div class="card ">
+      <div class="card borde-radio-10">
         <div class="card-content no-padding">
+          
           <span class="card-title">Regístrate</span>
           <p>Queremos saber sobre ti</p>
           <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
@@ -36,7 +37,7 @@
                   <div class="box">
                     <div class="input-field col s12">
                     
-                      <%= collection_select(:country,:id,Country.order(:nombre), :id, :nombre,options = {prompt: "Seleccione"} ,html_options ={onChange: "update_versions_div(this.options[this.selectedIndex].value,'paisExpedicion');"}) %>
+                      <%= collection_select(:paisExpedicion,:id,Country.order(:nombre), :id, :nombre,options = {prompt: "Seleccione"} ,html_options ={onChange: "update_versions_div(this.options[this.selectedIndex].value,'paisExpedicion');"}) %>
                       <label>Pais expedicion</label>
                     </div>   
                   </div>
@@ -44,7 +45,7 @@
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
                   <div class="box">
                     <div class="input-field col s12" id="departamentoExpedicion">
-                      <%= f.select :sexo, [['Seleccione',''],['Masculino','masculino'],['Femenino','femenino']]%>
+                      <%= f.select :sexo, [['Seleccione','']]%>
                       
                       <label>Departamento expedicion</label>
                     </div>   
@@ -53,7 +54,7 @@
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
                   <div class="box">
                     <div class="input-field col s12" id="ciudadExpedicion">
-                      
+                      <%= f.select :sexo, [['Seleccione','']]%>
                       <label>Ciudad expedicion</label>
                     </div>   
                   </div>
@@ -128,14 +129,15 @@
                   <div class="box">
                     <div class="input-field col s12">
                     
-                      <%= collection_select(:country,:id,Country.order(:nombre), :id, :nombre,options = {prompt: "Seleccione"} ,html_options ={onChange: "update_versions_div(this.options[this.selectedIndex].value,'paisExpedicion');"}) %>
+                      <%= collection_select(:paisNacimiento,:id,Country.order(:nombre), :id, :nombre,options = {prompt: "Seleccione"} ,html_options ={onChange: "update_versions_div(this.options[this.selectedIndex].value,'paisNacimiento');"}) %>
                       <label>Pais nacimiento</label>
                     </div>   
                   </div>
                 </div>
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
                   <div class="box">
-                    <div class="input-field col s12" id="departamentoExpedicion">
+                    <div class="input-field col s12" id="departamentoNacimiento">
+                      <%= f.select :sexo, [['Seleccione','']]%>
                       
                       <label>Departamento nacimiento</label>
                     </div>   
@@ -143,8 +145,8 @@
                 </div>
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
                   <div class="box">
-                    <div class="input-field col s12" id="ciudadExpedicion">
-                      
+                    <div class="input-field col s12" id="ciudadNacimiento">
+                      <%= f.select :sexo, [['Seleccione','']]%>
                       <label>Ciudad nacimiento</label>
                     </div>   
                   </div>
@@ -157,28 +159,36 @@
                     </div>
                   </div>
                 </div>
-                              
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
                   <div class="box">
-                    <div class="input-field col s12" id="departamentoExpedicion">
-                      
-                      <label>Departamento direccion</label>
+                    <div class="input-field col s12">
+                    
+                      <%= collection_select(:paisResidencia,:id,Country.order(:nombre), :id, :nombre,options = {prompt: "Seleccione"} ,html_options ={onChange: "update_versions_div(this.options[this.selectedIndex].value,'paisResidencia');"}) %>
+                      <label>Pais residencia</label>
+                    </div>   
+                  </div>
+                </div>              
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
+                  <div class="box">
+                    <div class="input-field col s12" id="departamentoResidencia">
+                      <%= f.select :sexo, [['Seleccione','']]%>
+                      <label>Departamento residencia</label>
                     </div>   
                   </div>
                 </div>
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
                   <div class="box">
-                    <div class="input-field col s12" id="ciudadExpedicion">
-                      
-                      <label>Ciudad direccion</label>
+                    <div class="input-field col s12" id="ciudadResidencia">
+                      <%= f.select :sexo, [['Seleccione','']]%>
+                      <label>Ciudad residencia</label>
                     </div>   
                   </div>
                 </div>
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
                   <div class="box">
-                    <div class="input-field col s12" id="ciudadExpedicion">
-                      
-                      <label>Barrio direccion</label>
+                    <div class="input-field col s12" id="barrioResidencia">
+                      <%= f.select :sexo, [['Seleccione','']]%>
+                      <label>Barrio residencia</label>
                     </div>   
                   </div>
                 </div>
@@ -380,8 +390,8 @@
             <div class="actions ">
             
             
-              <%= link_to "Iniciar",new_user_session_path ,class: "btn waves-light margen-boton"%>
-              <%= f.submit "Registrar",class: "btn  waves-light  " %>
+              <%= link_to "Iniciar",new_user_session_path ,class: "btn waves-light margen-boton borde-radio-5"%>
+              <%= f.submit "Registrar",class: "btn  waves-light  borde-radio-5" %>
               <br><br>
             
               
@@ -504,14 +514,14 @@
                   jQuery("#barrioResidencia").html(datos);
               }
               //--------------------------------------------------------
-              if (comb == "PaisNacimiento") {
+              if (comb == "paisNacimiento") {
                   jQuery("#departamentoNacimiento").html(datos);
               }
               if (comb == "departamentoNacimiento") {
                   jQuery("#ciudadNacimiento").html(datos);
               }
               //--------------------------------------------------------
-              if (comb == "PaisIglesia") {
+              if (comb == "paisIglesia") {
                   jQuery("#departamentoIglesia").html(datos);
               }
               if (comb == "departamentoIglesia") {

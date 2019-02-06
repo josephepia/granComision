@@ -1,8 +1,8 @@
-<div class="row middle-xs no-margin" style="height: 80%">
+<div class="row middle-xs no-margin " style="height: 80%">
   <div class="container">
   <div class="row center-xs">
     <div class="col-xs-12 col-sm-8 col-md-6 col-lg-4">
-      <div class="card ">
+      <div class="card borde-radio-10">
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <div class="card-content ">
             <span class="card-title">Inicia sesion</span>
@@ -31,8 +31,8 @@
               
           </div>
           <div class="card-action">
-            <%= link_to "Registrarme",new_user_registration_path ,class: "btn waves-light margen-boton"%>
-            <%= f.submit "Iniciar",class: "btn  waves-light  " %>
+            <%= link_to "Registrarme",new_user_registration_path ,class: "btn waves-light margen-boton borde-radio-5"%>
+            <%= f.submit "Iniciar",class: "btn  waves-light  borde-radio-5" %>
           </div>  
         <% end %>
       </div>

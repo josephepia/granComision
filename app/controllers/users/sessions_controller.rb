@@ -26,6 +26,8 @@ class Users::SessionsController < Devise::SessionsController
       
     else
       redirect_to password_index_path
+      #redirect_to edit_user_password_path
+
       
     end
     

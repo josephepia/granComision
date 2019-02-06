@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @solicit.user %>
+</p>
+
+<p>
+  <strong>Discipleship:</strong>
+  <%= @solicit.discipleship %>
+</p>
+
+<%= link_to 'Edit', edit_solicit_path(@solicit) %> |
+<%= link_to 'Back', solicits_path %>

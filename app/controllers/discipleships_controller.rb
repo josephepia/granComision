@@ -1,6 +1,6 @@
 class DiscipleshipsController < ApplicationController
   before_action :set_discipleship, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
   # GET /discipleships
   # GET /discipleships.json
   def index
@@ -32,7 +32,7 @@ class DiscipleshipsController < ApplicationController
 
     respond_to do |format|
       if @discipleship.save
-        format.html { redirect_to @discipleship, notice: 'Discipleship was successfully created.' }
+        format.html { redirect_to @discipleship, notice: 'Discipulado creado correctamente.' }
         format.json { render :show, status: :created, location: @discipleship }
       else
         format.html { render :new }
@@ -46,7 +46,7 @@ class DiscipleshipsController < ApplicationController
   def update
     respond_to do |format|
       if @discipleship.update(discipleship_params)
-        format.html { redirect_to @discipleship, notice: 'Discipleship was successfully updated.' }
+        format.html { redirect_to @discipleship, notice: 'Discipleship actualizado correctamente' }
         format.json { render :show, status: :ok, location: @discipleship }
       else
         format.html { render :edit }
@@ -60,7 +60,7 @@ class DiscipleshipsController < ApplicationController
   def destroy
     @discipleship.destroy
     respond_to do |format|
-      format.html { redirect_to discipleships_url, notice: 'Discipleship was successfully destroyed.' }
+      format.html { redirect_to discipleships_url, notice: 'Discipulado eliminado correctamente' }
       format.json { head :no_content }
     end
   end

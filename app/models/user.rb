@@ -4,15 +4,14 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :authentication_keys => [:identificacion]
   has_and_belongs_to_many :ministeries
-  has_one :teacher
-  has_one :student
-  has_one :administrator
+  has_and_belongs_to_many :roles
+  has_and_belongs_to_many :permissions
   has_many :addresschurchanddocumentexpeditions
   has_many :address
-  has_many :groups, :through => :teacher
+  has_many :groups
   has_many :given_courses, :through => :teacher
   has_many :covenants, :through => :student
-  has_one  :enrroll, :through => :student
+  has_many  :enrrolls
   has_many :extended_notes, :through => :student
   belongs_to :communitygroups,optional: true
   def email_required?
@@ -32,19 +31,23 @@ class User < ApplicationRecord
   end
 
   def is_student
-    Student.exists?(user_id: self.id)
-  end
-
-  def is_teacher
-    Teacher.exists?(user_id: self.id)
-  end
-  
-  def is_enrolled
-    if self.is_student
-      Enroll.exists?(student_id: self.student.id)
+    if User.joins(:roles).where(roles: 'estudiante')
+      return true
     else
       return false
     end
+  end
+
+  def is_teacher
+    if User.joins(:roles).where(roles: 'docente')
+      return true
+    else
+      return false
+    end
+  end
+  
+  def is_enrolled
+     Enroll.exists?(user_id: self.id) 
   end
 
   def enrolled_in_discipleship(discipleship_id)
