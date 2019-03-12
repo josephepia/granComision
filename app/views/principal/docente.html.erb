@@ -1,0 +1,4 @@
+<h1>Usuarios registrados</h1>
+<%= line_chart User.group_by_day(:created_at).count %>
+<p>notas extendidas</p>
+<%= line_chart ExtendedNote.group_by_day(:created_at).count %>
