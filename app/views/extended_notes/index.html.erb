@@ -1,15 +1,21 @@
-<p id="notice"><%= notice %></p>
 
-<h1>Extended Notes</h1>
 
+<div class="container">
+
+
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
+      <div class="box">
+        <div class="card z-depth-3 borde-radio-10">
+          <div class="card-content black-text center-xs" >
+            <span class="card-title center" >Matriculas</span>
 <table>
   <thead>
     <tr>
+      <th>Estudiante</t1h>
       <th>Definitiva</th>
       <th>Fecha</th>
       <th>Idgrupo</th>
       <th>Discipleship</th>
-      <th>Student</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -17,18 +23,22 @@
   <tbody>
     <% @extended_notes.each do |extended_note| %>
       <tr>
+        <td><%= extended_note.user.identificacion %></td>
         <td><%= extended_note.definitiva %></td>
         <td><%= extended_note.created_at %></td>
         <td><%= extended_note.idGrupo %></td>
-        <td><%= extended_note.discipleship.id %></td>
-        <td><%= extended_note.user.identificacion %></td>
-        <td><%= link_to 'Show', extended_note %></td>
-        <td><%= link_to 'Edit', edit_extended_note_path(extended_note) %></td>
-        <td><%= link_to 'Destroy', extended_note, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= extended_note.discipleship.nombre %></td>
+        
       </tr>
     <% end %>
   </tbody>
 </table>
+  </div>
+        </div>
+      </div>
+    </div>
+
+</div>
 
 <br>
 

@@ -57,7 +57,6 @@
         
         <%if user%>
           <li><%= link_to  "Discipulados", discipleships_path %></li>                  
-        
           <li><a href="">Docentes</a></li>
           <li><a href="">Miembros</a></li>
           <li><a href="">Grupos comunitarios</a></li>
@@ -90,6 +89,9 @@
    
      <%if user_signed_in?%>
       <li><%= link_to  "Discipulados", discipleships_path %></li>           
+      <li><%= link_to  "Matriculas", enrolls_path %></li>
+      <li><%= link_to  "Notas extendidas", extended_notes_path %></li>
+
       
       <li><a href="" class="waves-effect">Docentes</a></li>
       <li><a href="" class="waves-effect">Miembros</a></li>
