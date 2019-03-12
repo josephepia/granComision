@@ -15,7 +15,10 @@
 //= require rails-ujs
 //= require materialize
 //= require turbolinks
+//= require Chart.bundle
+//= require chartkick
 //= require_tree .
+
 $(document).ready(function(){  
   M.AutoInit();
     

@@ -19,7 +19,7 @@
                   <%= link_to  "Volver", discipleships_path, class: "waves-effect waves-teal btn-flat " %>                
                   <%= link_to  "Editar", edit_discipleship_path, class: "waves-effect waves-teal btn-flat " %>
                   <%= link_to  "Eliminar", @discipleship, data: { confirm: 'Esta seguro?' },class: "waves-effect waves-teal btn-flat ", method: :delete %>
-                  <%= link_to  "Inscribirme", controller: "groups", action: "inscribirme", discipleship_id: @discipleship.id %>
+                  
                 </div>
               </div>
             </div>
@@ -48,7 +48,7 @@
                 </div>
                 <section <%= grupo.activo? ? "class='verdeAdo white-text borde-radio-buton-10'".html_safe : 'class="grey borde-radio-buton-10"'.html_safe %> >
                     <div class="actions center ">
-                  <%= link_to  "Ver detalles", discipleship_group_path(@discipleship,grupo), class: "waves-effect waves-teal btn-flat white-text " %>
+                  <%= link_to  "Ver detalles", group_path(grupo), class: "waves-effect waves-teal btn-flat white-text " %>
                     
                   </div>
                   </section>

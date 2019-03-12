@@ -41,7 +41,7 @@
               <div class="box">
                 <div class="input-field col s12">
                   <%= form.label :cedulaEstudiante, "Cedula del estudiante"%>
-                  <%= form.text_field :cedulaEstudiante, class: "autocomplete", autocomplete: "off" %>
+                  <%= form.text_field :cedulaEstudiante, class: "autocomplete", id: "cedulaEstudiante", autocomplete: "off" %>
 
                 </div>
               </div>
@@ -114,6 +114,7 @@
 
               }
               if(combo=='discipleship'){
+
                 jQuery("#comboGrupo").html(datos);
                 jQuery("#horario").html(null);
 
@@ -133,7 +134,7 @@
         $('select').formSelect();
         $(document).ready(function(){
            var arra={};
-          <% arr= Hash.new%>
+          
 
           <%User.all.each do |user|%>
           arra[<%= "#{user.identificacion}"%>]= null;
@@ -141,8 +142,8 @@
     $('input.autocomplete').autocomplete({
       data: arra,
       onAutocomplete: function(){
-        console.log('seleccione algo ', this, ' datos ', Object.keys(this.options.data)[this.activeIndex +1]);
-        update_versions_div(Object.keys(this.options.data)[this.activeIndex +1],'estudiante')
+        console.log('seleccione algo ', this, ' datos ', $("#cedulaEstudiante").val());
+        update_versions_div($("#cedulaEstudiante").val(),'estudiante')
       }
 
     });

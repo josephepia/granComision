@@ -1,0 +1,57 @@
+<br>
+
+
+
+  <div class="row center-xs">
+    <div class="card z-depth-3 borde-radio-10 margin-10">
+    <%= form_with url: group_ciclo_notas_path do |f| %>
+    <div id="dia">
+      
+    </div>
+      
+      <div class="padding-14">
+        <%= link_to 'Cerrar ciclo', group_ciclo_cerrar_path(@group), class: "btn  waves-light   borde-radio-8 red" , method: :POST %>
+        
+        <%= f.submit "Guardar cambios", class: "btn  waves-light   borde-radio-8" %>
+
+      </div>
+  </div>
+  </div>
+  
+
+</div>
+
+
+    <% end %>
+    </div>
+    <script type="text/javascript">
+    
+
+  $(document).ready(function(){
+    listar();
+  });
+  function cerrarCiclo(){
+      var group=<%=@group.id%>;
+     jQuery.ajax({
+      url: "/siclo/cerrar",
+      type: "POST",
+      data: {group_id: group},
+      dataType: "html",
+      
+    });
+  }
+  function listar(){
+    console.log(' tal vez');
+        var group=<%=@group.id%>;
+        
+        jQuery.ajax({
+            url: "/cargar_notas",
+            type: "POST",
+            data: {group_id: group},
+            dataType: "html",
+            success: (datos)=> {
+              jQuery("#dia").html(datos);
+            }
+          });
+  }
+</script>

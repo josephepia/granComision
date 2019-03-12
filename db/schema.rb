@@ -127,11 +127,11 @@ ActiveRecord::Schema.define(version: 20190203080633) do
   create_table "failures", force: :cascade do |t|
     t.datetime "fecha"
     t.integer "enroll_id"
-    t.integer "lesson_id"
+    t.integer "group_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["enroll_id"], name: "index_failures_on_enroll_id"
-    t.index ["lesson_id"], name: "index_failures_on_lesson_id"
+    t.index ["group_id"], name: "index_failures_on_group_id"
   end
 
   create_table "given_courses", force: :cascade do |t|
@@ -181,10 +181,10 @@ ActiveRecord::Schema.define(version: 20190203080633) do
   create_table "lessons", force: :cascade do |t|
     t.string "nombre"
     t.text "descripcion"
-    t.integer "group_id"
+    t.integer "discipleship_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["group_id"], name: "index_lessons_on_group_id"
+    t.index ["discipleship_id"], name: "index_lessons_on_discipleship_id"
   end
 
   create_table "materials", force: :cascade do |t|

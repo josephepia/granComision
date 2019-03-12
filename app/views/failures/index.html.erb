@@ -1,31 +1,83 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="row center-xs">
+    <% @groups.sort_by{|a| a.activo ? 0 : 1}.each do |grupo|%>
+      <div class="col-xs-12
+                      col-sm-8
+                      col-md-6
+                      col-lg-4 ">
+        <div class="box">
+          <div class="card z-depth-3 borde-radio-10">
+            <div class="card-content black-text start-xs">
+              <span class="card-title center"><%=grupo.nombre%></span>
+                <b>Discipulado: </b><p><%=grupo.discipleship.nombre%></p>
+                <b>Docente a cargo: </b><p><%= grupo.user.presence ? grupo.user.nombre_completo : "Sin docente asignado" %></p>
+                <b>Estudiantes inscritos: </b><p><%=Enroll.where(group_id: grupo.id).count %></p>
+                  
+                  
+                  
+            </div>
+            <section <%= grupo.activo? ? "class='verdeAdo white-text borde-radio-buton-10'".html_safe : 'class="grey borde-radio-buton-10"'.html_safe %> >
+            <div class="actions center ">
+            
+            </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    <%end%>
+  </div>
+   <div class="card col-xs-12 radio-10">
+    <%= form_with model: @failure do |f| %>
+      <div class="card-content padding-10">
+        <span class="card-title"><%= @text %> </span>
+        <table class="highlight ">
+          <thead>
+          <tr>
 
-<h1>Failures</h1>
+            <th>Articulo</th>
+            <th>Peso/gr</th>
+            <th>Precio/gr</th>
+            <th>Cantidad</th>
 
-<table>
-  <thead>
-    <tr>
-      <th>Fecha</th>
-      <th>Enroll</th>
-      <th>Session</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <%= collection_check_boxes(:factura, :lista, @estudiantes, :id, :primerNombre) do |b| %>
+              <td>
+                <label>
+                  <%= b.check_box %>
+                  <span><%= b.text %></span>
+                </label>
+              </td>
+              <td>
+                <div class="input-field margin-0">
+                  <%= text_field_tag("factura[peso][#{b.value}]") %>
+                  <%= label_tag("factura[peso][#{b.value}]", "Peso") %>
+                </div>
+              </td>
+              <td>
+                <div class="input-field margin-0">
+                  <%= text_field_tag("factura[precio][#{b.value}]") %>
+                  <%= label_tag("factura[precio][#{b.value}]", "Precio") %>
+                </div>
+              </td>
+              <td>
+                <div class="input-field margin-0">
+                  <%= text_field_tag("factura[cantidad][#{b.value}]") %>
+                  <%= label_tag("factura[cantidad][#{b.value}]", "Cantidad") %>
 
-  <tbody>
-    <% @failures.each do |failure| %>
-      <tr>
-        <td><%= failure.fecha %></td>
-        <td><%= failure.enroll %></td>
-        <td><%= failure.session %></td>
-        <td><%= link_to 'Show', failure %></td>
-        <td><%= link_to 'Edit', edit_failure_path(failure) %></td>
-        <td><%= link_to 'Destroy', failure, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+                </div>
+              </td>
+              </tr>
+            <% end %>
+            </tbody>
+        </table>
+      </div>
+      <div class="padding-14">
+        <%= f.submit "Registrar", class: "btn  waves-light   radio-8" %>
+      </div>
+      
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Failure', new_failure_path %>
+    </div>
+</div>

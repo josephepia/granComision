@@ -10,7 +10,10 @@ end
 gem 'rails', '~> 5.1.6'
 # Use sqlite3 as the database for Active Record
 
-
+#gema para graficas 
+gem "chartkick"
+#gema para automatizar las graficas... para agrupar por fecha
+gem "groupdate", github: "ankane/groupdate"
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets

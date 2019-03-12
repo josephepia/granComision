@@ -1,5 +1,5 @@
 class GroupsController < ApplicationController
-  before_action :set_discipleship
+  before_action :set_discipleship, only: [:index,:create, :new]
   before_action :set_group, only: [:show, :edit, :update, :destroy]
   # GET /groups
   # GET /groups.json
@@ -61,7 +61,7 @@ class GroupsController < ApplicationController
     respond_to do |format|
       if @group.update(group_params)
         @horary.update(horary_params)
-        format.html { redirect_to discipleship_group_path(@group.discipleship,@group), notice: 'El grupo fue actualizado correctamente.' }
+        format.html { redirect_to group_path(@group), notice: 'El grupo fue actualizado correctamente.' }
         format.json { render :show, status: :ok, location: @group }
       else
         format.html { render :edit }
@@ -75,7 +75,7 @@ class GroupsController < ApplicationController
   def destroy
     @group.destroy
     respond_to do |format|
-      format.html { redirect_to groups_url, notice: 'Group was successfully destroyed.' }
+      format.html { redirect_to discipleship_path(@discipleship) , notice: 'Grupo eliminado exitosamente' }
       format.json { head :no_content }
     end
   end
@@ -83,14 +83,19 @@ class GroupsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_discipleship
-      @discipleship = Discipleship.find(params[:discipleship_id])
+       @discipleship = Discipleship.find(params[:discipleship_id])
+       @datos=[@discipleship,@group ||= Group.new]
     end
     
     def set_group
+
       @group = Group.find(params[:id])
+      @discipleship= @group.discipleship
       @horary = Horary.find_by(group_id: params[:id])
       #@docentes= @group.user
       @docentes= User.joins(:roles).where(roles: { nombre: 'docente' })
+      @students= Enroll.where(group: @group)
+      @datos=[@group]
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

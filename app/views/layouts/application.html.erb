@@ -13,8 +13,13 @@
       <div class="navbar-fixed ">
         <nav class="white-text blue-grey darken-2">
           <div class="nav-wrapper">
+            <% if (user_signed_in? and user.is_teacher) %>
+            <a href="" data-target="slide-out" class="sidenav-trigger show-on-large"><i class="material-icons">menu</i></a>
+            <%else%>
+            <a href="" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <% end %>
             <a href="/" class="brand-logo center"><%= image_tag "logoGranComision.jpg", class: "circle logo-img" %></a>
-            <a href="" data-target="mobile-demo" class="sidenav-trigger no-autoinit" id="abrir"><i class="material-icons  green-text" >menu</i></a>
+            
             <ul class="right hide-on-med-and-down negro-text">
               
               <%if user_signed_in?%>
@@ -46,24 +51,17 @@
       
       <ul id='dropdown1' class='dropdown-content borde-radio-5' >
         <%if user%>
-                  <li><a href="#!">Material de apoyo</a></li>
-                  
-                <%end%>
-                <%if user%>
-                  <li><a href="/discipleships">Discipulados</a></li>  
-                  <li><a href="#!">Subir notar</a></li>
-                  
-                <%end%>
-                <%if user%>
-                  <li><%= link_to  "Discipulados", discipleships_path %></li>                  
-                
-                  <li><a href="#!">Docentes</a></li>
-                  <li><a href="#!">Miembros</a></li>
-                  <li><a href="#!">Grupos comunitarios</a></li>
-                  
-                  
-                  
-                <%end%>
+          <li><a href="">Material de apoyo</a></li>
+          
+        <%end%>
+        
+        <%if user%>
+          <li><%= link_to  "Discipulados", discipleships_path %></li>                  
+        
+          <li><a href="">Docentes</a></li>
+          <li><a href="">Miembros</a></li>
+          <li><a href="">Grupos comunitarios</a></li>
+        <%end%>
         <li class="divider" tabindex="-1"></li>
         <li><a href="#!" class="green-text">Editar perfil</a></li>
         
@@ -73,20 +71,38 @@
       
     </header>
 
-  <ul class="sidenav no-autoinit" id="mobile-demo">
-        <br>
-        <%if user_signed_in?%>
-        <li class="center-xs"><%= image_tag "avatar.png", class: "circle logo-img" %></li>
-        <%end%>
-        <li><%= link_to  "Discipulados", discipleships_path,class:"green-text" %></li>
-        <%if user_signed_in?%>  
-        <%=link_to "Cerrar sesion", destroy_user_session_path, class: "btn waves-effect waves-light ", method: :delete %>
-        <%= image_tag "avatar.png", class: "circle logo-img" %>  
+  <ul id="slide-out" class="sidenav">
+    <li>
+      <div class="user-view center-xs">
+        <div class="background black-text">
+          <%= image_tag "logoGranComision.jpg"%>
+        </div>
+        <div class="row center-xs">
+        <a class="center"><%= image_tag "avatar.png", class: "circle" %></a>
+          
+        </div>
+          
         
-        <%else%>
-        <li><%= link_to "Iniciar sesion",new_user_session_path, class: "green-text"%></li>    
-        <%end%>
-      </ul>
+        <span class="black-text name"><%= user_signed_in? ? user.nombre_completo : 'Invitado'%></span>
+        <span class="black-text email"><%= user_signed_in? ? user.email : ''%></span>
+      </div>
+    </li>
+   
+     <%if user_signed_in?%>
+      <li><%= link_to  "Discipulados", discipleships_path %></li>           
+      
+      <li><a href="" class="waves-effect">Docentes</a></li>
+      <li><a href="" class="waves-effect">Miembros</a></li>
+      <li><a href="" class="waves-effect">Grupos comunitarios</a></li>
+      <li><%=link_to "Cerrar sesion", destroy_user_session_path,  method: :delete,class: "green-text" %></li>
+    <%else%>
+      <li><%=link_to "Iniciar sesion", new_user_session_path, class: "green-text" %></li>
+      <li><%=link_to "Registrarme", new_user_registration_path, sclass: "green-text" %></li>
+
+    <%end%>
+    
+  </ul>
+
   
     <%= yield %>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.js"></script>

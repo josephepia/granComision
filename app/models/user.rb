@@ -9,10 +9,11 @@ class User < ApplicationRecord
   has_many :addresschurchanddocumentexpeditions
   has_many :address
   has_many :groups
-  has_many :given_courses, :through => :teacher
-  has_many :covenants, :through => :student
-  has_many  :enrrolls
-  has_many :extended_notes, :through => :student
+  has_many :given_courses #, :through => :teacher
+  has_many :covenants #, :through => :student
+  has_many  :enrolls
+  has_many :failures, :through => :enroll
+  has_many :extended_notes #, :through => :student
   belongs_to :communitygroups,optional: true
   def email_required?
     false
@@ -29,9 +30,16 @@ class User < ApplicationRecord
   def nombre_completo
     "#{primerNombre} #{primerApellido}"
   end
+  def apellidos
+    "#{primerApellido} #{segundoApellido}"
+  end
+
+  def nombres
+    "#{primerNombre} #{segundoNombre}"
+  end
 
   def is_student
-    if User.joins(:roles).where(roles: 'estudiante')
+    if self.roles.where(nombre: 'estudiante')
       return true
     else
       return false
@@ -39,12 +47,16 @@ class User < ApplicationRecord
   end
 
   def is_teacher
-    if User.joins(:roles).where(roles: 'docente')
-      return true
-    else
-      return false
-    end
+    # if self.roles.where(nombre: 'docente')
+    #   return true
+    # else
+    #   return false
+    # end
+    self.roles.exists?(nombre: 'docente')
+    
+    
   end
+
   
   def is_enrolled
      Enroll.exists?(user_id: self.id) 

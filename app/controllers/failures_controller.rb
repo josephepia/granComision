@@ -5,6 +5,9 @@ class FailuresController < ApplicationController
   # GET /failures.json
   def index
     @failures = Failure.all
+    @groups = Group.joins(:discipleship, :user).where(activo: true)
+    @failure= Failure.new
+    
   end
 
   # GET /failures/1
@@ -15,6 +18,7 @@ class FailuresController < ApplicationController
   # GET /failures/new
   def new
     @failure = Failure.new
+    @estudiantes= User.joins(:enrolls).where({enrolls: {id: params[:group_id] }})
   end
 
   # GET /failures/1/edit

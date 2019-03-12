@@ -1,4 +1,11 @@
 GIT
+  remote: https://github.com/ankane/groupdate.git
+  revision: 0220fd020f900237be8c73e218e69c3a804d384b
+  specs:
+    groupdate (4.1.1)
+      activesupport (>= 4.2)
+
+GIT
   remote: https://github.com/codahale/bcrypt-ruby.git
   revision: 12a50f4ff20c1723cc08b3f3c5dcd257c305172c
   specs:
@@ -61,6 +68,7 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (>= 2.0, < 4.0)
+    chartkick (3.0.2)
     childprocess (0.9.0)
       ffi (~> 1.0, >= 1.0.11)
     coffee-rails (4.2.2)
@@ -221,9 +229,11 @@ DEPENDENCIES
   bcrypt!
   byebug
   capybara (~> 2.13)
+  chartkick
   coffee-rails (~> 4.2)
   devise
   flexbox_rb
+  groupdate!
   jbuilder (~> 2.5)
   jquery-rails
   jquery-ui-rails

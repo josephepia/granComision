@@ -1,0 +1,40 @@
+<div class="card-content padding-10">
+  <span class="card-title">Lista de asistencia</span>
+  <table class="highlight striped ">
+    <thead>
+    <tr>
+      <th><p>Identificacion</p></th>
+      <th>Apellidos</th>
+      <th>Nombres</th>
+      <th>Aprobo</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+    <p>Seleccione solo los estudiantes aprobados</p> 
+
+      <%= collection_check_boxes(:notas, :lista, @students, :id, :nombre_completo) do |b| %>
+        
+        <td>
+          <p><%= b.object.identificacion%></p>
+        </td>
+        <td>
+          <p><%= b.object.apellidos%></p>
+        </td>
+        <td>
+          <p><%= b.object.nombres%></p>
+        </td>
+        <td class="center-xs">
+            <label>
+             
+              
+              <%= b.check_box(checked: aprobado(b.object.id))%>
+              
+              <span></span>
+            </label>
+        </td>
+        </tr>
+      <% end %>
+      </tbody>
+  </table>
+</div>

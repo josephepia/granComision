@@ -1,4 +1,10 @@
-<%= form_with(model: failure, local: true) do |form| %>
+<div class="col-xs-6 col-sm-6 col-md-6 col-lg-3"> 
+  <div class="box">                               
+    <input type="text" class="datepicker no-autoinit">
+  </div>
+</div>
+
+<%= form_with(model: [:discipleship,:group,@failure], local: true) do |form| %>
   <% if failure.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(failure.errors.count, "error") %> prohibited this failure from being saved:</h2>
@@ -11,22 +17,152 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :fecha %>
-    <%= form.datetime_select :fecha, id: :failure_fecha %>
-  </div>
+ <div id="algo">
+   <h4> aqui</h4>
+ </div>
+ <div class="card col-xs-12 radio-10">
+    <%= form_for([:discipleship,:group,@failure]) do |f| %>
+      <div class="card-content padding-10">
+        <span class="card-title"><%= @text %> </span>
+        <table class="highlight ">
+          <thead>
+          <tr>
 
-  <div class="field">
-    <%= form.label :enroll_id %>
-    <%= form.text_field :enroll_id, id: :failure_enroll_id %>
-  </div>
+            <th>Articulo</th>
+            <th>Peso/gr</th>
+            <th>Precio/gr</th>
+            <th>Cantidad</th>
 
-  <div class="field">
-    <%= form.label :session_id %>
-    <%= form.text_field :session_id, id: :failure_session_id %>
-  </div>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <%= collection_check_boxes(:factura, :lista, @estudiantes, :id, :primerNombre) do |b| %>
+              <td>
+                <label>
+                  <%= b.check_box %>
+                  <span><%= b.text %></span>
+                </label>
+              </td>
+              <td>
+                <div class="input-field margin-0">
+                  <%= text_field_tag("factura[peso][#{b.value}]") %>
+                  <%= label_tag("factura[peso][#{b.value}]", "Peso") %>
+                </div>
+              </td>
+              <td>
+                <div class="input-field margin-0">
+                  <%= text_field_tag("factura[precio][#{b.value}]") %>
+                  <%= label_tag("factura[precio][#{b.value}]", "Precio") %>
+                </div>
+              </td>
+              <td>
+                <div class="input-field margin-0">
+                  <%= text_field_tag("factura[cantidad][#{b.value}]") %>
+                  <%= label_tag("factura[cantidad][#{b.value}]", "Cantidad") %>
 
+                </div>
+              </td>
+              </tr>
+            <% end %>
+            </tbody>
+        </table>
+      </div>
+      <div class="padding-14">
+        <%= f.submit "Registrar", class: "btn  waves-light   radio-8" %>
+      </div>
+      
+    <% end %>
+    </div>
   <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.datepicker').datepicker({
+      setDefaultDate: true,
+      defaultDate: new Date(),
+      format: 'dd-mmmm-yyyy',
+      i18n: {
+        cancel: 'Cancelar',
+        clear:  'Limpiar',
+        done: 'Ok',
+        weekdaysAbbrev: ['D','L','M','M','J','V','S'],
+        months: [
+          'Enero',
+          'Febrero',
+          'Marzo',
+          'Abril',
+          'Mayo',
+          'Junio',
+          'Julio',
+          'Agosto',
+          'Septiembre',
+          'Octubre',
+          'Noviembre',
+          'Diciembre'
+        ],
+        monthsShort:
+        [
+          'Ene',
+          'Feb',
+          'Mar',
+          'Abr',
+          'May',
+          'Jun',
+          'Jul',
+          'Ago',
+          'Sep',
+          'Oct',
+          'Nov',
+          'Dic'
+        ],
+                          
+        weekdays:
+        [
+          'Domingo',
+          'Lunes',
+          'Martes',
+          'Miercoles',
+          'Jueves',
+          'Viernes',
+          'Sabado'
+        ],
+                          
+        weekdaysShort:
+        [
+          'Dom',
+          'Lun',
+          'Mar',
+          'Mie',
+          'Jue',
+          'Vie',
+          'Sab'
+        ],
+                          
+        weekdaysAbbrev: ['D','L','M','X','J','V','S']
+      },
+      maxDate: new Date(),  
+      yearRange: [2010,2019] ,
+          
+      autoClose: true,
+      showDaysInNextAndPreviousMonths: true,
+      showMonthAfterYear: true,
+      showClearBtn: true,
+      onSelect: function(){
+        jQuery.ajax({
+            url: "/cargar_grupos",
+            type: "GET",
+            data: {discipleship_id: '1010040460', combo: 'estudiante'},
+            dataType: "html",
+            success: (datos)=> {
+              jQuery("#algo").html(datos);
+            }
+          });
+      }
+    });
+  });
+
+</script>

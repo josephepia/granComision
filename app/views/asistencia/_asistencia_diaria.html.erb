@@ -1,0 +1,41 @@
+<div class="card-content padding-10">
+  <span class="card-title">Lista de asistencia</span>
+  <table class="highlight striped ">
+    <thead>
+    <tr>
+      <th><p>Identificacion</p></th>
+      <th>Apellidos</th>
+      <th>Nombres</th>
+      <th>Asistencia</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+    <p>Fecha <%= @dia.to_date%></p> 
+
+      <%= collection_check_boxes(:asistencia, :lista, @students, :id, :nombre_completo) do |b| %>
+        
+        <td>
+          <p><%= b.object.identificacion%></p>
+        </td>
+        <td>
+          <p><%= b.object.apellidos%></p>
+        </td>
+        <td>
+          <p><%= b.object.nombres%></p>
+        </td>
+        <td class="center-xs">
+            <label>
+              <% if @dia.to_date == Time.now().to_date and !Failure.where(created_at: (@dia.beginning_of_day)..@dia.end_of_day,group: @group).exists?%>
+              <%= b.check_box %>
+              <%else%>
+              <%= b.check_box(checked: asistio(b.object.id), disabled: true)%>
+              <% end %>
+              <span></span>
+            </label>
+        </td>
+        </tr>
+      <% end %>
+      </tbody>
+  </table>
+</div>

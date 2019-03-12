@@ -10,7 +10,7 @@ class EnrollsController < ApplicationController
 
     if @combo == 'discipleship'
     @group=Group.new
-    @groups=Group.where(discipleship_id: params[:discipleship_id]).all
+    @groups=Group.where(discipleship_id: params[:discipleship_id], activo: true).all
       
     end
     if @combo=='estudiante'

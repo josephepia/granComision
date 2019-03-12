@@ -1,3 +1,3 @@
 class Lesson < ApplicationRecord
-  belongs_to :group
+  belongs_to :discipleship
 end

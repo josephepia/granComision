@@ -1,4 +1,53 @@
-<div class="row grey lighten-5 middle-xs no-margin">    
+<!-- grupo de botonos flotantes, editar, eliminar, etc -->
+<div class="fixed-action-btn ">
+  <a class="btn-floating btn-large blue-grey darken-2">
+    <i class="large material-icons">settings</i>
+  </a>
+  <ul>
+    <li>
+      
+      <a class="btn-floating red btn modal-trigger" data-target= "modal1"><i class="material-icons">clear</i></a>
+      <a class="mobile-fab-tip borde-radio-10">Eliminar</a>
+    </li>
+    <li><%= link_to '<i class="material-icons">mode_edit</i></a>'.html_safe, edit_group_path(@group), class: "btn-floating blue" %>
+      <a class="mobile-fab-tip borde-radio-10">Editar</a>
+    </li>
+   
+    
+    <li>
+      <a class="btn-floating green"><i class="material-icons">library_books</i></a>
+      <a class="mobile-fab-tip borde-radio-10">Publicaciones</a>
+    </li>
+    <li>
+      <%= link_to '<i class="material-icons">library_books</i></a>'.html_safe, group_ciclo_notas_path(@group), class: "btn-floating amber darken-1" %>
+      <a class="mobile-fab-tip borde-radio-10">Notas</a>
+    </li>
+    
+    <li>
+      <%= link_to '<i class="material-icons">perm_contact_calendar</i></a>'.html_safe, group_asistencia_path(@group), class: "btn-floating amber darken-1" %>
+      <a class="mobile-fab-tip borde-radio-10">Asistencia</a>
+    </li>
+    
+    
+    
+  </ul>
+</div>
+<!-- fin de botones flontantes -->
+
+<!-- modal de advertencia al intentar eliminar un grupo -->
+<div id="modal1" class="modal borde-radio-10">
+    <div class="modal-content center-xs ">
+      
+      <h4>Advertencia</h4>
+      <p>se eliminara este grupo. esta seguro ?</p>
+    </div>
+    <div class="modal-footer">
+      <%= link_to 'Eliminar', @group, method: :delete,class: "waves-effect waves-teal btn-flat red white-text borde-radio-5 " %>
+    </div>
+  </div>
+<!-- fin del modal advertencia de eliminacion -->
+
+<div class="row middle-xs no-margin">    
   <div class="container">
     <div class="row center-xs" >
       
@@ -11,13 +60,10 @@
               <div class="card-content black-text start-xs">
                 <span class="card-title center"><%=@group.nombre%></span>
                 <b>Discipulado: </b><p><%=@group.discipleship.nombre%></p>
-                <b>Rango otorgado: </b><p><%=@discipleship.rangoOtorgado%></p>
+                <b>Rango otorgado: </b><p><%=@group.discipleship.rangoOtorgado%></p>
                 <b>Pacto asociado: </b><p>Pacto de compromiso</p>
-                <b>Descripcion del convenio: </b><p><%=@discipleship.descripcionPacto%></p>
-                <div class="actions center">
-                  <%= link_to 'Editar', edit_discipleship_group_path(@discipleship,@group), class: "green-text" %> 
-                  
-                </div>
+                <b>Descripcion del convenio: </b><p><%=@group.discipleship.descripcionPacto%></p>
+                
               </div>
             </div>
           </div>
@@ -44,7 +90,7 @@
 
         <tbody>
           <tr>
-            <th>Luness</th>
+            <th>Lunes</th>
             <td><%=@group.horary.lunes%></td>
           </tr>
           <tr>
@@ -90,7 +136,30 @@
             <div class="card z-depth-3 borde-radio-10">
               <div class="card-content black-text start-xs">
                 <span class="card-title center">Estudiantes inscritos</span>
-                
+                <table class="striped highlight">
+        <thead>
+          <tr >
+              <th>Identificacion</th>
+              <th>Nombre</th>
+              <th>Correo</th>
+              <th>Telefono</th>
+
+          </tr>
+        </thead>
+
+        <tbody>
+          <%@students.each do |student|%>
+          <tr>
+            <td><%=student.user.identificacion%></td>
+            <td><%=student.user.nombre_completo%></td>
+            <td><%=student.user.email%></td>
+            <td><%=student.user.telefono%></td>
+
+          </tr>
+          
+          <% end %>
+        </tbody>
+      </table>
               </div>
             </div>
           </div>
@@ -104,3 +173,10 @@
     
   </div>   
 </div>
+<script>
+$(document).ready(function(){
+    $('.fixed-action-btn').floatingActionButton();
+    $('.modal').modal();
+  });
+
+</script>

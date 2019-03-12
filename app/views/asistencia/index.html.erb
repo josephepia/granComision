@@ -1,0 +1,141 @@
+<br>
+<div class="container">
+  <div class="row center-xs">
+    <div class="card z-depth-3 borde-radio-10"> 
+      <div class="row center-xs no-margin">
+        <div class="input-field col-xs-10 no-margin">                               
+        <input type="text" class="datepicker no-autoinit">
+      </div>
+      </div>
+      
+    </div>
+  </div>
+
+
+  <div class="row center-xs">
+    <div class="card z-depth-3 borde-radio-10 margin-10">
+    <%= form_with url: group_asistencia_path do |f| %>
+    <div id="dia">
+      
+    </div>
+      
+      <div class="padding-14">
+      
+        <%= f.submit "Registrar", class: "btn  waves-light   borde-radio-8" %>
+        
+
+      </div>
+  </div>
+  </div>
+  
+
+</div>
+
+
+    <% end %>
+    </div>
+    <script type="text/javascript">
+    
+
+  $(document).ready(function(){
+
+    $('.datepicker').datepicker({
+     
+      format: 'dd-mmmm-yyyy',
+      i18n: {
+        cancel: 'Cancelar',
+        clear:  'Limpiar',
+        done: 'Ok',
+        weekdaysAbbrev: ['D','L','M','M','J','V','S'],
+        months: [
+          'Enero',
+          'Febrero',
+          'Marzo',
+          'Abril',
+          'Mayo',
+          'Junio',
+          'Julio',
+          'Agosto',
+          'Septiembre',
+          'Octubre',
+          'Noviembre',
+          'Diciembre'
+        ],
+        monthsShort:
+        [
+          'Ene',
+          'Feb',
+          'Mar',
+          'Abr',
+          'May',
+          'Jun',
+          'Jul',
+          'Ago',
+          'Sep',
+          'Oct',
+          'Nov',
+          'Dic'
+        ],
+                          
+        weekdays:
+        [
+          'Domingo',
+          'Lunes',
+          'Martes',
+          'Miercoles',
+          'Jueves',
+          'Viernes',
+          'Sabado'
+        ],
+                          
+        weekdaysShort:
+        [
+          'Dom',
+          'Lun',
+          'Mar',
+          'Mie',
+          'Jue',
+          'Vie',
+          'Sab'
+        ],
+                          
+        weekdaysAbbrev: ['D','L','M','X','J','V','S']
+      },
+      maxDate: new Date(),  
+      yearRange: [2010,2019] ,
+      setDefaultDate: true,
+      defaultDate: new Date(),
+
+      autoClose: true,
+      showDaysInNextAndPreviousMonths: true,
+      showMonthAfterYear: true,
+      showClearBtn: true,
+      formatSubmit: 'yyyy/mm/dd',
+      onSelect: function(){
+        console.log(' tal vez');
+        var group=<%=@group.id%>;
+        console.log('seleccione esta fecha seleccionada', this.date, "con formato : " , new Date(this.date));
+        jQuery.ajax({
+            url: "/cargar_asistencia",
+            type: "POST",
+            data: {fecha: new Date(this.date), group: group},
+            dataType: "html",
+            success: (datos)=> {
+              jQuery("#dia").html(datos);
+            }
+          });
+      }
+    });
+    $('.datepicker').datepicker("setDate", new Date());
+    
+
+  });
+function modificar(){
+      // habilitar=(!habilitar);
+      // //$('#dia').disabled= habilitar;
+      // //document.getElementById("#dia").disabled=habilitar;
+      // alert('di clic a habilitar '+ habilitar);
+      
+
+    }
+</script>

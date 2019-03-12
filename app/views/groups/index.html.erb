@@ -16,7 +16,7 @@
         <td><%= group.activo %></td>
         <td><%= group.discipleship.nombre %></td>
         
-        <td><%= group.teacher.presence ? group.teacher.user.nombre_completo : "Sin docente asignado" %></td>
+        <td><%= group.presence ? group.user.nombre_completo : "Sin docente asignado" %></td>
         <td><%= link_to 'Show', discipleship_group_path(@discipleship,group) %></td>
         <td><%= link_to 'Edit', edit_discipleship_group_path(@discipleship,group) %></td>
         <td><%= link_to 'Destroy', [@discipleship,group], method: :delete, data: { confirm: 'Are you sure?' } %></td>
