@@ -2,3 +2,9 @@
 <%= line_chart User.group(:created_at).count %>
 <p>notas extendidas</p>
 <%= line_chart ExtendedNote.group(:created_at).count %>
+<p>notas extendidas con metodo dia</p>
+<%= line_chart ExtendedNote.group_by_day(:created_at).count %>
+<p>notas extendidas con metodo horas </p>
+<%= line_chart ExtendedNote.group_by_hoir(:created_at).count %>
+<p>notas extendidas con metodo minutos </p>
+<%= line_chart ExtendedNote.group_by_minute(:created_at).count %>

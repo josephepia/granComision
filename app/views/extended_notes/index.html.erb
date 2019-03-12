@@ -18,10 +18,10 @@
     <% @extended_notes.each do |extended_note| %>
       <tr>
         <td><%= extended_note.definitiva %></td>
-        <td><%= extended_note.fecha %></td>
+        <td><%= extended_note.created_at %></td>
         <td><%= extended_note.idGrupo %></td>
-        <td><%= extended_note.discipleship %></td>
-        <td><%= extended_note.student %></td>
+        <td><%= extended_note.discipleship.id %></td>
+        <td><%= extended_note.user.identificacion %></td>
         <td><%= link_to 'Show', extended_note %></td>
         <td><%= link_to 'Edit', edit_extended_note_path(extended_note) %></td>
         <td><%= link_to 'Destroy', extended_note, method: :delete, data: { confirm: 'Are you sure?' } %></td>
