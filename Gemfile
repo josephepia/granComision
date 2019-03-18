@@ -12,6 +12,8 @@ gem 'rails', '~> 5.1.6'
 
 #gema para graficas 
 gem "chartkick"
+#gema para gestionar archivos
+gem 'carrierwave'
 #gema para automatizar las graficas... para agrupar por fecha
 gem "groupdate", github: "ankane/groupdate"
 # Use Puma as the app server
@@ -56,7 +58,8 @@ end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
-  gem 'sqlite3'
+  #gem 'sqlite3'
+  gem 'pg', '1.0.0'
   gem 'web-console', '>= 3.3.0'
 end
 group :production do

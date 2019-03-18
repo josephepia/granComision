@@ -12,6 +12,8 @@
     <tbody>
     <tr>
     <p>Fecha <%= @dia.to_date%></p> 
+    <p>Fecha hoy <%= Time.now()%></p> 
+    <p>Fecha hoy inicio dia <%= Time.now().beginning_of_day%></p> 
 
       <%= collection_check_boxes(:asistencia, :lista, @students, :id, :nombre_completo) do |b| %>
         

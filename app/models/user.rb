@@ -15,6 +15,7 @@ class User < ApplicationRecord
   has_many :failures, :through => :enroll
   has_many :extended_notes #, :through => :student
   belongs_to :communitygroups,optional: true
+  has_and_belongs_to_many :covenants
   def email_required?
     false
   end

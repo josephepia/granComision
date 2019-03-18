@@ -10,15 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190203080633) do
+ActiveRecord::Schema.define(version: 20190318042113) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "address_church_and_document_expeditions", force: :cascade do |t|
     t.string "nombreIglesiaAnterior"
     t.boolean "iglesia", default: false
     t.boolean "expedicion", default: false
     t.boolean "origen", default: false
-    t.integer "user_id"
-    t.integer "city_id"
+    t.bigint "user_id"
+    t.bigint "city_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["city_id"], name: "index_address_church_and_document_expeditions_on_city_id"
@@ -28,8 +31,8 @@ ActiveRecord::Schema.define(version: 20190203080633) do
   create_table "addresses", force: :cascade do |t|
     t.string "direccion"
     t.string "nombreBarrio"
-    t.integer "user_id"
-    t.integer "district_id"
+    t.bigint "user_id"
+    t.bigint "district_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["district_id"], name: "index_addresses_on_district_id"
@@ -38,7 +41,7 @@ ActiveRecord::Schema.define(version: 20190203080633) do
 
   create_table "cities", force: :cascade do |t|
     t.string "nombre"
-    t.integer "department_id"
+    t.bigint "department_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["department_id"], name: "index_cities_on_department_id"
@@ -46,8 +49,8 @@ ActiveRecord::Schema.define(version: 20190203080633) do
 
   create_table "commentaries", force: :cascade do |t|
     t.text "cuerpo"
-    t.integer "publication_id"
-    t.integer "user_id"
+    t.bigint "publication_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["publication_id"], name: "index_commentaries_on_publication_id"
@@ -67,18 +70,23 @@ ActiveRecord::Schema.define(version: 20190203080633) do
   end
 
   create_table "covenants", force: :cascade do |t|
-    t.string "urlMultimedia"
-    t.integer "discipleship_id"
-    t.integer "user_id"
+    t.string "pdf"
+    t.bigint "discipleship_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["discipleship_id"], name: "index_covenants_on_discipleship_id"
-    t.index ["user_id"], name: "index_covenants_on_user_id"
+  end
+
+  create_table "covenants_users", id: false, force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "covenant_id", null: false
+    t.index ["covenant_id"], name: "index_covenants_users_on_covenant_id"
+    t.index ["user_id"], name: "index_covenants_users_on_user_id"
   end
 
   create_table "departments", force: :cascade do |t|
     t.string "nombre"
-    t.integer "country_id"
+    t.bigint "country_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["country_id"], name: "index_departments_on_country_id"
@@ -96,16 +104,16 @@ ActiveRecord::Schema.define(version: 20190203080633) do
   create_table "districts", force: :cascade do |t|
     t.string "nombre"
     t.integer "comuna"
-    t.integer "city_id"
+    t.bigint "city_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["city_id"], name: "index_districts_on_city_id"
   end
 
   create_table "enrolls", force: :cascade do |t|
-    t.string "definitiva"
-    t.integer "group_id"
-    t.integer "user_id"
+    t.string "definitiva", default: "sin definir"
+    t.bigint "group_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["group_id"], name: "index_enrolls_on_group_id"
@@ -113,11 +121,11 @@ ActiveRecord::Schema.define(version: 20190203080633) do
   end
 
   create_table "extended_notes", force: :cascade do |t|
-    t.string "definitiva", default: "sin calificar"
+    t.string "definitiva"
     t.date "fecha"
     t.string "idGrupo"
-    t.integer "discipleship_id"
-    t.integer "user_id"
+    t.bigint "discipleship_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["discipleship_id"], name: "index_extended_notes_on_discipleship_id"
@@ -126,8 +134,9 @@ ActiveRecord::Schema.define(version: 20190203080633) do
 
   create_table "failures", force: :cascade do |t|
     t.datetime "fecha"
-    t.integer "enroll_id"
-    t.integer "group_id"
+    t.boolean "asistio"
+    t.bigint "enroll_id"
+    t.bigint "group_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["enroll_id"], name: "index_failures_on_enroll_id"
@@ -138,8 +147,8 @@ ActiveRecord::Schema.define(version: 20190203080633) do
     t.string "idGrupo"
     t.date "fechaInicio"
     t.date "fechaCierre"
-    t.integer "discipleship_id"
-    t.integer "user_id"
+    t.bigint "discipleship_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["discipleship_id"], name: "index_given_courses_on_discipleship_id"
@@ -149,8 +158,8 @@ ActiveRecord::Schema.define(version: 20190203080633) do
   create_table "groups", force: :cascade do |t|
     t.string "nombre"
     t.boolean "activo", default: false
-    t.integer "discipleship_id"
-    t.integer "user_id"
+    t.bigint "discipleship_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["discipleship_id"], name: "index_groups_on_discipleship_id"
@@ -172,7 +181,7 @@ ActiveRecord::Schema.define(version: 20190203080633) do
     t.string "sabadoFinal"
     t.string "domingoInicio"
     t.string "domingoFinal"
-    t.integer "group_id"
+    t.bigint "group_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["group_id"], name: "index_horaries_on_group_id"
@@ -181,18 +190,20 @@ ActiveRecord::Schema.define(version: 20190203080633) do
   create_table "lessons", force: :cascade do |t|
     t.string "nombre"
     t.text "descripcion"
-    t.integer "discipleship_id"
+    t.bigint "discipleship_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["discipleship_id"], name: "index_lessons_on_discipleship_id"
   end
 
   create_table "materials", force: :cascade do |t|
-    t.string "urlMaterial"
-    t.string "formato"
+    t.string "pdf"
+    t.string "imagen"
     t.string "descripcion"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_materials_on_user_id"
   end
 
   create_table "ministeries", force: :cascade do |t|
@@ -209,20 +220,24 @@ ActiveRecord::Schema.define(version: 20190203080633) do
   end
 
   create_table "permissions_users", force: :cascade do |t|
-    t.integer "permission_id"
-    t.integer "user_id"
+    t.bigint "permission_id"
+    t.bigint "user_id"
     t.index ["permission_id"], name: "index_permissions_users_on_permission_id"
     t.index ["user_id"], name: "index_permissions_users_on_user_id"
   end
 
   create_table "publications", force: :cascade do |t|
+    t.string "pdf"
+    t.string "imagen"
     t.text "descripcion"
-    t.integer "material_id"
-    t.integer "group_id"
+    t.bigint "material_id"
+    t.bigint "group_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["group_id"], name: "index_publications_on_group_id"
     t.index ["material_id"], name: "index_publications_on_material_id"
+    t.index ["user_id"], name: "index_publications_on_user_id"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -232,15 +247,15 @@ ActiveRecord::Schema.define(version: 20190203080633) do
   end
 
   create_table "roles_users", id: false, force: :cascade do |t|
-    t.integer "role_id"
-    t.integer "user_id"
+    t.bigint "role_id"
+    t.bigint "user_id"
     t.index ["role_id"], name: "index_roles_users_on_role_id"
     t.index ["user_id"], name: "index_roles_users_on_user_id"
   end
 
   create_table "solicits", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "discipleship_id"
+    t.bigint "user_id"
+    t.bigint "discipleship_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["discipleship_id"], name: "index_solicits_on_discipleship_id"
@@ -284,8 +299,8 @@ ActiveRecord::Schema.define(version: 20190203080633) do
     t.boolean "suspendido", default: false
     t.boolean "liderComunitario", default: false
     t.string "rango"
-    t.integer "community_group_id"
-    t.integer "ministery_id"
+    t.bigint "community_group_id"
+    t.bigint "ministery_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["community_group_id"], name: "index_users_on_community_group_id"
@@ -295,4 +310,36 @@ ActiveRecord::Schema.define(version: 20190203080633) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "address_church_and_document_expeditions", "cities"
+  add_foreign_key "address_church_and_document_expeditions", "users"
+  add_foreign_key "addresses", "districts"
+  add_foreign_key "addresses", "users"
+  add_foreign_key "cities", "departments"
+  add_foreign_key "commentaries", "publications"
+  add_foreign_key "commentaries", "users"
+  add_foreign_key "covenants", "discipleships"
+  add_foreign_key "departments", "countries"
+  add_foreign_key "districts", "cities"
+  add_foreign_key "enrolls", "groups"
+  add_foreign_key "enrolls", "users"
+  add_foreign_key "extended_notes", "discipleships"
+  add_foreign_key "extended_notes", "users"
+  add_foreign_key "failures", "enrolls"
+  add_foreign_key "failures", "groups"
+  add_foreign_key "given_courses", "discipleships"
+  add_foreign_key "given_courses", "users"
+  add_foreign_key "groups", "discipleships"
+  add_foreign_key "groups", "users"
+  add_foreign_key "horaries", "groups"
+  add_foreign_key "lessons", "discipleships"
+  add_foreign_key "materials", "users"
+  add_foreign_key "permissions_users", "permissions"
+  add_foreign_key "permissions_users", "users"
+  add_foreign_key "publications", "groups"
+  add_foreign_key "publications", "materials"
+  add_foreign_key "publications", "users"
+  add_foreign_key "solicits", "discipleships"
+  add_foreign_key "solicits", "users"
+  add_foreign_key "users", "community_groups"
+  add_foreign_key "users", "ministeries"
 end

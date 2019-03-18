@@ -4,7 +4,6 @@ class GroupsController < ApplicationController
   # GET /groups
   # GET /groups.json
   def index
-    @groups = @discipleship.groups
   end
 
   def inscribirme
@@ -83,8 +82,16 @@ class GroupsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_discipleship
-       @discipleship = Discipleship.find(params[:discipleship_id])
-       @datos=[@discipleship,@group ||= Group.new]
+      if params[:discipleship_id]
+      @discipleship = Discipleship.find(params[:discipleship_id])  
+      @datos=[@discipleship,@group ||= Group.new]
+      @groups = @discipleship.groups
+
+      else
+        @datos=[@group ||= Group.new]
+        @groups = Group.all
+
+      end
     end
     
     def set_group

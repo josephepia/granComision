@@ -10,16 +10,16 @@
   </thead>
 
   <tbody>
-    <% @discipleship.groups.each do |group| %>
+    <% @groups.each do |group| %>
       <tr>
         <td><%= group.nombre %></td>
         <td><%= group.activo %></td>
         <td><%= group.discipleship.nombre %></td>
         
         <td><%= group.presence ? group.user.nombre_completo : "Sin docente asignado" %></td>
-        <td><%= link_to 'Show', discipleship_group_path(@discipleship,group) %></td>
-        <td><%= link_to 'Edit', edit_discipleship_group_path(@discipleship,group) %></td>
-        <td><%= link_to 'Destroy', [@discipleship,group], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', discipleship_groups_path(group.discipleship,group) %></td>
+        <td><%= link_to 'Edit', group_path(group) %></td>
+        <td><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -27,4 +27,4 @@
 
 <br>
 
-<%= link_to 'New Group', new_discipleship_group_path %>
+

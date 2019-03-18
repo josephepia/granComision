@@ -13,7 +13,7 @@ class AsistenciaController < ApplicationController
     @group = Group.find(params[:group])
   	@dia= (params[:fecha]).to_datetime
   	#@estudiantesConFallas=User.joins(:enrolls).where({enrolls: {created_at: (@dia.beginning_of_day)..@dia.end_of_day,group: @group }}).all
-  	@estudiantesConFallas=User.joins(enrolls: :failures).where({enrolls: {group: @group, failures:{created_at: (@dia.beginning_of_day)..@dia.end_of_day,} }})
+  	@estudiantesConFallas=User.joins(enrolls: :failures).where({enrolls: {group: @group, failures:{created_at: (@dia.beginning_of_day)..@dia.middle_of_day} }})
   	
   	@students=User.joins(:enrolls).where({enrolls: {group: @group }})
   	
@@ -47,7 +47,7 @@ class AsistenciaController < ApplicationController
 
     	puts "comparare id user #{matricula.user.id}, con id falla... #{@lista.include?(matricula.user.id.to_s)}"
 
-    	if @lista.include?(matricula.user.id.to_s) 
+    	if !@lista.include?(matricula.user.id.to_s) 
     		
     		@falla = Failure.new
     		puts @falla.inspect

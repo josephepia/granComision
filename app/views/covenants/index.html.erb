@@ -1,13 +1,16 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Covenants</h1>
-
-<table>
+<div class="container">
+  <div class="row center-xs">
+    <div class="card z-depth-3 borde-radio-10"> 
+      <div class="row center-xs no-margin">
+        <table>
   <thead>
     <tr>
-      <th>Urlmultimedia</th>
-      <th>Discipleship</th>
-      <th>Student</th>
+      <th>Identificacion</th>
+      <th>Nombre</th>
+      <th>Pacto</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -15,9 +18,9 @@
   <tbody>
     <% @covenants.each do |covenant| %>
       <tr>
-        <td><%= covenant.urlMultimedia %></td>
-        <td><%= covenant.discipleship %></td>
-        <td><%= covenant.student %></td>
+        <td><%= covenant.user.identificacion%></td>
+        <td><%= covenant.user.nombre_completo %></td>
+        <td><%= covenant.discipleship.rangoOtorgado %></td>
         <td><%= link_to 'Show', covenant %></td>
         <td><%= link_to 'Edit', edit_covenant_path(covenant) %></td>
         <td><%= link_to 'Destroy', covenant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -25,6 +28,12 @@
     <% end %>
   </tbody>
 </table>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
 
 <br>
 

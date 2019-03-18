@@ -1,1 +1,16 @@
+<form action="/file-upload"
+      class="dropzone"
+      id="my-awesome-dropzone"></form>
+<h4> grafica linea usuarios creados por dia</h4>
+ <%= line_chart User.group_by_day(:created_at).count %>
+ <h4> grafica linea usuarios creados por hora</h4>
+ <%= line_chart User.group_by_hour(:created_at).count %>
+ <h4> grafica linea usuarios creados por minutos</h4>
+ <%= line_chart User.group_by_minute(:created_at).count %>
+ <h4> inicio de dia <%= User.first.created_at.beginning_of_day%> </h4>
 
+  <h4> grafica pie usuarios creados por hora</h4>
+ <%= pie_chart User.group_by_hour(:created_at).count, donut: true %>
+
+   <h4> grafica pie usuarios creados por dia</h4>
+ <%= pie_chart User.group_by_day(:created_at).count, suffix: "%", prefix: "$",donut: true %>

@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   resources :addresses
   resources :districts
   resources :perfil
-
+  resources :groups, only: [:index]
   get '/inscribirme', to: 'groups#inscribirme'
   resources :address_church_and_document_expeditions
   
