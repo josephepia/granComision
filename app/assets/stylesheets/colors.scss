@@ -2,7 +2,8 @@ $colors :(
     negro: #000000,
     rojoBri: #ED0900,
     verdeBri: #339900,
-    verdeAdo: #51B133
+    verdeAdo: #51B133,
+    fondo: #F5F5F5
 );
 
 @each $color_name,$color in $colors{

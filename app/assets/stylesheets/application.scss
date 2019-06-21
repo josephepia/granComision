@@ -15,10 +15,12 @@
  *= require_self
  *= require colors
  *= require flexboxgrid
+ *= require mstepper.min
  *= require principal
  */
 @import "materialize/components/color-variables";
 $primary-color: color("blue", "darken-1") !default;
 $secondary-color: color("blue", "darken-2") !default;
 @import "materialize"
+
 

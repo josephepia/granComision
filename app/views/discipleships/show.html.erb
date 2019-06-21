@@ -10,7 +10,9 @@
             <div class="card z-depth-3 borde-radio-10">
               <div class="card-content black-text start-xs">
                 <span class="card-title center"><%=@discipleship.nombre%></span>
-                <b>Descripcion: </b><p><%=@discipleship.descripcion%></p>
+                <b>Descripcion: </b><p style="font-family: 'Roboto Thin'; font-style: black;"><%=@discipleship.descripcion%></p>
+                <b>Descripcion 2: </b><p style="font-family: 'Roboto Black';"><%=@discipleship.descripcion%></p>
+
                 <b>Rango otorgado: </b><p><%=@discipleship.rangoOtorgado%></p>
                 <b>Pacto asociado: </b><p>Pacto de compromiso</p>
                 <b>Descripcion del convenio: </b><p><%=@discipleship.descripcionPacto%></p>
@@ -27,6 +29,10 @@
         </div>
     </div>
     <div>
+      <div class="center-xs">
+        <h4>Grupos</h4>
+      </div>
+      <br>
       <hr>
     </div>
     <div class="row center-xs">

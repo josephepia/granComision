@@ -1,11 +1,121 @@
 // Place all the styles related to the Principal controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+	// src: url(asset-path('Roboto-Regular.ttf')),
+	// 	url(asset-path('Roboto-Thin.ttf')),
+	// 	 url(asset-path('Roboto-ThinItalic.ttf')),
+	// 	 url(asset-path('Roboto-Light.ttf')),
+	// 	 url(asset-path('Roboto-LightItalic.ttf')),
+	// 	 url(asset-path('Roboto-Regular.ttf')),
+	// 	 url(asset-path('Roboto-Italic.ttf')),
+	// 	 url(asset-path('Roboto-Medium.ttf')),
+	// 	 url(asset-path('Roboto-MediumItalic.ttf')),
+	// 	 url(asset-path('Roboto-Bold.ttf')),
+	// 	 url(asset-path('Roboto-BoldItalic.ttf')),
+	// 	 url(asset-path('Roboto-Black.ttf')),
+	// 	 url(asset-path('Roboto-BlackItalic.ttf'));
+	
+@font-face {
+	font-family: "Roboto Thin";
+	src: url(asset-path('Roboto-Thin.ttf')),
+}
+@font-face {
+font-family: "Roboto Thin Italic";
+	src: url(asset-path('Roboto-Black.ttf')),
+
+}
+@font-face {
+font-family: "Roboto Light";
+	src: url(asset-path('Roboto-Light.ttf')),
+
+}
+@font-face {
+font-family: "Roboto Light Italic";
+	src: url(asset-path('Roboto-LightItalic.ttf')),
+
+}
+@font-face {
+font-family: "Roboto Regular";
+	src: url(asset-path('Roboto-Regular.ttf')),
+
+}
+@font-face {
+font-family: "Roboto Regular Italic";
+	src: url(asset-path('Roboto-Italic.ttf')),
+
+}
+@font-face {
+font-family: "Roboto Medium";
+	src: url(asset-path('Roboto-Medium.ttf')),
+
+}
+@font-face {
+font-family: "Roboto Medium Italic";
+	src: url(asset-path('Roboto-MediumItalic.ttf')),
+
+}
+@font-face {
+font-family: "Roboto Bold";
+	src: url(asset-path('Roboto-Bold.ttf')),
+
+}
+@font-face {
+font-family: "Roboto Bold Italic";
+	src: url(asset-path('Roboto-BoldItalic.ttf')),
+
+}
+@font-face {
+font-family: "Roboto Black";
+	src: url(asset-path('Roboto-Black.ttf')),
+
+}
+@font-face {
+font-family: "Roboto Black Italic";
+	src: url(asset-path('Roboto-BlackItalic.ttf')),
+
+}
+
+/*
+thin 100
+thin 100 Italic
+light 300
+light 300 Italic
+regular 400
+regular 400 Italic
+medium 500
+medium 500 Italic
+bold 700
+bold 700 Italic
+black 900
+black 900 Italic
+*/
 html,body{
 	height: 100%;
 	width: 100%;
+	font-family: 'Roboto Regular';
+	
 }
+$fuentes :(
+    roboto-1: "Roboto Thin",
+    roboto-2: "Roboto Thin Italic",
+    roboto-3: "Roboto Light",
+    roboto-4: "Roboto Light Italic",
+    roboto-5: "Roboto Regular",
+    roboto-6: "Roboto Italic",
+    roboto-7: "Roboto Medium",
+    roboto-8: "Roboto Medium Italic",
+    roboto-9: "Roboto Bold",
+    roboto-10: "Roboto Bold Italic",
+    roboto-11: "Roboto Black",
+    roboto-12: "Roboto Black Italic"
+);
 
+@each $fuente_name,$fuente in $fuentes{
+    .#{$fuente_name}{
+        font-family: $fuente;
+    }
+}
 .mobile-fab-tip {
 	position: fixed;
 	right: 85px;

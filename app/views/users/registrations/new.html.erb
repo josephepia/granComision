@@ -1,5 +1,28 @@
 <div class="row middle-xs no-margin">
   <div class="container ">
+    <ul class="stepper linear">
+       <li class="step">
+          <div class="step-title waves-effect waves-dark">E-mail</div>
+          <div class="step-content">
+             <!-- Your step content goes here (like inputs or so) -->
+             <h4>datos del formulario que el usuario lle</h4>
+             <div class="step-actions">
+                <!-- Here goes your actions buttons -->
+                <button class="waves-effect waves-dark btn next-step">CONTINUE</button>
+             </div>
+          </div>
+       </li>
+       <li class="step">
+          <div class="step-title waves-effect">E-mail</div>
+          <div class="step-content">
+             <!-- Your step content goes here (like inputs or so) -->
+             <div class="step-actions">
+                <!-- Here goes your actions buttons -->
+                <button class="waves-effect waves-dark btn next-step">CONTINUE</button>
+             </div>
+          </div>
+       </li>
+    </ul>
   <div class="row center-xs">
   <%= devise_error_messages! %>
     <div class=" col-xs-12 col-sm-8 col-md-6 col-lg-12">
@@ -405,10 +428,12 @@
   </div>
 </div>
 </div>     
+
+
 <div id="departa" name="departa"></div>
   <script type="text/javascript">
  
-      $(document).ready(function() {
+      $(document).on("turbolinks:load", function() {
 
         
 
@@ -485,6 +510,7 @@
           console.log('mi instancia ', instance);
         });  
     $('.collapsible').collapsible();
+    
         
      function update_versions_div(location_i, comb) { 
 
@@ -535,6 +561,13 @@
           console.log('entre a la funcion con ajax');
         }
         $('select').formSelect();
+        
+   var stepper = document.querySelector('.stepper');
+   var stepperInstace = new MStepper(stepper, {
+      // options
+      firstActive: 0 // this is the default
+   })
+
   </script> 
 
 

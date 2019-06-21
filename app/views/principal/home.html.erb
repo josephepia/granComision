@@ -14,3 +14,5 @@
 
    <h4> grafica pie usuarios creados por dia</h4>
  <%= pie_chart User.group_by_day(:created_at).count, suffix: "%", prefix: "$",donut: true %>
+
+ 

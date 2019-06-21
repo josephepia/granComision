@@ -3,11 +3,13 @@
   <head>
     <title>GranComision</title>
     <%= csrf_meta_tags %>
+    <!-- <link rel="stylesheet" href="https://unpkg.com/materialize-stepper@3.0.1/dist/css/mstepper.min.css"> -->
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <!-- <script src="https://unpkg.com/materialize-stepper@3.0.1/dist/js/mstepper.min.js"> </script> -->
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body class="blue-grey lighten-5" >
+  <body class="fondo" >
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
     <header class="">
       <div class="navbar-fixed ">
@@ -88,9 +90,15 @@
     </li>
    
      <%if user_signed_in?%>
-      <li><%= link_to  "Discipulados", discipleships_path %></li>           
+      <li><%= link_to  "Inicio", enrolls_path %></li>
+      <li><%= link_to  "Discipulados", discipleships_path %></li> 
+      <li><%= link_to  "Grupos", enrolls_path %></li>
       <li><%= link_to  "Matriculas", enrolls_path %></li>
+      <li><%= link_to  "Cargar notas", enrolls_path %></li>
       <li><%= link_to  "Notas extendidas", extended_notes_path %></li>
+      <li><%= link_to  "Historial de grupos", enrolls_path %></li>
+      <li><%= link_to  "Usuarios", enrolls_path %></li>
+
       <li><%= link_to  "Material de apoyo", materials_path %></li>      
       <li><%= link_to  "Pactos", covenants_path %></li>           
 
@@ -110,15 +118,13 @@
 
   
     <%= yield %>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
+<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
     
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-   <script>
-    $(document).ready(function(){
-    $('.sidenav').sidenav();
-  });
-    </script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> -->
+<!-- <script type="text/javascript" src="https://unpkg.com/materialize-stepper@3.0.1/dist/js/mstepper.min.js"></script> -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> -->
+   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script> -->
     <script type="text/javascript">
       <%if !notice.nil?%>
         M.toast({html: "<%= notice %>",displayLength: 4000});
@@ -127,13 +133,54 @@
         M.toast({html: "<%= alert %>",displayLength: 4000});
       <%end%>
       
-      $("#abrir").on( "click", function() {
-        
-        });
+      $("#abrir").on( "click", function(){});
 
-         $(".dropdown-trigger").dropdown({ hover: false, constrainWidth: false,coverTrigger: false });
+      // $(".dropdown-trigger").dropdown({  });
         
     </script>
   </body>
+  <script>
+     document.addEventListener('turbolinks:load', function() {
+        M.AutoInit();
+      elem = document.querySelector('#slide-out');
+      instance = new M.Sidenav(elem, {});
+    });
+    document.addEventListener('turbolinks:before-cache', () => {
+      
+      const elem = document.querySelector('#slide-out');
+      const instance = M.Sidenav.getInstance(elem);
+      if (instance) {
+        instance.destroy();
+      }
+    });
+    
+    // //---------------------------------------------------------------
+    // //al cargar la pagina, y al volverla a cargar luego de navegar hacia ella
+    // document.addEventListener('turbolinks:load', function() {
+    //     M.AutoInit();
+    //   elem = document.querySelector('#slide-out');
+    //   instance = new M.Sidenav(elem, {});
+    // });
+    // document.addEventListener('turbolinks:before-visit', function() {
+    // elem = document.querySelector('#slide-out');
+    // instance = M.Sidenav.getInstance(elem);
+    // if (instance){
+    //   instance.destroy();
+    //   }
+    // });
+    // //---------------------------------------------------7
+    
+
+    // para el boton atras al cargar la pagina de nuevo
+    // document.addEventListener('turbolinks:before-render', () => {
+    // M.AutoInit();
+
+    //   const elem = document.querySelector('#slide-out');
+    //   const instance = M.Sidenav.getInstance(elem);
+    //   if (instance) {
+    //     instance.destroy();
+    //   }
+    // });
+    </script>
   
 </html>

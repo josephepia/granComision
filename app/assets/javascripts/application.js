@@ -13,13 +13,8 @@
 //= require jquery
 //= require jquery-ui
 //= require rails-ujs
-//= require materialize
 //= require turbolinks
+//= require materialize
 //= require Chart.bundle
 //= require chartkick
 //= require_tree .
-
-$(document).ready(function(){  
-  M.AutoInit();
-    
-  });

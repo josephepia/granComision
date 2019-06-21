@@ -13,6 +13,7 @@ module GranComision
   	config.time_zone = "Bogota"
   	config.active_support.initialize_time_zone
   	config.active_record.initialize_timezone
+    config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
