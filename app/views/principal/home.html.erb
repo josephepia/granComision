@@ -1,7 +1,7 @@
 <form action="/file-upload"
       class="dropzone"
       id="my-awesome-dropzone"></form>
-<h4> grafica linea usuarios creados por dia</h4>
+<!-- <h4> grafica linea usuarios creados por dia</h4>
  <%= line_chart User.group_by_day(:created_at).count %>
  <h4> grafica linea usuarios creados por hora</h4>
  <%= line_chart User.group_by_hour(:created_at).count %>
@@ -15,4 +15,19 @@
    <h4> grafica pie usuarios creados por dia</h4>
  <%= pie_chart User.group_by_day(:created_at).count, suffix: "%", prefix: "$",donut: true %>
 
- 
+  -->
+
+  <div class="row center-xs">
+    <div class="col-xs-12 col-lg-6">
+      <div class="card borde-radio-8">
+        <div class="card-content white-text" >
+        	<section style="background-color: red">
+        		aca va la imagen
+        	</section>
+          <span class="card-title color-text-verde">Publicacion</span>
+          <p>Descripción detallada de la publicación, realizada por el administrador para que los usuarios visualicen contenido de interés en general para los feligreses de la comunidad cristiana integral</p>
+        </div>
+        
+      </div>
+    </div>
+  </div>

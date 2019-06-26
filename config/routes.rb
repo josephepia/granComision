@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :supports
   resources :solicits
   resources :permissions
   resources :roles

@@ -1,4 +1,5 @@
 module CicloHelper
+	
 	def aprobado(id)
 		if @students
 			@estudiantesAprobados.each do |student|

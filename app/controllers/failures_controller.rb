@@ -17,7 +17,9 @@ class FailuresController < ApplicationController
 
   # GET /failures/new
   def new
+    # creo la instaccia de asistensia
     @failure = Failure.new
+    # creo lista de estudiantes matricualdos en este grupo. para tomar su asistencia
     @estudiantes= User.joins(:enrolls).where({enrolls: {id: params[:group_id] }})
   end
 

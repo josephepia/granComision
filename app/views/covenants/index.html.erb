@@ -16,15 +16,17 @@
   </thead>
 
   <tbody>
-    <% @covenants.each do |covenant| %>
-      <tr>
-        <td><%= covenant.user.identificacion%></td>
-        <td><%= covenant.user.nombre_completo %></td>
-        <td><%= covenant.discipleship.rangoOtorgado %></td>
-        <td><%= link_to 'Show', covenant %></td>
-        <td><%= link_to 'Edit', edit_covenant_path(covenant) %></td>
-        <td><%= link_to 'Destroy', covenant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+    <% @covenants.each do |covenan| %>
+      <% covenan.users do |covenant|%>
+        <tr>
+          <td><%= covenant.user.identificacion%></td>
+          <td><%= covenant.user.nombre_completo %></td>
+          <td><%= covenant.discipleship.rangoOtorgado %></td>
+          <td><%= link_to 'Show', covenant %></td>
+          <td><%= link_to 'Edit', edit_covenant_path(covenant) %></td>
+          <td><%= link_to 'Destroy', covenant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>

@@ -1,14 +1,14 @@
 module AsistenciaHelper
+	
 	def asistio(id)
-		
 		if @students
-			@estudiantesConFallas.each do |student|
+			@estudiantesConAsistensia.each do |student|
 				if student.id==id
-					return false				
+					return true				
 				end
 			end
 			
 		end
-		return true
+		return false
 	end
 end

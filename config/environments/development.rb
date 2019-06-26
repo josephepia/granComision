@@ -1,6 +1,11 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-  
+  config.time_zone = "Bogota"
+  config.active_record.default_timezone = :utc
+  config.active_record.initialize_timezone
+  config.active_support.initialize_time_zone
+
+
 
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
@@ -26,11 +31,9 @@ Rails.application.configure do
 
     config.cache_store = :null_store
   end
-  config.active_record.default_timezone = :utc
-  config.time_zone = "Bogota"
+  
   
   # config.active_support.initialize_time_zone
-  # config.active_record.initialize_timezone
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
 

@@ -5,6 +5,7 @@ class AsistenciaController < ApplicationController
   # GET /cities.json
   def index
     #@students=User.joins(:enrolls).where({enrolls: {created_at: (Time.now.beginning_of_day)..Time.now.end_of_day,group: @group }})
+    #cargo una lista de los estudiantes matriculados en el grupo que se esta visualizando 
     @students=User.joins(:enrolls).where({enrolls: {group: @group }})
   end
 
@@ -13,8 +14,8 @@ class AsistenciaController < ApplicationController
     @group = Group.find(params[:group])
   	@dia= (params[:fecha]).to_datetime
   	#@estudiantesConFallas=User.joins(:enrolls).where({enrolls: {created_at: (@dia.beginning_of_day)..@dia.end_of_day,group: @group }}).all
-  	@estudiantesConFallas=User.joins(enrolls: :failures).where({enrolls: {group: @group, failures:{created_at: (@dia.beginning_of_day)..@dia.middle_of_day} }})
-  	
+  	@estudiantesConAsistensia=User.joins(enrolls: :failures).where({enrolls: {group: @group, failures:{created_at: (@dia.beginning_of_day)..@dia.end_of_day, asistio: true} }})
+  	puts "estos son los estudiantes con asistensia #{@estudiantesConAsistensia.inspect}"
   	@students=User.joins(:enrolls).where({enrolls: {group: @group }})
   	
   	
@@ -40,29 +41,32 @@ class AsistenciaController < ApplicationController
   # POST /cities.json
   def create
   	
-    @lista = params[:asistencia][:lista] 					#lista de estudiantes con fallas 
+    @lista = params[:asistencia][:lista] 				             	#lista de estudiantes con fallas 
     matriculas= Enroll.where(group: params[:group_id]).all 		#lista de matriculas de este grupo
     correcto = true
+
+    #recorro la lista de estudiantes matricualdos 
     matriculas.each do |matricula|
 
     	puts "comparare id user #{matricula.user.id}, con id falla... #{@lista.include?(matricula.user.id.to_s)}"
+      # verifico cada registro de la tabla matricula en busca de coincidencia con la lista de asistencia
+      @asistensia = Failure.new
+      puts @asistensia.inspect
 
-    	if !@lista.include?(matricula.user.id.to_s) 
-    		
-    		@falla = Failure.new
-    		puts @falla.inspect
-    		@falla.fecha = @falla.created_at
-    		puts @falla.inspect
-    		@falla.group_id = params[:group_id]
-    		puts @falla.inspect
-    		@falla.enroll = matricula
-    		puts @falla.inspect
-    		if @falla.save
+    	
+    		@asistensia.asistio = @lista.include?(matricula.user.id.to_s)
+    		@asistensia.fecha = @asistensia.created_at
+    		puts @asistensia.inspect
+    		@asistensia.group_id = params[:group_id]
+    		puts @asistensia.inspect
+    		@asistensia.enroll = matricula
+    		puts @asistensia.inspect
+    		if @asistensia.save
     		else
     		   correcto==false
     		end
 			   
-    	end
+    	
     end
     if correcto
 	    respond_to do |format|

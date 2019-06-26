@@ -1,6 +1,7 @@
 <table>
   <thead>
     <tr>
+      <th>id</th>
       <th>Nombre</th>
       <th>Activo</th>
       <th>Discipleship</th>
@@ -12,11 +13,12 @@
   <tbody>
     <% @groups.each do |group| %>
       <tr>
+        <td><%= group.id %></td>
         <td><%= group.nombre %></td>
         <td><%= group.activo %></td>
         <td><%= group.discipleship.nombre %></td>
         
-        <td><%= group.presence ? group.user.nombre_completo : "Sin docente asignado" %></td>
+        <td><%= group.user.presence ? group.user.nombre_completo : "Sin docente asignado" %></td>
         <td><%= link_to 'Show', discipleship_groups_path(group.discipleship,group) %></td>
         <td><%= link_to 'Edit', group_path(group) %></td>
         <td><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></td>

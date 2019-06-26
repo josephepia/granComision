@@ -6,8 +6,11 @@ class CicloController < ApplicationController
 
   def cerrar
     correcto= true
+
     @group = Group.find(params[:group_id])
-    fechaCierre = Date.new()
+    matriculas= Enroll.where(group: @group).all    #lista de matriculas de este grupo
+
+    fechaCierre = Time.new()
     #crear cursos impartidos
     @cursoImpartido = GivenCourse.new
     @cursoImpartido.idGrupo = @group.id
@@ -15,46 +18,77 @@ class CicloController < ApplicationController
     @cursoImpartido.user = @group.user
     @cursoImpartido.fechaInicio = @group.created_at
     @cursoImpartido.fechaCierre = fechaCierre
-    if @cursoImpartido.save
 
-    else
-      correcto = false
-    end
 
-    #crear notas extendidas
-    matriculas= Enroll.where(group: params[:group_id]).all    #lista de matriculas de este grupo
+    #inicio de la tranasaccion 
+    ## crear curso impartido---- cursos extendidos
+    ## crear notas extendidas
+    ## eliminar grupo
+    ActiveRecord::Base.transaction do
+      @cursoImpartido.save
+      matriculas.each do |matricula|
+        @notaExtendida = ExtendedNote.new
+        @notaExtendida.discipleship = @group.discipleship
+        @notaExtendida.user = matricula.user
+        @notaExtendida.idGrupo = @group.id
+        @notaExtendida.definitiva = (matricula.definitiva || 'reprobado')
+        @notaExtendida.fecha = fechaCierre
+        @notaExtendida.save
+        
 
-    matriculas.each do |matricula|
-      @notaExtendida = ExtendedNote.new
-      @notaExtendida.discipleship = @group.discipleship
-      @notaExtendida.user = matricula.user
-      @notaExtendida.idGrupo = @group.id
-      @notaExtendida.definitiva = (matricula.definitiva || 'reprobado')
-      @notaExtendida.fecha = fechaCierre
-      if @notaExtendida.save
-        # elimino la matricula
 
-      else
-        correcto = false
+
       end
-
-
-    end
-    
+      #elimino todas las mtriculas de ese grupo
+      #matriculas.destroy_all
       @group.destroy
 
-    if correcto
-      #elimino todas las matriculas
-      #matriculas.destroy_all
-      #elimino el grupo, y en cascada se eliminaran los horarios, fallas, y matriculas.
       respond_to do |format|
         format.html {redirect_to discipleships_path, notice: 'Notas registradas correctamente'}
       end
-    else
-      respond_to do |format|
-        format.html {redirect_to discipleships_path, notice: 'Ocurrio un error al guardar las notas'}
-      end
     end
+    # fin de la transaccion
+
+    # if @cursoImpartido.save
+
+    # else
+    #   correcto = false
+    # end
+
+    # #crear notas extendidas
+    # matriculas= Enroll.where(group: params[:group_id]).all    #lista de matriculas de este grupo
+
+    # matriculas.each do |matricula|
+    #   @notaExtendida = ExtendedNote.new
+    #   @notaExtendida.discipleship = @group.discipleship
+    #   @notaExtendida.user = matricula.user
+    #   @notaExtendida.idGrupo = @group.id
+    #   @notaExtendida.definitiva = (matricula.definitiva || 'reprobado')
+    #   @notaExtendida.fecha = fechaCierre
+    #   if @notaExtendida.save
+    #     # elimino la matricula
+
+    #   else
+    #     correcto = false
+    #   end
+
+
+    # end
+    
+    #   @group.destroy
+
+    # if correcto
+    #   #elimino todas las matriculas
+    #   #matriculas.destroy_all
+    #   #elimino el grupo, y en cascada se eliminaran los horarios, fallas, y matriculas.
+    #   respond_to do |format|
+    #     format.html {redirect_to discipleships_path, notice: 'Notas registradas correctamente'}
+    #   end
+    # else
+    #   respond_to do |format|
+    #     format.html {redirect_to discipleships_path, notice: 'Ocurrio un error al guardar las notas'}
+    #   end
+    # end
 
 
   end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190318042113) do
+ActiveRecord::Schema.define(version: 20190626142958) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,13 +75,6 @@ ActiveRecord::Schema.define(version: 20190318042113) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["discipleship_id"], name: "index_covenants_on_discipleship_id"
-  end
-
-  create_table "covenants_users", id: false, force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "covenant_id", null: false
-    t.index ["covenant_id"], name: "index_covenants_users_on_covenant_id"
-    t.index ["user_id"], name: "index_covenants_users_on_user_id"
   end
 
   create_table "departments", force: :cascade do |t|
@@ -262,6 +255,16 @@ ActiveRecord::Schema.define(version: 20190318042113) do
     t.index ["user_id"], name: "index_solicits_on_user_id"
   end
 
+  create_table "supports", force: :cascade do |t|
+    t.string "urlMultimedia"
+    t.bigint "user_id"
+    t.bigint "covenant_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["covenant_id"], name: "index_supports_on_covenant_id"
+    t.index ["user_id"], name: "index_supports_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -340,6 +343,8 @@ ActiveRecord::Schema.define(version: 20190318042113) do
   add_foreign_key "publications", "users"
   add_foreign_key "solicits", "discipleships"
   add_foreign_key "solicits", "users"
+  add_foreign_key "supports", "covenants"
+  add_foreign_key "supports", "users"
   add_foreign_key "users", "community_groups"
   add_foreign_key "users", "ministeries"
 end

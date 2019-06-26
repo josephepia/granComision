@@ -50,7 +50,7 @@
           </div>
         </nav>
       </div>
-      
+        <!-- inicio de menu desplegable en foto de perfil superior izquierda -->
       <ul id='dropdown1' class='dropdown-content borde-radio-5' >
         <%if user%>
           <li><a href="">Material de apoyo</a></li>
@@ -69,9 +69,11 @@
         <li><%=link_to "Cerrar sesion", destroy_user_session_path,  method: :delete,class: "green-text" %></li>
         
       </ul>
-      
+        <!-- fin de menu desplegable en foto de perfil superior izquierda -->
+
     </header>
 
+ <!-- inicio del menu lateral -->
   <ul id="slide-out" class="sidenav">
     <li>
       <div class="user-view center-xs">
@@ -90,9 +92,9 @@
     </li>
    
      <%if user_signed_in?%>
-      <li><%= link_to  "Inicio", enrolls_path %></li>
+      <li><%= link_to  "Inicio", root_path %></li>
       <li><%= link_to  "Discipulados", discipleships_path %></li> 
-      <li><%= link_to  "Grupos", enrolls_path %></li>
+      <li><%= link_to  "Grupos", groups_path %></li>
       <li><%= link_to  "Matriculas", enrolls_path %></li>
       <li><%= link_to  "Cargar notas", enrolls_path %></li>
       <li><%= link_to  "Notas extendidas", extended_notes_path %></li>
@@ -144,9 +146,11 @@
         M.AutoInit();
       elem = document.querySelector('#slide-out');
       instance = new M.Sidenav(elem, {});
+      $(".dropdown-trigger").dropdown({  });
+
     });
     document.addEventListener('turbolinks:before-cache', () => {
-      
+      M.AutoInit();
       const elem = document.querySelector('#slide-out');
       const instance = M.Sidenav.getInstance(elem);
       if (instance) {

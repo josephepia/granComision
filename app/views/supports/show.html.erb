@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Urlmultimedia:</strong>
+  <%= @support.urlMultimedia %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @support.user %>
+</p>
+
+<p>
+  <strong>Covenant:</strong>
+  <%= @support.covenant %>
+</p>
+
+<%= link_to 'Edit', edit_support_path(@support) %> |
+<%= link_to 'Back', supports_path %>
