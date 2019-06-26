@@ -69,6 +69,6 @@ class CovenantsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def covenant_params
-      params.require(:covenant).permit(:urlMultimedia, :discipleship_id, :user_id)
+      params.require(:covenant).permit(:urlMultimedia, :discipleship_id)
     end
 end
