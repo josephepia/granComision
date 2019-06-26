@@ -1,7 +1,11 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
 
-<h1>Given Courses</h1>
 
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
+      <div class="box">
+        <div class="card z-depth-3 borde-radio-10">
+          <div class="card-content black-text center-xs" >
+            <span class="card-title center" >Historial de cursos</span>
 <table>
   <thead>
     <tr>
@@ -9,7 +13,7 @@
       <th>Fechainicio</th>
       <th>Fechacierre</th>
       <th>Discipleship</th>
-      <th>Teacher</th>
+      <th>Docente</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -20,16 +24,39 @@
         <td><%= given_course.idGrupo %></td>
         <td><%= given_course.fechaInicio %></td>
         <td><%= given_course.fechaCierre %></td>
-        <td><%= given_course.discipleship %></td>
-        <td><%= given_course.teacher %></td>
-        <td><%= link_to 'Show', given_course %></td>
-        <td><%= link_to 'Edit', edit_given_course_path(given_course) %></td>
-        <td><%= link_to 'Destroy', given_course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= given_course.discipleship.nombre %></td>
+        <td><%= given_course.user.nombre_completo %></td>
+        <td><%= link_to 'detalles', given_course %></td>
+        <td><%= link_to 'Editar', edit_given_course_path(given_course) %></td>
+        <td><%= link_to 'Eliminar', given_course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+</div>
+        </div>
+      </div>
+    </div>
+
+</div>
 
 <br>
+<div class="fixed-action-btn click-to-toggle">
+  <a class="btn-floating btn-large red">
+    <i class="large material-icons">mode_edit</i>
+  </a>
+  <ul>
+    <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
+    <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
+    <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
+    <li><a href="/given_courses/new" class="btn-floating blue"><i class="material-icons">add</i></a></li>
+  </ul>
+</div>
+<script>
+$(document).ready(function(){
+    $('.fixed-action-btn').floatingActionButton();
+  });
 
-<%= link_to 'New Given Course', new_given_course_path %>
+</script>
+
+

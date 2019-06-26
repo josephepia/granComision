@@ -1,5 +1,5 @@
 class PrincipalController < ApplicationController
-	before_action :confirmar_contrasena, only: [:home]
+	#before_action :confirmar_contrasena, only: [:home]
   def home
   end
   

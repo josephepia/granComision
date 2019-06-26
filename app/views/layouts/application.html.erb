@@ -96,19 +96,19 @@
       <li><%= link_to  "Discipulados", discipleships_path %></li> 
       <li><%= link_to  "Grupos", groups_path %></li>
       <li><%= link_to  "Matriculas", enrolls_path %></li>
-      <li><%= link_to  "Cargar notas", enrolls_path %></li>
+      <!-- <li><%= link_to  "Cargar notas", enrolls_path %></li> -->
       <li><%= link_to  "Notas extendidas", extended_notes_path %></li>
-      <li><%= link_to  "Historial de grupos", enrolls_path %></li>
-      <li><%= link_to  "Usuarios", enrolls_path %></li>
+      <li><%= link_to  "Historial de grupos", given_courses_path %></li>
+      <!-- <li><%= link_to  "Usuarios", enrolls_path %></li> -->
 
-      <li><%= link_to  "Material de apoyo", materials_path %></li>      
+     <!-- <li><%= link_to  "Material de apoyo", materials_path %></li>       -->
       <li><%= link_to  "Pactos", covenants_path %></li>           
 
 
       
-      <li><a href="" class="waves-effect">Docentes</a></li>
-      <li><a href="" class="waves-effect">Miembros</a></li>
-      <li><a href="" class="waves-effect">Grupos comunitarios</a></li>
+      <!-- <li><a href="" class="waves-effect">Docentes</a></li> -->
+      <!-- <li><a href="" class="waves-effect">Miembros</a></li> -->
+      <!-- <li><a href="" class="waves-effect">Grupos comunitarios</a></li> -->
       <li><%=link_to "Cerrar sesion", destroy_user_session_path,  method: :delete,class: "green-text" %></li>
     <%else%>
       <li><%=link_to "Iniciar sesion", new_user_session_path, class: "green-text" %></li>

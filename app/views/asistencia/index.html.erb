@@ -35,12 +35,6 @@
     <% end %>
     </div>
 
-
-    <h4> grafica pie usuarios creados por dia</h4>
- <%= pie_chart Failure.group_by_hour(:created_at).count, donut: true %>
-
-    <h4> grafica pie usuarios creados por dia</h4>
- <%= line_chart Failure.group_by_minute(:created_at).count%>
     <script type="text/javascript">
     
 
