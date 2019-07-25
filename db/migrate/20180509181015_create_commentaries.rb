@@ -1,7 +1,7 @@
 class CreateCommentaries < ActiveRecord::Migration[5.1]
   def change
     create_table :commentaries do |t|
-      t.text :cuerpo
+      t.text :descripcion
       t.references :publication, foreign_key: true
       t.references :user, foreign_key: true
 

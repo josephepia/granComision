@@ -15,64 +15,64 @@
 	// 	 url(asset-path('Roboto-BoldItalic.ttf')),
 	// 	 url(asset-path('Roboto-Black.ttf')),
 	// 	 url(asset-path('Roboto-BlackItalic.ttf'));
-	
+
 @font-face {
 	font-family: "Roboto Thin";
-	src: url(asset-path('Roboto-Thin.ttf')),
+	src: url(asset-path('Roboto-Thin.ttf'))
 }
 @font-face {
 font-family: "Roboto Thin Italic";
-	src: url(asset-path('Roboto-Black.ttf')),
+	src: url(asset-path('Roboto-Black.ttf'))
 
 }
 @font-face {
 font-family: "Roboto Light";
-	src: url(asset-path('Roboto-Light.ttf')),
+	src: url(asset-path('Roboto-Light.ttf'))
 
 }
 @font-face {
 font-family: "Roboto Light Italic";
-	src: url(asset-path('Roboto-LightItalic.ttf')),
+	src: url(asset-path('Roboto-LightItalic.ttf'))
 
 }
 @font-face {
 font-family: "Roboto Regular";
-	src: url(asset-path('Roboto-Regular.ttf')),
+	src: url(asset-path('Roboto-Regular.ttf'))
 
 }
 @font-face {
 font-family: "Roboto Regular Italic";
-	src: url(asset-path('Roboto-Italic.ttf')),
+	src: url(asset-path('Roboto-Italic.ttf'))
 
 }
 @font-face {
 font-family: "Roboto Medium";
-	src: url(asset-path('Roboto-Medium.ttf')),
+	src: url(asset-path('Roboto-Medium.ttf'))
 
 }
 @font-face {
 font-family: "Roboto Medium Italic";
-	src: url(asset-path('Roboto-MediumItalic.ttf')),
+	src: url(asset-path('Roboto-MediumItalic.ttf'))
 
 }
 @font-face {
 font-family: "Roboto Bold";
-	src: url(asset-path('Roboto-Bold.ttf')),
+	src: url(asset-path('Roboto-Bold.ttf'))
 
 }
 @font-face {
 font-family: "Roboto Bold Italic";
-	src: url(asset-path('Roboto-BoldItalic.ttf')),
+	src: url(asset-path('Roboto-BoldItalic.ttf'))
 
 }
 @font-face {
 font-family: "Roboto Black";
-	src: url(asset-path('Roboto-Black.ttf')),
+	src: url(asset-path('Roboto-Black.ttf'))
 
 }
 @font-face {
 font-family: "Roboto Black Italic";
-	src: url(asset-path('Roboto-BlackItalic.ttf')),
+	src: url(asset-path('Roboto-BlackItalic.ttf'))
 
 }
 
@@ -94,7 +94,7 @@ html,body{
 	height: 100%;
 	width: 100%;
 	font-family: 'Roboto Regular';
-	
+
 }
 $fuentes :(
     roboto-1: "Roboto Thin",
@@ -160,15 +160,16 @@ $fuentes :(
 .avatar-img{
 	max-height: 50px!important;
 }
+// siclo repetitivo para ayuda, hasta el 100
 @for $i from 0 through 100{
 	.borde-radio-#{$i}{
 		border-radius: #{$i}px;
 	}
 	.borde-radio-top-#{$i}{
-		border-radius: #{$i}px #{$i}px 0px 0px; 
+		border-radius: #{$i}px #{$i}px 0px 0px;
 	}
 	.borde-radio-buton-#{$i}{
-		border-radius: 0px 0px #{$i}px #{$i}px; 
+		border-radius: 0px 0px #{$i}px #{$i}px;
 	}
 	.margin-#{$i}{
 		margin: #{$i}px;
@@ -176,11 +177,13 @@ $fuentes :(
 	.padding-#{$i}{
 		padding: #{$i}px;
 	}
+	.text-#{$i}{
+		font-size: #{$i}px !important;
+	}
 }
-
+//siclo de ayuda hasta el 1000/mil
 @for $i from 1 through 1000{
 	.ancho-#{$i}{
 		width: #{$i}px;
 	}
 }
-	

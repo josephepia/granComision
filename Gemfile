@@ -10,10 +10,11 @@ end
 gem 'rails', '~> 5.1.6'
 # Use sqlite3 as the database for Active Record
 
-#gema para graficas 
+#gema para graficas
 gem "chartkick"
 #gema para gestionar archivos
 gem 'carrierwave'
+gem 'mini_magick'
 #gema para automatizar las graficas... para agrupar por fecha
 gem "groupdate", github: "ankane/groupdate"
 # Use Puma as the app server
@@ -63,7 +64,7 @@ group :development do
   gem 'web-console', '>= 3.3.0'
 end
 group :production do
-  gem 'pg', '1.0.0'       
+  gem 'pg', '1.0.0'
   gem 'rails_12factor', '0.0.2'
 end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

@@ -1,7 +1,41 @@
 <p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="row center-xs">
+    <div class="col-xs-12 col-sm-8 col-md-6 col-lg-4">
+      <div class="card borde-radio-10  padding-14">
+        <span class="card-title">Nombre del documento</span>
+        <p class="margin-0">una descripcion corta del documento</p>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-8 col-md-6 col-lg-4">
+      <div class="card borde-radio-10  padding-14">
+        <span class="card-title">Nombre del documento</span>
+        <p class="margin-0">una descripcion corta del documento</p>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-8 col-md-6 col-lg-4">
+      <div class="card borde-radio-10  padding-14">
+        <span class="card-title">Nombre del documento</span>
+        <p class="margin-0">una descripcion corta del documento</p>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-8 col-md-6 col-lg-4">
+      <div class="card borde-radio-10  padding-14">
+        <span class="card-title">Nombre del documento</span>
+        <p class="margin-0">una descripcion corta del documento</p>
+      </div>
+    </div>
 
-<h1>Materials</h1>
-
+  </div>
+</div>
+<% @materials.each do |material| %>
+<div class="col-xs-12 col-sm-8 col-md-6 col-lg-4">
+  <div class="card borde-radio-10  padding-14">
+    <span class="card-title"> <%= material.pdf_identifier %> </span>
+    <p class="margin-0"> <%= material.descripcion %></p>
+  </div>
+</div>
+<% end %>
 <table>
   <thead>
     <tr>

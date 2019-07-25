@@ -1,32 +1,47 @@
-<%= form_with(model: publication, local: true) do |form| %>
-  <% if publication.errors.any? %>
+<%= form_with(model: @publication, local: true) do |form| %>
+  <% if @publication.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(publication.errors.count, "error") %> prohibited this publication from being saved:</h2>
+      <h2><%= pluralize(@publication.errors.count, "error") %> prohibited this publication from being saved:</h2>
 
       <ul>
-      <% publication.errors.full_messages.each do |message| %>
+      <% @publication.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :descripcion %>
-    <%= form.text_area :descripcion, id: :publication_descripcion %>
+  <div class="row center-xs no-margin">
+    <div class="col-xs-12 col-lg-6">
+      <div class="card borde-radio-8">
+        <div class="card-content" >
+          <section>
+            <p>
+              <%= image_tag(@publication.imagen_url) if @publication.imagen? %>
+              <%= form.file_field :imagen %>
+              <%= @publication.inspect%>
+              <p>ahora el atributo con el if </p>
+              <%= @publication.imagen ? @publication.inspect : nil%>
+              <p>arriba de mi esta el atributo con el if </p>
+              <%= form.hidden_field :imagen_cache %>
+            </p>
+
+            <h4>Imagen de la publicacion</h4>
+          </section>
+          <div class="input-field">
+            <%= form.label :titulo, "Titulo de la publicación" %>
+            <%= form.text_field :titulo, id: :publication_titulo , class: "roboto-5 card-title verdeBri-text text-24"%>
+          </div>
+          <div class="input-field">
+            <%= form.label :descripcion %>
+            <%= form.text_area :descripcion, id: :publication_descripcion, class: "roboto-5 materialize-textarea" %>
+          </div>
+          <%= form.submit "Guardar", class: "waves-effect waves-light btn-small"%>
+
+        </div>
+
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :material_id %>
-    <%= form.text_field :material_id, id: :publication_material_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :group_id %>
-    <%= form.text_field :group_id, id: :publication_group_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
 <% end %>

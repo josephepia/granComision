@@ -7,23 +7,23 @@ class GroupsController < ApplicationController
   end
 
   def inscribirme
-    
-    
+
+
     if( @user.enrolled_in_discipleship(params[:discipleship_id]))
       respond_to do |format|
-        format.html { redirect_to discipleships_path, notice: 'Ya estas inscrito' }    
+        format.html { redirect_to discipleships_path, notice: 'Ya estas inscrito' }
       end
     else
       respond_to do |format|
-        format.html { redirect_to discipleships_path, notice: 'Inscrito exitosamente' }    
+        format.html { redirect_to discipleships_path, notice: 'Inscrito exitosamente' }
       end
     end
   end
-  
+
   # GET /groups/1
   # GET /groups/1.json
   def show
-   
+
   end
 
   # GET /groups/new
@@ -83,7 +83,7 @@ class GroupsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_discipleship
       if params[:discipleship_id]
-      @discipleship = Discipleship.find(params[:discipleship_id])  
+      @discipleship = Discipleship.find(params[:discipleship_id])
       @datos=[@discipleship,@group ||= Group.new]
       @groups = @discipleship.groups
 
@@ -93,7 +93,7 @@ class GroupsController < ApplicationController
 
       end
     end
-    
+
     def set_group
 
       @group = Group.find(params[:id])
@@ -107,11 +107,11 @@ class GroupsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def group_params
-      params.require(:group).permit(:nombre, :user_id,:activo)
+      params.require(:group).permit(:codigo, :user_id,:activo)
     end
 
     def horary_params
-      params.require(:horary).permit(:lunesInicio,:lunesFinal,:martesInicio,:martesFinal,:miercolesInicio,:miercolesFinal,:juevesInicio,:juevesFinal,:viernesInicio,:viernesFinal,:sabadoInicio,:sabadoFinal,:domingoInicio,:domingoFinal)      
+      params.require(:horary).permit(:lunesInicio,:lunesFinal,:martesInicio,:martesFinal,:miercolesInicio,:miercolesFinal,:juevesInicio,:juevesFinal,:viernesInicio,:viernesFinal,:sabadoInicio,:sabadoFinal,:domingoInicio,:domingoFinal)
     end
-    
+
 end

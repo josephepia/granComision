@@ -19,8 +19,8 @@
  *= require principal
  */
 @import "materialize/components/color-variables";
-$primary-color: color("blue", "darken-1") !default;
+$primary-color: color("green", "base") !default;
+
 $secondary-color: color("blue", "darken-2") !default;
+
 @import "materialize"
-
-

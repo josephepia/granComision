@@ -1,32 +1,44 @@
-<%= form_with(model: material, local: true) do |form| %>
-  <% if material.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(material.errors.count, "error") %> prohibited this material from being saved:</h2>
 
-      <ul>
-      <% material.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<div class="container">
+  <div class="row center-xs">
+    <div class="col-xs-12 col-sm-8 col-md-6 col-lg-4">
+      <div class="card borde-radio-10  padding-14">
+
+    <%= form_for @material do |form| %>
+    <% if @material.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@material.errors.count, "error") %> prohibited this material from being saved:</h2>
+
+        <ul>
+        <% @material.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+        <div class="field">
+          <%= form.label :pdf %>
+          <%= form.text_field :pdf, id: :material_pdf %>
+        </div>
+
+        <div class="field">
+          <%= form.label :imagen %>
+          <%= form.text_field :imagen, id: :material_imagen %>
+        </div>
+
+        <div class="field">
+          <%= form.label :descripcion %>
+          <%= form.text_field :descripcion, id: :material_descripcion %>
+        </div>
+
+        <div class="actions">
+          <%= form.submit %>
+        </div>
+        <% end %>
+      </div>
     </div>
-  <% end %>
 
-  <div class="field">
-    <%= form.label :urlMaterial %>
-    <%= form.text_field :urlMaterial, id: :material_urlMaterial %>
-  </div>
 
-  <div class="field">
-    <%= form.label :formato %>
-    <%= form.text_field :formato, id: :material_formato %>
   </div>
-
-  <div class="field">
-    <%= form.label :descripcion %>
-    <%= form.text_field :descripcion, id: :material_descripcion %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

@@ -1,145 +1,34 @@
-<form action="/file-upload"
-      class="dropzone"
-      id="my-awesome-dropzone"></form>
-<!-- <h4> grafica linea usuarios creados por dia</h4>
- <%= line_chart User.group_by_day(:created_at).count %>
- <h4> grafica linea usuarios creados por hora</h4>
- <%= line_chart User.group_by_hour(:created_at).count %>
- <h4> grafica linea usuarios creados por minutos</h4>
- <%= line_chart User.group_by_minute(:created_at).count %>
- <h4> inicio de dia <%= User.first.created_at.beginning_of_day%> </h4>
 
-  <h4> grafica pie usuarios creados por hora</h4>
- <%= pie_chart User.group_by_hour(:created_at).count, donut: true %>
+<% @publications.each do |publication|%>
+<div class="row center-xs">
+  <div class="col-xs-12 col-lg-6">
+    <div class="card borde-radio-8">
+      <div class="card-content" >
+      	<section>
+          <%=image_tag(publication.imagen.thumb.url)%>
 
-   <h4> grafica pie usuarios creados por dia</h4>
- <%= pie_chart User.group_by_day(:created_at).count, suffix: "%", prefix: "$",donut: true %>
+      	</section>
+        <span class="card-title verdeBri-text left-align" ><%=publication.titulo%></span>
+        <p class="left-align"><%= publication.descripcion%></p>
+      </div>
 
-  -->
+    </div>
+  </div>
+</div>
 
-  <div class="row center-xs">
-    <div class="col-xs-12 col-lg-6">
-      <div class="card borde-radio-8">
-        <div class="card-content" >
-        	<section class="fondo">
-        		<h4>Imagen de la publicacion</h4>
-        	</section>
-          <span class="card-title verdeBri-text left-align" >Nombre de la publicacion</span>
-          <p class="left-align">Descripción detallada de la publicación, realizada por el administrador para que los usuarios visualicen contenido de interés en general para los feligreses de la comunidad cristiana integral</p>
-        </div>
-        
-      </div>
-    </div>
-  </div>
+<% end %>
+
 <div class="row center-xs">
-    <div class="col-xs-12 col-lg-6">
-      <div class="card borde-radio-8">
-        <div class="card-content" >
-          <section class="fondo">
-            <h4>Imagen de la publicacion</h4>
-          </section>
-          <span class="card-title verdeBri-text left-align" >Nombre de la publicacion</span>
-          <p class="left-align">Descripción detallada de la publicación, realizada por el administrador para que los usuarios visualicen contenido de interés en general para los feligreses de la comunidad cristiana integral</p>
-        </div>
-        
+  <div class="col-xs-12 col-lg-6">
+    <div class="card borde-radio-8">
+      <div class="card-content" >
+      	<section class="fondo">
+      		<h4>Imagen de la publicacion</h4>
+      	</section>
+        <span class="card-title verdeBri-text left-align" >Nombre de la publicacion</span>
+        <p class="left-align">Descripción detallada de la publicación, realizada por el administrador para que los usuarios visualicen contenido de interés en general para los feligreses de la comunidad cristiana integral</p>
       </div>
+
     </div>
   </div>
-<div class="row center-xs">
-    <div class="col-xs-12 col-lg-6">
-      <div class="card borde-radio-8">
-        <div class="card-content" >
-          <section class="fondo">
-            <h4>Imagen de la publicacion</h4>
-          </section>
-          <span class="card-title verdeBri-text left-align" >Nombre de la publicacion</span>
-          <p class="left-align">Descripción detallada de la publicación, realizada por el administrador para que los usuarios visualicen contenido de interés en general para los feligreses de la comunidad cristiana integral</p>
-        </div>
-        
-      </div>
-    </div>
-  </div>
-<div class="row center-xs">
-    <div class="col-xs-12 col-lg-6">
-      <div class="card borde-radio-8">
-        <div class="card-content" >
-          <section class="fondo">
-            <h4>Imagen de la publicacion</h4>
-          </section>
-          <span class="card-title verdeBri-text left-align" >Nombre de la publicacion</span>
-          <p class="left-align">Descripción detallada de la publicación, realizada por el administrador para que los usuarios visualicen contenido de interés en general para los feligreses de la comunidad cristiana integral</p>
-        </div>
-        
-      </div>
-    </div>
-  </div>
-<div class="row center-xs">
-    <div class="col-xs-12 col-lg-6">
-      <div class="card borde-radio-8">
-        <div class="card-content" >
-          <section class="fondo">
-            <h4>Imagen de la publicacion</h4>
-          </section>
-          <span class="card-title verdeBri-text left-align" >Nombre de la publicacion</span>
-          <p class="left-align">Descripción detallada de la publicación, realizada por el administrador para que los usuarios visualicen contenido de interés en general para los feligreses de la comunidad cristiana integral</p>
-        </div>
-        
-      </div>
-    </div>
-  </div>
-<div class="row center-xs">
-    <div class="col-xs-12 col-lg-6">
-      <div class="card borde-radio-8">
-        <div class="card-content" >
-          <section class="fondo">
-            <h4>Imagen de la publicacion</h4>
-          </section>
-          <span class="card-title verdeBri-text left-align" >Nombre de la publicacion</span>
-          <p class="left-align">Descripción detallada de la publicación, realizada por el administrador para que los usuarios visualicen contenido de interés en general para los feligreses de la comunidad cristiana integral</p>
-        </div>
-        
-      </div>
-    </div>
-  </div>
-<div class="row center-xs">
-    <div class="col-xs-12 col-lg-6">
-      <div class="card borde-radio-8">
-        <div class="card-content" >
-          <section class="fondo">
-            <h4>Imagen de la publicacion</h4>
-          </section>
-          <span class="card-title verdeBri-text left-align" >Nombre de la publicacion</span>
-          <p class="left-align">Descripción detallada de la publicación, realizada por el administrador para que los usuarios visualicen contenido de interés en general para los feligreses de la comunidad cristiana integral</p>
-        </div>
-        
-      </div>
-    </div>
-  </div>
-<div class="row center-xs">
-    <div class="col-xs-12 col-lg-6">
-      <div class="card borde-radio-8">
-        <div class="card-content" >
-          <section class="fondo">
-            <h4>Imagen de la publicacion</h4>
-          </section>
-          <span class="card-title verdeBri-text left-align" >Nombre de la publicacion</span>
-          <p class="left-align">Descripción detallada de la publicación, realizada por el administrador para que los usuarios visualicen contenido de interés en general para los feligreses de la comunidad cristiana integral</p>
-        </div>
-        
-      </div>
-    </div>
-  </div>
-<div class="row center-xs">
-    <div class="col-xs-12 col-lg-6">
-      <div class="card borde-radio-8">
-        <div class="card-content" >
-          <section class="fondo">
-            <h4>Imagen de la publicacion</h4>
-          </section>
-          <span class="card-title verdeBri-text left-align" >Nombre de la publicacion</span>
-          <p class="left-align">Descripción detallada de la publicación, realizada por el administrador para que los usuarios visualicen contenido de interés en general para los feligreses de la comunidad cristiana integral</p>
-        </div>
-        
-      </div>
-    </div>
-  </div>
+</div>

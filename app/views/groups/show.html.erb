@@ -5,15 +5,15 @@
   </a>
   <ul>
     <li>
-      
+
       <a class="btn-floating red btn modal-trigger" data-target= "modal1"><i class="material-icons">clear</i></a>
       <a class="mobile-fab-tip borde-radio-10">Eliminar</a>
     </li>
     <li><%= link_to '<i class="material-icons">mode_edit</i></a>'.html_safe, edit_group_path(@group), class: "btn-floating blue" %>
       <a class="mobile-fab-tip borde-radio-10">Editar</a>
     </li>
-   
-    
+
+
     <li>
       <a class="btn-floating green"><i class="material-icons">library_books</i></a>
       <a class="mobile-fab-tip borde-radio-10">Publicaciones</a>
@@ -22,14 +22,14 @@
       <%= link_to '<i class="material-icons">library_books</i></a>'.html_safe, group_ciclo_notas_path(@group), class: "btn-floating amber darken-1" %>
       <a class="mobile-fab-tip borde-radio-10">Notas</a>
     </li>
-    
+
     <li>
       <%= link_to '<i class="material-icons">perm_contact_calendar</i></a>'.html_safe, group_asistencia_path(@group), class: "btn-floating amber darken-1" %>
       <a class="mobile-fab-tip borde-radio-10">Asistencia</a>
     </li>
-    
-    
-    
+
+
+
   </ul>
 </div>
 <!-- fin de botones flontantes -->
@@ -37,7 +37,7 @@
 <!-- modal de advertencia al intentar eliminar un grupo -->
 <div id="modal1" class="modal borde-radio-10">
     <div class="modal-content center-xs ">
-      
+
       <h4>Advertencia</h4>
       <p>se eliminara este grupo. esta seguro ?</p>
     </div>
@@ -47,10 +47,10 @@
   </div>
 <!-- fin del modal advertencia de eliminacion -->
 
-<div class="row middle-xs no-margin">    
+<div class="row middle-xs no-margin">
   <div class="container">
     <div class="row center-xs" >
-      
+
         <div class="col-xs-12
                     col-sm-8
                     col-md-6
@@ -58,20 +58,20 @@
           <div class="box">
             <div class="card z-depth-3 borde-radio-10">
               <div class="card-content black-text start-xs">
-                <span class="card-title center"><%=@group.nombre%></span>
+                <span class="card-title center"><%=@group.codigo%></span>
                 <b>Discipulado: </b><p><%=@group.discipleship.nombre%></p>
                 <b>Rango otorgado: </b><p><%=@group.discipleship.rangoOtorgado%></p>
                 <b>Pacto asociado: </b><p>Pacto de compromiso</p>
                 <b>Descripcion del convenio: </b><p><%=@group.discipleship.descripcionPacto%></p>
-                
+
               </div>
             </div>
           </div>
         </div>
-      
+
     </div>
     <div class="row center-xs" >
-      
+
         <div class="col-xs-12
                     col-sm-8
                     col-md-6
@@ -102,22 +102,22 @@
             <td><%=@group.horary.miercoles%></td>
           </tr>
           <tr>
-            <th>Jueves</th>            
+            <th>Jueves</th>
             <td><%=@group.horary.jueves%></td>
           </tr>
           <tr>
-            <th>Viernes</th>              
-                     
+            <th>Viernes</th>
+
             <td><%=@group.horary.viernes%></td>
           </tr>
           <tr>
             <th>Sabado</th>
-                     
+
             <td><%=@group.horary.sabado%></td>
           </tr>
           <tr>
               <th>Domingo</th>
-                
+
             <td><%=@group.horary.domingo%></td>
           </tr>
         </tbody>
@@ -126,7 +126,7 @@
             </div>
           </div>
         </div>
-      
+
 
       <div class="col-xs-12
                     col-sm-8
@@ -156,7 +156,7 @@
             <td><%=student.user.telefono%></td>
 
           </tr>
-          
+
           <% end %>
         </tbody>
       </table>
@@ -170,8 +170,8 @@
 
     </div>
 
-    
-  </div>   
+
+  </div>
 </div>
 <script>
 $(document).ready(function(){

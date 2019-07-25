@@ -28,28 +28,28 @@
               <th>Estado</th>
               <th>Fecha de inscripcion</th>
               <th>Accion</th>
-              
-              
+
+
           </tr>
         </thead>
 
         <tbody>
     <% @enrolls.each do |enroll| %>
-        
+
           <tr>
             <td><%=enroll.user.identificacion%></td>
             <td><%=enroll.user.nombre_completo%></td>
-            <td><%=enroll.group.nombre%></td>
+            <td><%=enroll.group.codigo%></td>
             <td><%=enroll.group.discipleship.nombre%></td>
             <td><%=enroll.definitiva%></td>
             <td><%=enroll.created_at%></td>
             <td><%= link_to 'Detalles', enroll %> </td>
             <td><%= link_to 'Editar', edit_enroll_path(enroll) %></td>
             <td><%= link_to 'Eliminar', enroll, method: :delete, data: { confirm: 'Esta seguro?' } %></td>
-            
+
           </tr>
     <%end%>
-          
+
         </tbody>
       </table>
           </div>

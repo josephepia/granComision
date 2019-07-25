@@ -3,7 +3,7 @@
 <h1>Covenants</h1>
 <div class="container">
   <div class="row center-xs">
-    <div class="card z-depth-3 borde-radio-10"> 
+    <div class="card z-depth-3 borde-radio-10">
       <div class="row center-xs no-margin">
         <table>
   <thead>
@@ -17,7 +17,7 @@
 
   <tbody>
     <% @covenants.each do |covenant| %>
-      
+
         <tr>
           <td><%= covenant.discipleship.rangoOtorgado%></td>
           <td><%= covenant.discipleship.nombre%></td>
@@ -26,12 +26,12 @@
           <td><%= link_to 'Edit', edit_covenant_path(covenant) %></td>
           <td><%= link_to 'Destroy', covenant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
-      
+
     <% end %>
   </tbody>
 </table>
       </div>
-      
+
     </div>
   </div>
 </div>

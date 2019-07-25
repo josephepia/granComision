@@ -1,11 +1,11 @@
 <%if @combo=='discipleship' %>
-  <%=collection_select(:enroll,:group_id,@groups, :id, :nombre, options = {:prompt => 'Seleccione'}, html_options = {class: "no-autoinit", onChange: "update_versions_div(this.options[this.selectedIndex].value,'grupo');"})%>
+  <%=collection_select(:enroll,:group_id,@groups, :id, :codigo, options = {:prompt => 'Seleccione'}, html_options = {class: "no-autoinit", onChange: "update_versions_div(this.options[this.selectedIndex].value,'grupo');"})%>
   <label>Grupo</label>
 <%end%>
 <%if @combo=='grupo' %>
 
-        
-                
+
+
         <%if @group%>
         <table class="bordered striped white">
           <thead>
@@ -27,30 +27,30 @@
             <tr>
               <th>Miercoles</th>
               <td><%=@group.horary.presence ? @group.horary.miercoles : '' %></td>
-              
+
             </tr>
             <tr>
-              <th>Jueves</th>            
+              <th>Jueves</th>
               <td><%=@group.horary.presence ? @group.horary.jueves : '' %></td>
-              
+
             </tr>
             <tr>
-              <th>Viernes</th>              
-                       
+              <th>Viernes</th>
+
               <td><%=@group.horary.presence ? @group.horary.jueves : '' %></td>
-              
+
             </tr>
             <tr>
               <th>Sabado</th>
-                       
+
               <td><%=@group.horary.presence ? @group.horary.sabado : '' %></td>
-              
+
             </tr>
             <tr>
                 <th>Domingo</th>
-                  
+
               <td><%=@group.horary.presence ? @group.horary.domingo : '' %></td>
-              
+
             </tr>
           </tbody>
         </table>

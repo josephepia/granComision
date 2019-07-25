@@ -5,22 +5,22 @@
             <div class="card z-depth-3 borde-radio-10">
                 <div class="card-content ">
                     <span class="card-title"><%=@texto%></span>
-                    
+
                     <%= form_for(@datos) do |f| %>
                       <div class="row center-xs">
-                         
+
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
-                          <div class="box">                               
+                          <div class="box">
                             <div class="input-field">
                               <i class="material-icons prefix">border_color</i>
-                              <%= f.label :nombre , "Nombre"%>
-                              <%= f.text_field :nombre, id: :group_nombre %>
+                              <%= f.label :codigo , "Nombre"%>
+                              <%= f.text_field :codigo, id: :group_codigo %>
                             </div>
                           </div>
                         </div>
-                        
+
                         <div class="col-xs-11 col-sm-11 col-md-11 col-lg-6">
-                          <div class="box">                               
+                          <div class="box">
                             <div class="input-field">
                               <%= f.collection_select(:user_id, @docentes, :id, :nombre_completo,options = {prompt: "Seleccione"},html:{class: "no-autoinit"} ) %>
                               <%= f.label :teacher_id , "Nombre docente"%>
@@ -28,7 +28,7 @@
                           </div>
                         </div>
                         <div class="col-xs-11 col-sm-11 col-md-11 col-lg-6">
-                          <div class="box">                               
+                          <div class="box">
                             <label>
                               <%= f.check_box :activo%>
                               <span>Activo</span>
@@ -37,27 +37,27 @@
                         </div>
                         <br><br>
                         <label class="col-xs-12">Horario</label>
-                        
+
                         <ul class="collapsible col-xs-12 no-autoinit">
                           <li>
                             <div class="collapsible-header"><i class="material-icons">event</i>Lunes</div>
                             <div class="collapsible-body padding-20">
                               <div class= "row no-margin">
                                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                                  <div class="box">      
-                                    <div class="input-field no-margin">  
-                                     
-                                    <%= text_field :horary, :lunesInicio,class: "timepicker" %>                      
-                                    <%= label(:horary,:lunesInicio, "Inicio") %>                             
+                                  <div class="box">
+                                    <div class="input-field no-margin">
+
+                                    <%= text_field :horary, :lunesInicio,class: "timepicker" %>
+                                    <%= label(:horary,:lunesInicio, "Inicio") %>
                                     </div>
                                   </div>
                                 </div>
-                                
+
                                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                                  <div class="box">                               
-                                    <div class="input-field no-margin">                         
-                                      <%= text_field :horary, :lunesFinal,class: "timepicker" %>                      
-                                      <%= label(:horary,:lunesFinal, "Final") %>                                   
+                                  <div class="box">
+                                    <div class="input-field no-margin">
+                                      <%= text_field :horary, :lunesFinal,class: "timepicker" %>
+                                      <%= label(:horary,:lunesFinal, "Final") %>
                                     </div>
                                   </div>
                                 </div>
@@ -69,19 +69,19 @@
                             <div class="collapsible-body padding-20">
                               <div class= "row">
                                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                                  <div class="box">      
-                                    <div class="input-field no-margin">                         
-                                      <%= text_field :horary, :martesInicio,class: "timepicker" %>                      
-                                      <%= label(:horary,:martesInicio, "Inicio") %>                                   
+                                  <div class="box">
+                                    <div class="input-field no-margin">
+                                      <%= text_field :horary, :martesInicio,class: "timepicker" %>
+                                      <%= label(:horary,:martesInicio, "Inicio") %>
                                     </div>
                                   </div>
                                 </div>
-                                
+
                                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                                  <div class="box">                               
-                                    <div class="input-field no-margin">                         
-                                      <%= text_field :horary, :martesFinal,class: "timepicker" %>                      
-                                      <%= label(:horary,:martesFinal, "Inicio") %>                                   
+                                  <div class="box">
+                                    <div class="input-field no-margin">
+                                      <%= text_field :horary, :martesFinal,class: "timepicker" %>
+                                      <%= label(:horary,:martesFinal, "Inicio") %>
                                     </div>
                                   </div>
                                 </div>
@@ -93,19 +93,19 @@
                             <div class="collapsible-body padding-20">
                               <div class= "row">
                                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                                  <div class="box">      
-                                    <div class="input-field no-margin">                         
-                                      <%= text_field :horary, :miercolesInicio,class: "timepicker" %>                      
-                                      <%= label(:horary,:miercolesInicio, "Inicio") %>                                   
+                                  <div class="box">
+                                    <div class="input-field no-margin">
+                                      <%= text_field :horary, :miercolesInicio,class: "timepicker" %>
+                                      <%= label(:horary,:miercolesInicio, "Inicio") %>
                                     </div>
                                   </div>
                                 </div>
-                                
+
                                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                                  <div class="box">                               
-                                    <div class="input-field no-margin">                         
-                                      <%= text_field :horary, :miercolesFinal,class: "timepicker" %>                      
-                                      <%= label(:horary,:miercolesFinal, "Final") %>                                   
+                                  <div class="box">
+                                    <div class="input-field no-margin">
+                                      <%= text_field :horary, :miercolesFinal,class: "timepicker" %>
+                                      <%= label(:horary,:miercolesFinal, "Final") %>
                                     </div>
                                   </div>
                                 </div>
@@ -117,19 +117,19 @@
                             <div class="collapsible-body padding-20">
                               <div class= "row">
                                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                                  <div class="box">      
-                                    <div class="input-field no-margin">                         
-                                      <%= text_field :horary, :juevesInicio,class: "timepicker" %>                      
-                                      <%= label(:horary,:juevesInicio, "Inicio") %>                                   
+                                  <div class="box">
+                                    <div class="input-field no-margin">
+                                      <%= text_field :horary, :juevesInicio,class: "timepicker" %>
+                                      <%= label(:horary,:juevesInicio, "Inicio") %>
                                     </div>
                                   </div>
                                 </div>
-                                
+
                                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                                  <div class="box">                               
-                                    <div class="input-field no-margin">                         
-                                      <%= text_field :horary, :juevesFinal,class: "timepicker" %>                      
-                                      <%= label(:horary,:juevesFinal, "Inicio") %>                                    
+                                  <div class="box">
+                                    <div class="input-field no-margin">
+                                      <%= text_field :horary, :juevesFinal,class: "timepicker" %>
+                                      <%= label(:horary,:juevesFinal, "Inicio") %>
                                     </div>
                                   </div>
                                 </div>
@@ -141,19 +141,19 @@
                             <div class="collapsible-body padding-20">
                               <div class= "row">
                                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                                  <div class="box">      
-                                    <div class="input-field no-margin">                         
-                                      <%= text_field :horary, :viernesInicio,class: "timepicker" %>                      
-                                      <%= label(:horary,:viernesInicio, "Inicio") %>                                   
+                                  <div class="box">
+                                    <div class="input-field no-margin">
+                                      <%= text_field :horary, :viernesInicio,class: "timepicker" %>
+                                      <%= label(:horary,:viernesInicio, "Inicio") %>
                                     </div>
                                   </div>
                                 </div>
-                                
+
                                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                                  <div class="box">                               
-                                    <div class="input-field no-margin">                         
-                                      <%= text_field :horary, :viernesFinal,class: "timepicker" %>                      
-                                      <%= label(:horary,:viernesFinal, "Inicio") %>                                  
+                                  <div class="box">
+                                    <div class="input-field no-margin">
+                                      <%= text_field :horary, :viernesFinal,class: "timepicker" %>
+                                      <%= label(:horary,:viernesFinal, "Inicio") %>
                                     </div>
                                   </div>
                                 </div>
@@ -165,19 +165,19 @@
                             <div class="collapsible-body padding-20">
                               <div class= "row">
                                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                                  <div class="box">      
-                                    <div class="input-field no-margin">                         
-                                      <%= text_field :horary, :sabadoInicio,class: "timepicker" %>                      
-                                      <%= label(:horary,:sabadoInicio, "Inicio") %>                                   
+                                  <div class="box">
+                                    <div class="input-field no-margin">
+                                      <%= text_field :horary, :sabadoInicio,class: "timepicker" %>
+                                      <%= label(:horary,:sabadoInicio, "Inicio") %>
                                     </div>
                                   </div>
                                 </div>
-                                
+
                                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                                  <div class="box">                               
-                                    <div class="input-field no-margin">                         
-                                      <%= text_field :horary, :sabadoFinal,class: "timepicker" %>                      
-                                      <%= label(:horary,:sabadoFinal, "Inicio") %>                                   
+                                  <div class="box">
+                                    <div class="input-field no-margin">
+                                      <%= text_field :horary, :sabadoFinal,class: "timepicker" %>
+                                      <%= label(:horary,:sabadoFinal, "Inicio") %>
                                     </div>
                                   </div>
                                 </div>
@@ -189,32 +189,32 @@
                             <div class="collapsible-body padding-20">
                               <div class= "row">
                                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                                  <div class="box">      
-                                    <div class="input-field no-margin">                         
-                                      <%= text_field :horary, :domingoInicio,class: "timepicker" %>                      
-                                      <%= label(:horary,:domingoInicio, "Inicio") %>                                   
+                                  <div class="box">
+                                    <div class="input-field no-margin">
+                                      <%= text_field :horary, :domingoInicio,class: "timepicker" %>
+                                      <%= label(:horary,:domingoInicio, "Inicio") %>
                                     </div>
                                   </div>
                                 </div>
-                                
+
                                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                                  <div class="box">                               
-                                    <div class="input-field no-margin">                         
-                                      <%= text_field :horary, :domingoFinal,class: "timepicker" %>                      
-                                      <%= label(:horary,:domingoFinal, "Inicio") %>                                   
+                                  <div class="box">
+                                    <div class="input-field no-margin">
+                                      <%= text_field :horary, :domingoFinal,class: "timepicker" %>
+                                      <%= label(:horary,:domingoFinal, "Inicio") %>
                                     </div>
                                   </div>
                                 </div>
                               </div>
                             </div>
                           </li>
-                         
-                        </ul>   
+
+                        </ul>
                       </div>
                       <div class="actions ">
-                        
+
                         <%= f.submit "Aceptar",class: "btn  waves-light borde-radio-5" %>
-                        <br><br>   
+                        <br><br>
                       </div>
                     <%end%>
                 </div>

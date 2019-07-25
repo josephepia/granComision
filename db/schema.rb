@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20190626142958) do
   end
 
   create_table "commentaries", force: :cascade do |t|
-    t.text "cuerpo"
+    t.text "descripcion"
     t.bigint "publication_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false
@@ -149,7 +149,7 @@ ActiveRecord::Schema.define(version: 20190626142958) do
   end
 
   create_table "groups", force: :cascade do |t|
-    t.string "nombre"
+    t.string "codigo"
     t.boolean "activo", default: false
     t.bigint "discipleship_id"
     t.bigint "user_id"
@@ -220,9 +220,10 @@ ActiveRecord::Schema.define(version: 20190626142958) do
   end
 
   create_table "publications", force: :cascade do |t|
-    t.string "pdf"
     t.string "imagen"
+    t.string "multimedia"
     t.text "descripcion"
+    t.text "titulo"
     t.bigint "material_id"
     t.bigint "group_id"
     t.bigint "user_id"
