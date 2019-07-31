@@ -4,6 +4,7 @@ class GroupsController < ApplicationController
   # GET /groups
   # GET /groups.json
   def index
+
   end
 
   def inscribirme
@@ -89,7 +90,15 @@ class GroupsController < ApplicationController
 
       else
         @datos=[@group ||= Group.new]
-        @groups = Group.all
+        if current_user.is_teacher
+          @groups = Group.where(user: current_user)
+        elsif current_user.esEstudiante
+        elsif current_user.esAdministrador
+          @groups.all
+        else
+          @groups = nil
+        
+        end
 
       end
     end

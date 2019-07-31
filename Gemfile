@@ -14,6 +14,7 @@ gem 'rails', '~> 5.1.6'
 gem "chartkick"
 #gema para gestionar archivos
 gem 'carrierwave'
+#gema para manipular imagenes
 gem 'mini_magick'
 #gema para automatizar las graficas... para agrupar por fecha
 gem "groupdate", github: "ankane/groupdate"

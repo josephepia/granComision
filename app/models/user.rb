@@ -22,7 +22,7 @@ class User < ApplicationRecord
   def email_changed?
     false
   end
-  
+
   # use this instead of email_changed? for rails >= 5.1
   def will_save_change_to_email?
     false
@@ -47,24 +47,25 @@ class User < ApplicationRecord
     end
   end
 
+
+
   def is_teacher
-    # if self.roles.where(nombre: 'docente')
-    #   return true
-    # else
-    #   return false
-    # end
     self.roles.exists?(nombre: 'docente')
-    
-    
+  end
+  def esEstudiante
+    self.roles.exists?(nombre: 'estudiante')
+  end
+  def esAdministrador
+    self.roles.exists?(nombre: 'administrador')
   end
 
-  
+
   def is_enrolled
-     Enroll.exists?(user_id: self.id) 
+     Enroll.exists?(user_id: self.id)
   end
 
   def enrolled_in_discipleship(discipleship_id)
-    
+
     Enroll.where(student_id: self.student.id).all.each do |grupo|
       if (Group.find(grupo.group_id)).discipleship.id == discipleship_id
         return true
@@ -72,8 +73,8 @@ class User < ApplicationRecord
     end
     return false
   end
-  
-  
-  
-  
+
+
+
+
 end
