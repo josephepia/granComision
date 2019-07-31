@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :groups
   has_many :given_courses #, :through => :teacher
   has_many :covenants #, :through => :student
+  has_many :horaries, :through => :groups
   has_many  :enrolls
   has_many :failures, :through => :enroll
   has_many :extended_notes #, :through => :student

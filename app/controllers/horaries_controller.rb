@@ -21,6 +21,15 @@ class HorariesController < ApplicationController
   def edit
   end
 
+  #para mostrar horario de usuario logueado
+  def mihorario
+    # if current_user.is_teacher
+    #   @horario = Horary.where()
+    # end
+    # @horario = Horary.where()
+    # #code
+  end
+
   # POST /horaries
   # POST /horaries.json
   def create

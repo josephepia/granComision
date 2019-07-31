@@ -1,19 +1,8 @@
 <p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Urlmaterial:</strong>
-  <%= @material.urlMaterial %>
-</p>
-
-<p>
-  <strong>Formato:</strong>
-  <%= @material.formato %>
-</p>
-
-<p>
-  <strong>Descripcion:</strong>
-  <%= @material.descripcion %>
-</p>
-
-<%= link_to 'Edit', edit_material_path(@material) %> |
-<%= link_to 'Back', materials_path %>
+<div class="col-xs-12 col-sm-8 col-md-6 col-lg-4">
+  <div class="card borde-radio-10  padding-14">
+    <span class="card-title"><%=@material.pdf_identifier%></span>
+    <p class="margin-0"><%=@material.descripcion%></p>
+    <%= link_to 'Ver mas',  @material.pdf.url , class: "green-text" %>
+  </div>
+</div>

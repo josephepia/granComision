@@ -21,12 +21,12 @@
             <a href="" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <% end %>
             <a href="/" class="brand-logo center"><%= image_tag "logoGranComision.jpg", class: "circle logo-img" %></a>
-            
+
             <ul class="right hide-on-med-and-down negro-text">
-              
+
               <%if user_signed_in?%>
 
-                
+
               <li>
                 <a  class="dropdown-trigger no-autoinit logo-img " data-target='dropdown1'>
                   <div class="row middle-xs no-margin">
@@ -39,12 +39,12 @@
                   </div>
                 </a>
               </li>
-              
-        
-              
+
+
+
               <%else%>
-              <li><%= link_to "Iniciar",new_user_session_path ,class: "btn waves-light margen-boton borde-radio-5"%></li>        
-              <li><%= link_to "Registrarme",new_user_registration_path ,class: "btn waves-light margen-boton borde-radio-5"%></li>                
+              <li><%= link_to "Iniciar",new_user_session_path ,class: "btn waves-light margen-boton borde-radio-5"%></li>
+              <li><%= link_to "Registrarme",new_user_registration_path ,class: "btn waves-light margen-boton borde-radio-5"%></li>
               <%end%>
             </ul>
           </div>
@@ -54,20 +54,20 @@
       <ul id='dropdown1' class='dropdown-content borde-radio-5' >
         <%if user%>
           <li><a href="">Material de apoyo</a></li>
-          
+
         <%end%>
-        
+
         <%if user%>
-          <li><%= link_to  "Discipulados", discipleships_path %></li>                  
+          <li><%= link_to  "Discipulados", discipleships_path %></li>
           <li><a href="">Docentes</a></li>
           <li><a href="">Miembros</a></li>
           <li><a href="">Grupos comunitarios</a></li>
         <%end%>
         <li class="divider" tabindex="-1"></li>
         <li><a href="#!" class="green-text">Editar perfil</a></li>
-        
+
         <li><%=link_to "Cerrar sesion", destroy_user_session_path,  method: :delete,class: "green-text" %></li>
-        
+
       </ul>
         <!-- fin de menu desplegable en foto de perfil superior izquierda -->
 
@@ -82,30 +82,31 @@
         </div>
         <div class="row center-xs">
         <a class="center"><%= image_tag "avatar.png", class: "circle" %></a>
-          
+
         </div>
-          
-        
+
+
         <span class="black-text name"><%= user_signed_in? ? user.nombre_completo : 'Invitado'%></span>
         <span class="black-text email"><%= user_signed_in? ? user.email : ''%></span>
       </div>
     </li>
-   
+
      <%if user_signed_in?%>
       <li><%= link_to  "Inicio", root_path %></li>
-      <li><%= link_to  "Discipulados", discipleships_path %></li> 
+      <li><%= link_to  "Discipulados", discipleships_path %></li>
       <li><%= link_to  "Grupos", groups_path %></li>
       <li><%= link_to  "Matriculas", enrolls_path %></li>
       <!-- <li><%= link_to  "Cargar notas", enrolls_path %></li> -->
+      <li><%= link_to "Horario", mihorario_path %></li>
       <li><%= link_to  "Notas extendidas", extended_notes_path %></li>
       <li><%= link_to  "Historial de grupos", given_courses_path %></li>
       <!-- <li><%= link_to  "Usuarios", enrolls_path %></li> -->
 
      <!-- <li><%= link_to  "Material de apoyo", materials_path %></li>       -->
-      <li><%= link_to  "Pactos", covenants_path %></li>           
+      <li><%= link_to  "Pactos", covenants_path %></li>
 
 
-      
+
       <!-- <li><a href="" class="waves-effect">Docentes</a></li> -->
       <!-- <li><a href="" class="waves-effect">Miembros</a></li> -->
       <!-- <li><a href="" class="waves-effect">Grupos comunitarios</a></li> -->
@@ -115,13 +116,13 @@
       <li><%=link_to "Registrarme", new_user_registration_path, sclass: "green-text" %></li>
 
     <%end%>
-    
+
   </ul>
 
-  
+
     <%= yield %>
 <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
-    
+
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> -->
 <!-- <script type="text/javascript" src="https://unpkg.com/materialize-stepper@3.0.1/dist/js/mstepper.min.js"></script> -->
@@ -134,11 +135,11 @@
       <%if !alert.nil?%>
         M.toast({html: "<%= alert %>",displayLength: 4000});
       <%end%>
-      
+
       $("#abrir").on( "click", function(){});
 
       // $(".dropdown-trigger").dropdown({  });
-        
+
     </script>
   </body>
   <script>
@@ -157,7 +158,7 @@
         instance.destroy();
       }
     });
-    
+
     // //---------------------------------------------------------------
     // //al cargar la pagina, y al volverla a cargar luego de navegar hacia ella
     // document.addEventListener('turbolinks:load', function() {
@@ -173,7 +174,7 @@
     //   }
     // });
     // //---------------------------------------------------7
-    
+
 
     // para el boton atras al cargar la pagina de nuevo
     // document.addEventListener('turbolinks:before-render', () => {
@@ -186,5 +187,5 @@
     //   }
     // });
     </script>
-  
+
 </html>
