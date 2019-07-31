@@ -3,6 +3,34 @@
   <div class="row center-xs">
     <div class="col-xs-12 col-sm-8 col-md-6 col-lg-4">
       <div class="card borde-radio-10  padding-14">
+        <%= form_for @material do |f| %>
+
+          <%= f.file_field :pdf, class: 'file_input' %>
+          <div class="file-field input-field">
+            <div class="btn">
+              <span>Seleccionar</span>
+              <input type="file">
+            </div>
+            <div class="file-path-wrapper">
+              <input class="file-path validate" type="text">
+            </div>
+          </div>
+          <div class="field">
+            <%= f.label :descripcion %>
+            <%= f.text_field :descripcion, id: :material_descripcion %>
+          </div>
+          <div class="actions">
+            <%= f.submit %>
+          </div>
+        <% end %>
+        <span class="card-title">Nombre del documento</span>
+        <p class="margin-0">una descripcion corta del documento</p>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-8 col-md-6 col-lg-4">
+      <div class="card borde-radio-10  padding-14">
+
+
 
     <%= form_for @material do |form| %>
     <% if @material.errors.any? %>

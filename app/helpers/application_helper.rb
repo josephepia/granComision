@@ -1,9 +1,9 @@
 module ApplicationHelper
-    
+
     def country
         @country ||= Country.new
     end
-    
+
     def city
         @city ||= City.new
     end
@@ -18,7 +18,13 @@ module ApplicationHelper
         @user ||= User.new
     end
     
+    def icon_file_type(filename, options={})
+      ext = filename.match(/[^\\]*\.(\w+)$/)[1]
+      size = "#{options[:size]}/" if options[:size]
+      "/file_type_icons/#{size ||=""}#{ext}.png"
+    end
 
-    
-    
+
+
+
 end

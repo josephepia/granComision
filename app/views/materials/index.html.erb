@@ -25,41 +25,15 @@
         <p class="margin-0">una descripcion corta del documento</p>
       </div>
     </div>
-
-  </div>
-</div>
-<% @materials.each do |material| %>
-<div class="col-xs-12 col-sm-8 col-md-6 col-lg-4">
-  <div class="card borde-radio-10  padding-14">
-    <span class="card-title"> <%= material.pdf_identifier %> </span>
-    <p class="margin-0"> <%= material.descripcion %></p>
-  </div>
-</div>
-<% end %>
-<table>
-  <thead>
-    <tr>
-      <th>Urlmaterial</th>
-      <th>Formato</th>
-      <th>Descripcion</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
     <% @materials.each do |material| %>
-      <tr>
-        <td><%= material.urlMaterial %></td>
-        <td><%= material.formato %></td>
-        <td><%= material.descripcion %></td>
-        <td><%= link_to 'Show', material %></td>
-        <td><%= link_to 'Edit', edit_material_path(material) %></td>
-        <td><%= link_to 'Destroy', material, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+    <div class="col-xs-12 col-sm-8 col-md-6 col-lg-4">
+      <div class="card borde-radio-10  padding-14">
+        
+        <img src="<%= icon_file_type(material.pdf_identifier) %>">
+        <span class="card-title"><%= link_to material.pdf_identifier,  material.pdf.url , class: "green-text" %></span>
+        <p class="margin-0"> <%= material.descripcion %></p>
+      </div>
+    </div>
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Material', new_material_path %>
+  </div>
+</div>
