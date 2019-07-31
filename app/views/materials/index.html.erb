@@ -28,13 +28,13 @@
     <% @materials.each do |material| %>
     <div class="col-xs-12 col-sm-8 col-md-6 col-lg-4">
       <div class="card borde-radio-10  padding-14">
-        <div class="row center-xs">
+        <div class="row center-xs no-margin-bottom">
           <div class="col-xs-2">
             <%= image_tag icon_file_type(material.pdf_identifier || "archivo.file"), :size => "50x50" %>
 
           </div>
           <div class="col-xs-10">
-            <div class="row">
+            <div class="row no-margin-bottom">
               <span class="card-title"><%= link_to material.pdf_identifier,  material.pdf.url , class: "green-text" %></span>
               <div class="col-xs-10">
                 <p class="margin-0"> <%= material.descripcion %></p>
@@ -42,10 +42,10 @@
               </div>
               <div class="col-xs-2">
                 <a class="btn-floating btn-small waves-effect waves-light red"><i class="material-icons">add</i></a>
-
+                <%= link_to  "<i class='material-icons'>add</i>".html_safe , material_compartir_path(material), class: "btn-floating btn-small waves-effect waves-light red" %>
               </div>
             </div>
-            
+
 
           </div>
 

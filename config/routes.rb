@@ -8,7 +8,11 @@ Rails.application.routes.draw do
   resources :password
   resources :commentaries
   resources :publications
-  resources :materials
+  resources :materials do
+    get 'compartir', to: 'materials#compartir'
+    post 'publicar', to: 'materials#publicar'
+
+  end
   resources :enrolls
   resources :extended_notes
   resources :covenants

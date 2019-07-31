@@ -5,6 +5,8 @@ class PublicationsController < ApplicationController
   # GET /publications.json
   def index
     @publications = Publication.all
+    @publicacionesGrupos = Publication.where.not(group_id: nil)
+    @publicacionesHome = Publication.where(group_id: nil)
   end
 
   # GET /publications/1
