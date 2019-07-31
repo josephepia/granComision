@@ -1,6 +1,6 @@
 <div class="row center-xs">
     <div class="card z-depth-3 borde-radio-10 margin-10">
-    
+
     <div id="dia">
       <div class="card-content padding-10">
       <span class="card-title">Registrar pacto</span>
@@ -17,9 +17,17 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :pdf %>
-    <%= form.file_field :pdf, id: :covenant_urlMultimedia %>
+
+  <div class="file-field input-field">
+    <div class="btn">
+      <span>Seleccionar</span>
+      <%= form.file_field :pdf, class: 'file_input' %>
+
+      <!-- <input type="file"> -->
+    </div>
+    <div class="file-path-wrapper">
+      <input class="file-path validate" type="text">
+    </div>
   </div>
 
   <div class="field">
@@ -32,11 +40,11 @@
   </div>
 <% end %>
     </div>
-      
+
       <div class="padding-14">
-      
-        
-        
+
+
+
 
       </div>
   </div>
