@@ -1,86 +1,106 @@
-<div class="row center-xs">
-  <div class="col-xs-12 col-lg-6">
-    <div class="card borde-radio-8">
-      <div class="card-content" >
-        <section class="fondo">
-          <h4>Imagen de la publicacion</h4>
-        </section>
-        <span class="card-title verdeBri-text left-align" >Nombre de la publicacion</span>
-        <p class="left-align">Descripción detallada de la publicación, realizada por el administrador para que los usuarios visualicen contenido de interés en general para los feligreses de la comunidad cristiana integral</p>
-      </div>
-
-    </div>
-  </div>
-</div>
-<% @publicacionesGrupos.each do |publication| %>
-  <div class="row center-xs">
+<!-- <div class="row center-xs">
     <div class="col-xs-12 col-lg-6">
-      <div class="card borde-radio-8">
-        <div class="card-content" >
-          <section class="fondo">
-            <h4>Imagen de la publicacion</h4>
-          </section>
-          <span class="card-title verdeBri-text left-align" ><%=publication.titulo%></span>
-          <p class="left-align"><%= publication.descripcion%></p>
-        </div>
-
-      </div>
-    </div>
-  </div>
-<% end %>
-<table>
-  <thead>
-    <tr>
-      <th>Descripcion</th>
-      <th>Material</th>
-      <th>Group</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-
-  <tbody>
-    <% @publications.each do |publication| %>
-    <div class="row center-xs">
-      <div class="col-xs-12 col-lg-6">
         <div class="card borde-radio-8">
-          <div class="card-content" >
-            <section class="fondo">
-              <h4>Imagen de la publicacion</h4>
-            </section>
-            <span class="card-title verdeBri-text left-align" >Nombre de la publicacion</span>
-            <p class="left-align">Descripción detallada de la publicación, realizada por el administrador para que los usuarios visualicen contenido de interés en general para los feligreses de la comunidad cristiana integral</p>
-          </div>
+            <div class="card-content">
+                <section class="fondo">
+                    <h4>Imagen de la publicacion</h4>
+                </section>
+                <span class="card-title verdeBri-text left-align">Nombre de la publicacion</span>
+                <p class="left-align">Descripción detallada de la publicación, realizada por el administrador para que los usuarios visualicen contenido de interés en general para los feligreses de la comunidad cristiana integral</p>
+            </div>
 
         </div>
-      </div>
     </div>
-      <tr>
-        <td><%= publication.descripcion %></td>
-        <td><%= publication.material %></td>
-        <td><%= publication.group %></td>
-        <td><%= link_to 'Show', publication %></td>
-        <td><%= link_to 'Edit', edit_publication_path(publication) %></td>
-        <td><%= link_to 'Destroy', publication, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+</div> -->
+<% @publicacionesGrupos.each do |publication| %>
+    <div class="row center-xs">
+        <div class="col-xs-12 col-lg-6">
+            <div class="card borde-radio-8">
+                <div class="card-content">
+                    <section class="fondo">
+                        <h4>Imagen de la publicacion</h4>
+                    </section>
+                    <span class="card-title verdeBri-text left-align"><%=publication.titulo%></span>
+                    <span class="new badge" data-badge-caption="Grupo"><%= publication.group %></span>
+                    <p class="left-align">
+                        <%= publication.descripcion%>
+                    </p>
+                    <div class="card-action">
+                        <%= link_to ("<i class='material-icons'>visibility</i>").html_safe , publication , class:'btn-floating btn-small green' %>
+                            <%= link_to ("<i class='material-icons'>edit</i>").html_safe, edit_publication_path(publication) , class:'btn-floating btn-small'%>
+                                <%= link_to ("<i class='material-icons'>delete_forever</i>").html_safe, publication, method: :delete, data: { confirm: 'Are you sure?' } ,class:'btn-floating btn-small red'%>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
     <% end %>
-  </tbody>
-</table>
+        <!-- <table>
+            <thead>
+                <tr>
+                    <th>Descripcion</th>
+                    <th>Material</th>
+                    <th>Group</th>
+                    <th colspan="3"></th>
+                </tr>
+            </thead>
 
-<br>
-<div class="fixed-action-btn">
-  <a class="btn-floating btn-large red">
-    <i class="large material-icons">mode_edit</i>
-  </a>
-  <ul>
-    <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
-    <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
-    <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
-    <li><a href="/publications/new" class="btn-floating blue"><i class="material-icons">add</i></a></li>
-  </ul>
-</div>
-<%= link_to 'New Publication', new_publication_path %>
 
-<script>
+            <tbody>
+                <% @publications.each do |publication| %>
+                    <div class="row center-xs">
+                        <div class="col-xs-12 col-lg-6">
+                            <div class="card borde-radio-8">
+                                <div class="card-content">
+                                    <section class="fondo">
+                                        <h4>Imagen de la publicacion</h4>
+                                    </section>
+                                    <span class="card-title verdeBri-text left-align">Nombre de la publicacion</span>
+                                    <p class="left-align">Descripción detallada de la publicación, realizada por el administrador para que los usuarios visualicen contenido de interés en general para los feligreses de la comunidad cristiana integral</p>
+                                </div>
 
-</script>
+                            </div>
+                        </div>
+                    </div>
+                    <tr>
+                        <td>
+                            <%= publication.descripcion %>
+                        </td>
+                        <td>
+                            <%= publication.material %>
+                        </td>
+                        <td>
+                            <%= publication.group %>
+                        </td>
+                        <td>
+                            <%= link_to 'Show', publication %>
+                        </td>
+                        <td>
+                            <%= link_to 'Edit', edit_publication_path(publication) %>
+                        </td>
+                        <td>
+                            <%= link_to 'Destroy', publication, method: :delete, data: { confirm: 'Are you sure?' } %>
+                        </td>
+                    </tr>
+                    <% end %>
+            </tbody>
+        </table> -->
+
+        <br>
+        <div class="fixed-action-btn">
+            <a class="btn-floating btn-large red">
+                <i class="large material-icons">mode_edit</i>
+            </a>
+            <ul>
+                <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
+                <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
+                <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
+                <li><a href="/publications/new" class="btn-floating blue"><i class="material-icons">add</i></a></li>
+            </ul>
+        </div>
+        <!--  <%= link_to 'New Publication', new_publication_path %>-->
+
+        <script>
+        </script>

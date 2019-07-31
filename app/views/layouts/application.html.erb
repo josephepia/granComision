@@ -82,9 +82,7 @@
         </div>
         <div class="row center-xs">
         <a class="center"><%= image_tag "avatar.png", class: "circle" %></a>
-
         </div>
-
 
         <span class="black-text name"><%= user_signed_in? ? user.nombre_completo : 'Invitado'%></span>
         <span class="black-text email"><%= user_signed_in? ? user.email : ''%></span>
@@ -97,6 +95,7 @@
       <li><%= link_to  "Grupos", groups_path %></li>
       <li><%= link_to  "Matriculas", enrolls_path %></li>
       <!-- <li><%= link_to  "Cargar notas", enrolls_path %></li> -->
+      <li><%= link_to "Publicaciones", publications_path %></li>
       <li><%= link_to "Horario", mihorario_path %></li>
       <li><%= link_to  "Notas extendidas", extended_notes_path %></li>
       <li><%= link_to  "Historial de grupos", given_courses_path %></li>
@@ -114,6 +113,7 @@
     <%else%>
       <li><%=link_to "Iniciar sesion", new_user_session_path, class: "green-text" %></li>
       <li><%=link_to "Registrarme", new_user_registration_path, sclass: "green-text" %></li>
+      
 
     <%end%>
 
