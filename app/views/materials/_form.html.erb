@@ -5,68 +5,27 @@
       <div class="card borde-radio-10  padding-14">
         <%= form_for @material do |f| %>
 
-          <%= f.file_field :pdf, class: 'file_input' %>
+
           <div class="file-field input-field">
             <div class="btn">
               <span>Seleccionar</span>
-              <input type="file">
+              <%= f.file_field :pdf, class: 'file_input' %>
+
+              <!-- <input type="file"> -->
             </div>
             <div class="file-path-wrapper">
               <input class="file-path validate" type="text">
             </div>
           </div>
-          <div class="field">
+          <div class="input-field">
             <%= f.label :descripcion %>
             <%= f.text_field :descripcion, id: :material_descripcion %>
           </div>
           <div class="actions">
-            <%= f.submit %>
+            <%= f.submit "Guardar",class: "btn  waves-light  borde-radio-5"  %>
           </div>
         <% end %>
-        <span class="card-title">Nombre del documento</span>
-        <p class="margin-0">una descripcion corta del documento</p>
       </div>
     </div>
-    <div class="col-xs-12 col-sm-8 col-md-6 col-lg-4">
-      <div class="card borde-radio-10  padding-14">
-
-
-
-    <%= form_for @material do |form| %>
-    <% if @material.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@material.errors.count, "error") %> prohibited this material from being saved:</h2>
-
-        <ul>
-        <% @material.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-        </ul>
-      </div>
-    <% end %>
-
-        <div class="field">
-          <%= form.label :pdf %>
-          <%= form.text_field :pdf, id: :material_pdf %>
-        </div>
-
-        <div class="field">
-          <%= form.label :imagen %>
-          <%= form.text_field :imagen, id: :material_imagen %>
-        </div>
-
-        <div class="field">
-          <%= form.label :descripcion %>
-          <%= form.text_field :descripcion, id: :material_descripcion %>
-        </div>
-
-        <div class="actions">
-          <%= form.submit %>
-        </div>
-        <% end %>
-      </div>
-    </div>
-
-
   </div>
 </div>

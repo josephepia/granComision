@@ -60,6 +60,8 @@ Rails.application.routes.draw do
   # luego de visualizar los grupos se puede realizar 2 acciones[iniciar, cerrar] esto se hace por medio de ajax con 2 botones
   post  'ciclo/iniciar', to: 'ciclo#inicia'
   get '/mihorario', to: 'horaries#mihorario'
+
+
   authenticated :user do
     root 'principal#home'
   end

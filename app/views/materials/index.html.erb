@@ -28,12 +28,43 @@
     <% @materials.each do |material| %>
     <div class="col-xs-12 col-sm-8 col-md-6 col-lg-4">
       <div class="card borde-radio-10  padding-14">
-        
-        <img src="<%= icon_file_type(material.pdf_identifier) %>">
-        <span class="card-title"><%= link_to material.pdf_identifier,  material.pdf.url , class: "green-text" %></span>
-        <p class="margin-0"> <%= material.descripcion %></p>
+        <div class="row center-xs">
+          <div class="col-xs-2">
+            <%= image_tag icon_file_type(material.pdf_identifier || "archivo.file"), :size => "50x50" %>
+
+          </div>
+          <div class="col-xs-10">
+            <div class="row">
+              <span class="card-title"><%= link_to material.pdf_identifier,  material.pdf.url , class: "green-text" %></span>
+              <div class="col-xs-10">
+                <p class="margin-0"> <%= material.descripcion %></p>
+
+              </div>
+              <div class="col-xs-2">
+                <a class="btn-floating btn-small waves-effect waves-light red"><i class="material-icons">add</i></a>
+
+              </div>
+            </div>
+            
+
+          </div>
+
+        </div>
+
+
       </div>
     </div>
     <% end %>
   </div>
+</div>
+<div class="fixed-action-btn">
+    <a class="btn-floating btn-large red">
+        <i class="large material-icons">mode_edit</i>
+    </a>
+    <ul>
+        <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
+        <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
+        <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
+        <li><a href="/materials/new" class="btn-floating blue"><i class="material-icons">add</i></a></li>
+    </ul>
 </div>

@@ -1,4 +1,5 @@
 module ApplicationHelper
+    require "mini_magick"
 
     def country
         @country ||= Country.new
@@ -17,12 +18,14 @@ module ApplicationHelper
     def user
         @user ||= User.new
     end
-    
+
     def icon_file_type(filename, options={})
       ext = filename.match(/[^\\]*\.(\w+)$/)[1]
       size = "#{options[:size]}/" if options[:size]
       "/file_type_icons/#{size ||=""}#{ext}.png"
     end
+
+  
 
 
 
