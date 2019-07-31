@@ -1,6 +1,6 @@
 class DiscipleshipsController < ApplicationController
   before_action :set_discipleship, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
+  #before_action :authenticate_user!
   # GET /discipleships
   # GET /discipleships.json
   def index

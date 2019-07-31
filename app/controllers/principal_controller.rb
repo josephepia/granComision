@@ -5,6 +5,7 @@ class PrincipalController < ApplicationController
   end
 
   def invitado
+    @publications= Publication.all
   end
   def docente
 

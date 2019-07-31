@@ -1,37 +1,51 @@
-<div class="row middle-xs no-margin alto80">    
-  <div class="container">
-    <div class="row center-xs" >
-      
-        <div class="col-xs-12
+<div class="row middle-xs no-margin alto80">
+    <div class="container">
+        <div class="row center-xs">
+
+            <div class="col-xs-12
                     col-sm-8
                     col-md-6
                     col-lg-6 ">
-          <div class="box">
-            <div class="card z-depth-3 borde-radio-10">
-              <div class="card-content black-text start-xs">
-                <span class="card-title center">Informacion de estudiante</span>
-                <b>Nombre de estudiante: </b><p><%=@enroll.user.nombre_completo%></p>
-                <b>Grupo: </b><p><%=@enroll.group.nombre%></p>
-                <b>Discipulado: </b><p><%=@enroll.group.discipleship.nombre%></p>
-                <b>Nota actual: </b><p><%=@enroll.definitiva%></p>
-                <b>Matricualdo desde: </b><p><%=@enroll.created_at%></p>
-                
-                <div class="actions center">
-                 
-                  <%= link_to  "Volver", enrolls_path, class: "waves-effect waves-teal btn-flat green-text" %>                
-                  
-                  <%= link_to  "Eliminar", @enroll, data: { confirm: 'Esta seguro?' },class: "waves-effect waves-teal btn-flat green-text", method: :delete %>
-                 
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-    </div>
-   
-    
-      
-   
-  </div>   
-</div>
+                <div class="box">
+                    <div class="card z-depth-3 borde-radio-10">
+                        <div class="card-content black-text start-xs">
+                            <span class="card-title center">Informacion de estudiante</span>
+                            <b>Nombre de estudiante: </b>
+                            <p>
+                                <%=@enroll.user.nombre_completo%>
+                            </p>
+                            <b>Grupo: </b>
+                            <p>
+                                <%=@enroll.group.nombre%>
+                            </p>
+                            <b>Discipulado: </b>
+                            <p>
+                                <%=@enroll.group.discipleship.nombre%>
+                            </p>
+                            <b>Nota actual: </b>
+                            <p>
+                                <%=@enroll.definitiva%>
+                            </p>
+                            <b>Matriculado desde: </b>
+                            <p>
+                                <%=@enroll.created_at%>
+                            </p>
 
+                            <div class="actions center">
+
+                                <%= link_to  "Volver", enrolls_path, class: "waves-effect waves-teal btn-flat green-text" %>
+
+                                    <%= link_to  "Eliminar", @enroll, data: { confirm: 'Esta seguro?' },class: "waves-effect waves-teal btn-flat green-text", method: :delete %>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+</div>

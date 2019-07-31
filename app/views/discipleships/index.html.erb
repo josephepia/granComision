@@ -1,44 +1,46 @@
 <div class="fixed-action-btn no-autoinit">
-  <a class="btn-floating btn-large red">
-    <i class="large material-icons">mode_edit</i>
-  </a>
-  <ul>
-    <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
-    <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
-    <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
-    <li><a href="/discipleships/new" class="btn-floating blue"><i class="material-icons">add</i></a></li>
-  </ul>
+    <a class="btn-floating btn-large red">
+        <i class="large material-icons">mode_edit</i>
+    </a>
+    <ul>
+        <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
+        <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
+        <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
+        <li><a href="/discipleships/new" class="btn-floating blue"><i class="material-icons">add</i></a></li>
+    </ul>
 </div>
 
-  <div class="container">
-    <div class="row center-xs " >
-      <% @discipleships.each do |discipulado| %>
-        <div class="col-xs-12
+<div class="container">
+    <div class="row center-xs ">
+        <% @discipleships.each do |discipulado| %>
+
+            <div class="col-xs-12
                     col-sm-8
                     col-md-6
                     col-lg-4 ">
-          <div class="box">
-            <div class="card z-depth-2 borde-radio-10 hoverable"  >
-              <div class="card-content black-text" >
-                <span class="card-title center-xs"><%=discipulado.nombre%></span>
-                <p  class="truncate"><%=discipulado.descripcion%></p>
-                
-                <div class="actions center">
-                  <%= link_to  "Ver detalles", discipulado, class: "waves-effect waves-teal btn-flat " %>
+                <div class="box">
+                    <div class="card z-depth-2 borde-radio-10 hoverable">
+                        <div class="card-content black-text">
+                            <span class="card-title center-xs"><%=discipulado.nombre%></span>
+                            <p class="truncate">
+                                <%=discipulado.descripcion%>
+                            </p>
+
+                            <div class="actions center">
+                                <%= link_to  "Ver detalles", discipulado, class: "waves-effect waves-teal btn-flat " %>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
-        </div>
-      <%end%>
+            <%end%>
     </div>
-  </div>   
+</div>
 
 <br>
 
 <script>
-$(document).ready(function(){
-    $('.fixed-action-btn').floatingActionButton();
-  });
-
+    $(document).ready(function() {
+        $('.fixed-action-btn').floatingActionButton();
+    });
 </script>

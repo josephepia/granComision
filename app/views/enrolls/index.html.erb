@@ -1,67 +1,84 @@
 <div class="fixed-action-btn click-to-toggle">
-  <a class="btn-floating btn-large red">
-    <i class="large material-icons">mode_edit</i>
-  </a>
-  <ul>
-    <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
-    <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
-    <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
-    <li><a href="/enrolls/new" class="btn-floating blue"><i class="material-icons">add</i></a></li>
-  </ul>
+    <a class="btn-floating btn-large red">
+        <i class="large material-icons">mode_edit</i>
+    </a>
+    <ul>
+        <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
+        <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
+        <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
+        <li><a href="/enrolls/new" class="btn-floating blue"><i class="material-icons">add</i></a></li>
+    </ul>
 </div>
 <div class="container">
 
 
-<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
-      <div class="box">
-        <div class="card z-depth-3 borde-radio-10">
-          <div class="card-content black-text center-xs" >
-            <span class="card-title center" >Matriculas</span>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="box">
+            <div class="card z-depth-3 borde-radio-10">
+                <div class="card-content black-text center-xs">
+                    <span class="card-title center">Matriculas</span>
 
-            <table class="highlight striped">
-        <thead>
-          <tr>
-              <th>Identificacion</th>
-              <th>Nombre</th>
-              <th>Grupo</th>
-              <th>Discipulado</th>
-              <th>Estado</th>
-              <th>Fecha de inscripcion</th>
-              <th>Accion</th>
+                    <table class="highlight striped responsive-table">
+                        <thead>
+                            <tr>
+                                <th>Identificacion</th>
+                                <th>Nombre</th>
+                                <th>Grupo</th>
+                                <th>Discipulado</th>
+                                <th>Estado</th>
+                                <th>Fecha de inscripcion</th>
+                                <th>Accion</th>
 
 
-          </tr>
-        </thead>
+                            </tr>
+                        </thead>
 
-        <tbody>
-    <% @enrolls.each do |enroll| %>
+                        <tbody>
+                            <% @enrolls.each do |enroll| %>
 
-          <tr>
-            <td><%=enroll.user.identificacion%></td>
-            <td><%=enroll.user.nombre_completo%></td>
-            <td><%=enroll.group.codigo%></td>
-            <td><%=enroll.group.discipleship.nombre%></td>
-            <td><%=enroll.definitiva%></td>
-            <td><%=enroll.created_at%></td>
-            <td><%= link_to 'Detalles', enroll %> </td>
-            <td><%= link_to 'Editar', edit_enroll_path(enroll) %></td>
-            <td><%= link_to 'Eliminar', enroll, method: :delete, data: { confirm: 'Esta seguro?' } %></td>
+                                <tr>
+                                    <td>
+                                        <%=enroll.user.identificacion%>
+                                    </td>
+                                    <td>
+                                        <%=enroll.user.nombre_completo%>
+                                    </td>
+                                    <td>
+                                        <%=enroll.group.codigo%>
+                                    </td>
+                                    <td>
+                                        <%=enroll.group.discipleship.nombre%>
+                                    </td>
+                                    <td>
+                                        <%=enroll.definitiva%>
+                                    </td>
+                                    <td>
+                                        <%=enroll.created_at%>
+                                    </td>
+                                    <td>
+                                        <%= link_to 'Detalles', enroll %>
+                                    </td>
+                                    <td>
+                                        <%= link_to 'Editar', edit_enroll_path(enroll) %>
+                                    </td>
+                                    <td>
+                                        <%= link_to 'Eliminar', enroll, method: :delete, data: { confirm: 'Esta seguro?' } %>
+                                    </td>
 
-          </tr>
-    <%end%>
+                                </tr>
+                                <%end%>
 
-        </tbody>
-      </table>
-          </div>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
 
 </div>
 <br>
 <script>
-$(document).ready(function(){
-    $('.fixed-action-btn').floatingActionButton();
-  });
-
+    $(document).ready(function() {
+        $('.fixed-action-btn').floatingActionButton();
+    });
 </script>
