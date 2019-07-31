@@ -1,1 +1,105 @@
-<%= current_user.horaries.inspect%>
+<%horarios = current_user.horaries%>
+    <div class="row center-xs">
+        <div class="col-xs-12
+col-sm-8
+col-md-6
+col-lg-6 ">
+            <div class="box">
+                <div class="card z-depth-3 borde-radio-10">
+                    <div class="card-content black-text start-xs">
+                        <span class="card-title center">Horario</span>
+                        <table class="bordered striped white">
+                            <thead>
+                                <tr>
+                                    <th>Dias</th>
+                                    <th>Horas</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr>
+                                    <th>Lunes</th>
+                                    <td>
+                                        <div class="row">
+                                            <%horarios.each do |horario|%>
+                                                <div class="col-xs-6 padding-horizontal-20 center-xs">
+                                                    <div class="box">
+                                                        <div class="row no-margin-bottom center-xs ">
+                                                            <%=horario.lunes%>
+                                                        </div>
+                                                        <div class="row no-margin-bottom center-xs">
+                                                            G:
+                                                            <%=horario.group.codigo%>
+
+                                                        </div>
+                                                        <div class="row no-margin-bottom center-xs">
+                                                            D:
+                                                            <%=horario.group.discipleship.nombre%>
+
+                                                        </div>
+
+
+                                                    </div>
+                                                </div>
+                                                <%end%>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Martes</th>
+                                    <td>
+                                        <%horarios.each do |horario|%>
+                                            <%=horario.martes%>
+                                                <%end%>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Miercoles</th>
+                                    <td>
+                                        <%horarios.each do |horario|%>
+                                            <%=horario.miercoles%>
+                                                <%end%>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Jueves</th>
+                                    <td>
+                                        <%horarios.each do |horario|%>
+                                            <%=horario.jueves%>
+                                                <%end%>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Viernes</th>
+
+                                    <td>
+                                        <%horarios.each do |horario|%>
+                                            <%=horario.viernes%>
+                                                <%end%>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Sabado</th>
+
+                                    <td>
+                                        <%horarios.each do |horario|%>
+                                            <%=horario.sabado%>
+                                                <%end%>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Domingo</th>
+
+                                    <td>
+                                        <%horarios.each do |horario|%>
+                                            <%=horario.domingo%>
+                                                <%end%>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
