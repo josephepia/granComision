@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
     <header class="">
       <div class="navbar-fixed ">
-        <nav class="white-text blue-grey darken-2">
+        <nav class="white-text ">
           <div class="nav-wrapper">
             <% if (user_signed_in? and user.is_teacher) %>
             <a href="" data-target="slide-out" class="sidenav-trigger show-on-large"><i class="material-icons">menu</i></a>
@@ -113,77 +113,15 @@
     <%else%>
       <li><%=link_to "Iniciar sesion", new_user_session_path, class: "green-text" %></li>
       <li><%=link_to "Registrarme", new_user_registration_path, sclass: "green-text" %></li>
-      
+
 
     <%end%>
 
   </ul>
 
-    <div style="min-height:90vh">
+
     <%= yield %>
-    </div>
-
-    <footer class="page-footer white-text blue-grey darken-2" style="padding-top: 0">
-    <div class="footer-copyright ">
-        <div class="container">
-            <a class="btn-floating   btn-small waves-effect waves-light btn-flat">
-                <i><%= image_tag "icons8-facebook-nuevo-24.png" %></i>
-            </a>
-            <a class="btn-floating  btn-small waves-effect waves-light btn-flat">
-                <i><%= image_tag "icons8-instagram-24.png" %></i>
-            </a>
-            <a class="btn-floating  btn-small waves-effect waves-light btn-flat">
-                <i><%= image_tag "icons8-twitter-cuadrado-24.png" %></i>
-            </a>
-
-        </div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col l6 s12">
-                <div data-packed="true" style="width: 307px; pointer-events: none;" class="txtNew" id="comp-ipnr4tkz">
-                    <h6 class="font_6" style="font-size:17px;"><span style="text-shadow:rgba(255, 255, 255, 0.6) 1px 1px 1px, rgba(0, 0, 0, 0.6) -1px -1px 1px;"><span style="font-size:17px;"><span style="font-family:montserrat,sans-serif;"><span style="color:#FFFFFF;"><span style="letter-spacing:0.1em;">La Gran Comision</span></span>
-                        </span>
-                        </span>
-                        </span>
-                    </h6>
-
-                    <h6 class="font_6" style="font-size:13px; line-height:1.4em;"><span style="text-shadow:rgba(255, 255, 255, 0.6) 1px 1px 1px, rgba(0, 0, 0, 0.6) -1px -1px 1px;"><span style="font-size:13px;"><span style="font-family:montserrat,sans-serif;"><span style="color:#FFFFFF;"><span style="letter-spacing:0.1em;">comunidad cristiana integral</span></span>
-                        </span>
-                        </span>
-                        </span>
-                    </h6>
-                </div>
-
-            </div>
-            <div class="col l4 offset-l2 s12">
-                <h5 class="white-text">Contactos</h5>
-                <div data-packed="true" style="width: 307px; pointer-events: none;" class="txtNew" id="comp-ipnr6kqd">
-                    <p class="font_9" style="line-height:1.4em;"><span style="color:#FFFFFF;">+575807541</span></p>
-
-                    <p class="font_9" style="line-height:1.4em;"><span style="color:#FFFFFF;">+573166246777</span></p>
-
-                    <p class="font_9" style="line-height:1.4em;"><span style="color:#FFFFFF;">ccilagrancomision.org</span></p>
-
-                    <p class="font_9" style="line-height:1.4em;"><span style="color:#FFFFFF;"><span class="wixGuard">​</span></span>
-                    </p>
-
-                    <p class="font_9" style="line-height:1.4em;"><span style="color:#FFFFFF;">Cra 10 # 14-28 Barrio Loperena</span></p>
-
-                    <p class="font_9" style="line-height:1.4em;"><span style="color:#FFFFFF;">Valledupar - Colombia</span></p>
-                </div>
-
-            </div>
-
-        </div>
-    </div>
-    <div class="footer-copyright">
-        <div class="container">
-            © 2019 Copyright Text
-            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
-        </div>
-    </div>
-</footer>
+    
 <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.js"></script>

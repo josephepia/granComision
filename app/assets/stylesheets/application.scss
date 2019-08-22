@@ -12,15 +12,15 @@
  *
  *= require jquery-ui
  *= require material_icons
- *= require_self
  *= require colors
  *= require flexboxgrid
- *= require mstepper.min
+ *= require mstepper
  *= require principal
+ *= require_self
  */
-@import "materialize/components/color-variables";
-$primary-color: color("green", "base") !default;
-
-$secondary-color: color("blue", "darken-2") !default;
-
-@import "materialize"
+// @import "materialize/components/color-variables";
+// $primary-color: color("green", "base") !default;
+//
+// $secondary-color: color("blue", "darken-2") !default;
+//
+// @import "materialize"

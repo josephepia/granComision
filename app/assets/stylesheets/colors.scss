@@ -1,12 +1,30 @@
-$colors :(
-    negro: #000000,
-    rojoBri: #ED0900,
-    verdeBri: #339900,
-    verdeAdo: #51B133,
-    fondo: #F5F5F5
+@import "materialize/components/color-variables";
+
+
+$myColors: (
+    "negro": #000000,
+    "rojoBri": #ED0900,
+    "verdeBri": #339900,
+    "verdeAdo": #51B133,
+    "fondo": #F5F5F5,
+    "primario": #455A64,
+    "secundario": #51B133,
+    "titulos": #707070,
+    "borde": #BCBCBC,
+    "disable": #B2B2B2
 );
 
-@each $color_name,$color in $colors{
+$anidado: (
+  "myColors": $myColors,
+);
+
+$colors: map-merge($colors, $anidado);
+
+$prueba: (
+  'algo': #ED0900
+);
+
+@each $color_name,$color in $myColors{
     .#{$color_name}{
         background-color: $color;
     }
@@ -14,3 +32,7 @@ $colors :(
         color: $color;
     }
 }
+
+$primary-color: color("myColors", "primario") !default;
+$secondary-color: color("myColors", "secundario") !default;
+@import 'materialize';
