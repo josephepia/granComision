@@ -3,761 +3,455 @@
 
   <div class="row center-xs">
   <%= devise_error_messages! %>
-  <div class=" col-xs-12 col-sm-8 col-md-6 col-lg-12">
-    <div class="card borde-radio-10">
-      <div class="card-content">
 
-        <span class="card-title robotoB text-20 primario-text">Queremos conocerte</span>
 
-        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-        <ul class="stepper horizontal " style="min-height:458px">
-          <li class="step ">
-            <div class="step-title waves-effect titulos-text">Datos</div>
-            <div class="step-content">
-               <!-- Your step content goes here (like inputs or so) -->
-               <div class="row between-xs">
 
-                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-2">
-                   <div class="box">
 
+      <div class=" col-xs-12 col-sm-8 col-md-6 col-lg-12" id="datos">
+      <div class="card borde-radio-10">
+        <div class="card-content">
+
+          <span class="card-title robotoB text-20 primario-text">Queremos conocerte</span>
+
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <ul class="stepper horizontal robotoR maring-vertical-0" >
+            <li class="step ">
+              <div class="step-title waves-effect titulos-text robotoB">Ubicación</div>
+              <div class="step-content">
+                 <!-- Your step content goes here (like inputs or so) -->
+                 <div class="row between-xs">
+                   <!-- tipo de documento -->
+                   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-2">
+                     <div class="box">
+                         <div class="input-field col s12">
+                           <select name="user[tipoDocumento]" id="user_tipoDocumento">
+                             <option value="" disabled selected>Seleccione</option>
+                             <option value="CC">Cedula</option>
+                             <option value="TI">Tarjeta de identidad</option>
+                             <option value="PASAPORTE">Pasaporte</option>
+                           </select>
+                           <label>Tipo de documento</label>
+                         </div>
+
+
+                     </div>
+                   </div>
+                   <!-- identificacion -->
+                   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-2">
+                     <div class="box">
+
+                         <div class="input-field">
+                           <%= f.label :identificacion, "Identificacion" %>
+                           <%= f.number_field :identificacion%>
+                         </div>
+
+
+                     </div>
+                   </div>
+                   <!-- Pais de expedicion de documento -->
+                   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-2">
+                     <div class="box">
                        <div class="input-field col s12">
+
+                         <%= collection_select(:paisExpedicion,:id,Country.order(:nombre), :id, :nombre,options = {prompt: "Seleccioner", disabled: ""} ,html_options ={onChange: "obtenerDatos(this.options[this.selectedIndex].value,'paisExpedicion');"}) %>
+                         <label>Pais expedicion</label>
+                       </div>
+                     </div>
+                   </div>
+                   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-2">
+                     <div class="box">
+                       <div class="input-field col s12" id="departamentoExpedicion">
                          <select>
                            <option value="" disabled selected>Seleccione</option>
-                           <option value="CC">Cedula</option>
-                           <option value="TI">Tarjeta de identidad</option>
-                           <option value="PASAPORTE">Pasaporte</option>
+
                          </select>
-                         <label>Tipo de documento</label>
-                       </div>
-
-
-                   </div>
-                 </div>
-                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-2">
-                   <div class="box">
-
-                       <div class="input-field">
-                         <%= f.label :identificacion, "Identificacion" %>
-                         <%= f.number_field :identificacion, autofocus: true %>
-                       </div>
-
-
-                   </div>
-                 </div>
-                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-2">
-                   <div class="box">
-                     <div class="input-field col s12">
-
-                       <%= collection_select(:paisExpedicion,:id,Country.order(:nombre), :id, :nombre,options = {prompt: "Seleccione"} ,html_options ={onChange: "update_versions_div(this.options[this.selectedIndex].value,'paisExpedicion');"}) %>
-                       <label>Pais expedicion</label>
-                     </div>
-                   </div>
-                 </div>
-                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-2">
-                   <div class="box">
-                     <div class="input-field col s12" id="departamentoExpedicion">
-                       <%= f.select :sexo, [['Seleccione','']]%>
-
-                       <label>Departamento expedicion</label>
-                     </div>
-                   </div>
-                 </div>
-                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-2">
-                   <div class="box">
-                     <div class="input-field col s12" id="ciudadExpedicion">
-                       <%= f.select :sexo, [['Seleccione','']]%>
-                       <label>Ciudad expedicion</label>
-                     </div>
-                   </div>
-                 </div>
-                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-2">
-                   <div class="box">
-                     <div class="input-field">
-                       <%= f.label :fechaNacimiento, "Fecha de nacimiento" %>
-                       <%= f.text_field :fechaNacimiento , class: "datepicker no-autoinit"%>
-                     </div>
-                   </div>
-                 </div>
-               </div>
-               <div class="row between-xs">
-
-                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-2">
-                   <div class="box">
-                     <div class="input-field col s12">
-
-                       <%= collection_select(:paisNacimiento,:id,Country.order(:nombre), :id, :nombre,options = {prompt: "Seleccione"} ,html_options ={onChange: "update_versions_div(this.options[this.selectedIndex].value,'paisNacimiento');"}) %>
-                       <label>Pais nacimiento</label>
-                     </div>
-                   </div>
-                 </div>
-                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-2">
-                   <div class="box">
-                     <div class="input-field col s12" id="departamentoNacimiento">
-                       <%= f.select :sexo, [['Seleccione','']]%>
-
-                       <label>Departamento nacimiento</label>
-                     </div>
-                   </div>
-                 </div>
-                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-2">
-                   <div class="box">
-                     <div class="input-field col s12" id="ciudadNacimiento">
-                       <%= f.select :sexo, [['Seleccione','']]%>
-                       <label>Ciudad nacimiento</label>
-                     </div>
-                   </div>
-                 </div>
-                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-2">
-                   <div class="box">
-                     <div class="input-field col s12">
-
-                       <%= collection_select(:paisResidencia,:id,Country.order(:nombre), :id, :nombre,options = {prompt: "Seleccione"} ,html_options ={onChange: "update_versions_div(this.options[this.selectedIndex].value,'paisResidencia');"}) %>
-                       <label>Pais residencia</label>
-                     </div>
-                   </div>
-                 </div>
-                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-2">
-                   <div class="box">
-                     <div class="input-field col s12" id="departamentoResidencia">
-                       <%= f.select :sexo, [['Seleccione','']]%>
-                       <label>Departamento residencia</label>
-                     </div>
-                   </div>
-                 </div>
-                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-2">
-                   <div class="box">
-                     <div class="input-field col s12" id="ciudadResidencia">
-                       <%= f.select :sexo, [['Seleccione','']]%>
-                       <label>Ciudad residencia</label>
-                     </div>
-                   </div>
-                 </div>
-               </div>
-               <div class="row start-xs margin-bottom-0">
-
-                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-2">
-                   <div class="box">
-                     <div class="input-field col s12" id="barrioResidencia">
-                       <%= f.select :sexo, [['Seleccione','']]%>
-                       <label>Barrio residencia</label>
-                     </div>
-                   </div>
-                 </div>
-                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-2">
-                   <div class="box">
-                     <div class="input-field">
-
-                       <%= f.label :primerNombre, "Vía drección"%>
-                       <%= f.text_field :primerNombre, class: "validate", placeholder: "ej: carr, calle, trans" %>
-                     </div>
-                   </div>
-                 </div>
-                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-2">
-                   <div class="row center-xs middle-xs ">
-                     <div class="col-xs-1">
-                       <span>#</span>
-
-                     </div>
-
-                     <div class="col-xs">
-                       <div class="input-field">
-
-                         <%= f.label :primerNombre, "Número"%>
-                         <%= f.text_field :primerNombre, class: "validate", placeholder: " " %>
+                         <label>Departamento expedicion</label>
                        </div>
                      </div>
-                     <div class="col-xs-1">
-                       <span>-</span>
+                   </div>
+                   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-2">
+                     <div class="box">
+                       <div class="input-field col s12" id="ciudadExpedicion">
+                         <select>
+                           <option value="" disabled selected>Seleccione</option>
 
+                         </select>
+                         <label>Ciudad expedicion</label>
+                       </div>
                      </div>
-                     <div class="col-xs">
+                   </div>
+                   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-2">
+                     <div class="box">
+                       <div class="input-field">
+                         <%= f.label :fechaNacimiento, "Fecha de nacimiento" %>
+                         <%= f.text_field :fechaNacimiento , class: "datepicker no-autoinit"%>
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+                 <div class="row between-xs">
+
+                   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-2">
+                     <div class="box">
+                       <div class="input-field col s12">
+
+                         <%= collection_select(:paisNacimiento,:id,Country.order(:nombre), :id, :nombre,options = {prompt: "Seleccione"} ,html_options ={onChange: "obtenerDatos(this.options[this.selectedIndex].value,'paisNacimiento');"}) %>
+                         <label>Pais nacimiento</label>
+                       </div>
+                     </div>
+                   </div>
+                   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-2">
+                     <div class="box">
+                       <div class="input-field col s12" id="departamentoNacimiento">
+                         <select>
+                           <option value="" disabled selected>Seleccione</option>
+                         </select>
+                         <label>Departamento nacimiento</label>
+                       </div>
+                     </div>
+                   </div>
+                   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-2">
+                     <div class="box">
+                       <div class="input-field col s12" id="ciudadNacimiento">
+                         <select>
+                           <option value="" disabled selected>Seleccione</option>
+                         </select>
+                         <label>Ciudad nacimiento</label>
+                       </div>
+                     </div>
+                   </div>
+                   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-2">
+                     <div class="box">
+                       <div class="input-field col s12">
+
+                         <%= collection_select(:paisResidencia,:id,Country.order(:nombre), :id, :nombre,options = {prompt: "Seleccione"} ,html_options ={onChange: "obtenerDatos(this.options[this.selectedIndex].value,'paisResidencia');"}) %>
+                         <label>Pais residencia</label>
+                       </div>
+                     </div>
+                   </div>
+                   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-2">
+                     <div class="box">
+                       <div class="input-field col s12" id="departamentoResidencia">
+                         <select>
+                           <option value="" disabled selected>Seleccione</option>
+                         </select>
+                         <label>Departamento residencia</label>
+                       </div>
+                     </div>
+                   </div>
+                   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-2">
+                     <div class="box">
+                       <div class="input-field col s12" id="ciudadResidencia">
+                         <select>
+                           <option value="" disabled selected>Seleccione</option>
+                         </select>
+                         <label>Ciudad residencia</label>
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+                 <div class="row start-xs margin-bottom-0">
+
+                   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-2">
+                     <div class="box">
+                       <div class="input-field col s12" id="barrioResidencia">
+                         <select>
+                           <option value="" disabled selected>Seleccione</option>
+                         </select>
+                         <label>Barrio residencia</label>
+                       </div>
+                     </div>
+                   </div>
+                   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-2">
+                     <div class="box">
                        <div class="input-field">
 
+                         <%= label_tag 'direccionVia', "Dirección vía"%>
+                         <%= text_field_tag 'direccionVia', nil, class: "validate", placeholder: "ej: carr 1, calle 1, trans 1" %>
+                       </div>
+                     </div>
+                   </div>
+                   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-2">
+                     <div class="row center-xs middle-xs ">
+                       <div class="col-xs-1">
+                         <span>#</span>
 
+                       </div>
+
+                       <div class="col-xs">
+                         <div class="input-field">
+
+                           <%= label_tag 'direccionNumero', "Número"%>
+                           <%= text_field_tag 'direccionNumero',nil, class: "validate", placeholder: " " %>
+                         </div>
+                       </div>
+                       <div class="col-xs-1">
+                         <span>-</span>
+
+                       </div>
+                       <div class="col-xs">
+                         <div class="input-field">
+
+
+                           <%= text_field_tag 'direccionNumero2',nil,  class: "validate" %>
+                         </div>
+                       </div>
+                     </div>
+
+
+                   </div>
+                 </div>
+
+                 <div class="step-actions">
+                    <!-- Here goes your actions buttons -->
+
+
+                    <button class="waves-effect waves-dark btn next-step borde-radio-18 robotoB">Continuar</button>
+                 </div>
+              </div>
+            </li>
+            <li class="step">
+              <div class="step-title waves-effect titulos-text robotoB">Sobre ti</div>
+              <div class="step-content">
+                 <!-- Your step content goes here (like inputs or so) -->
+                 <div class="row between-xs">
+                   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-2">
+                     <div class="box">
+                       <div class="input-field">
+
+                         <%= f.label :primerNombre, "Primer nombre"%>
                          <%= f.text_field :primerNombre, class: "validate" %>
                        </div>
                      </div>
                    </div>
-
-
-                 </div>
-               </div>
-
-               <div class="step-actions">
-                  <!-- Here goes your actions buttons -->
-
-
-                  <button class="waves-effect waves-dark btn next-step borde-radio-18">Continuar</button>
-               </div>
-            </div>
-          </li>
-          <li class="step">
-            <div class="step-title waves-effect">Sobre ti</div>
-            <div class="step-content">
-               <!-- Your step content goes here (like inputs or so) -->
-               <div class="row between-xs">
-                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-2">
-                   <div class="box">
-                     <div class="input-field">
-
-                       <%= f.label :primerNombre, "Primer nombre"%>
-                       <%= f.text_field :primerNombre, class: "validate" %>
-                     </div>
-                   </div>
-                 </div>
-                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-2">
-                   <div class="box">
-                     <div class="input-field">
-
-                       <%= f.label :segundoNombre, "Segundo nombre"%>
-                       <%= f.text_field :segundoNombre, class: "validate" %>
-                     </div>
-                   </div>
-                 </div>
-
-                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-2">
-                   <div class="box">
-                     <div class="input-field">
-
-                       <%= f.label :primerApellido, "Primer apellido" %>
-                       <%= f.text_field :primerApellido%>
-                     </div>
-                   </div>
-                 </div>
-                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-2">
-                   <div class="box">
-                     <div class="input-field">
-
-                       <%= f.label :segundoApellido, "Segundo apellido" %>
-                       <%= f.text_field :segundoApellido%>
-                     </div>
-                   </div>
-                 </div>
-                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-2">
-                   <div class="box">
-                     <div class="input-field">
-
-                       <%= f.select :sexo, [['Seleccione',''],['Masculino','masculino'],['Femenino','femenino']]%>
-                       <%= f.label :sexo, "Sexo" %>
-                     </div>
-                   </div>
-                 </div>
-                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-2">
-                   <div class="box">
-                     <div class="input-field validate">
-                       <%= f.number_field :telefono, class: "validate"%>
-                       <%= f.label :telefono, "Celular" %>
-                     </div>
-                   </div>
-                 </div>
-               </div>
-               <div class="row between-xs">
-
-
-                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-2">
+                   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-2">
                      <div class="box">
                        <div class="input-field">
-                         <%= f.label :fechaAniversario, "Fecha de aniversario" %>
-                         <%= f.text_field :fechaAniversario , class: "datepickerAni no-autoinit"%>
+
+                         <%= f.label :segundoNombre, "Segundo nombre"%>
+                         <%= f.text_field :segundoNombre, class: "validate" %>
                        </div>
                      </div>
-                 </div>
-                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-2">
-                   <div class="box">
-                     <div class="input-field">
-                       <%= f.label :primerNombreConyuge, "Nombre conyuge" %>
-                       <%= f.email_field :primerNombreConyuge%>
-                     </div>
                    </div>
-                 </div>
-                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-2">
-                   <div class="box">
-                     <div class="input-field">
-                       <%= f.label :segundoNombreConyuge, "Segundo nombre conyuge" %>
-                       <%= f.email_field :segundoNombreConyuge%>
-                     </div>
-                   </div>
-                 </div>
-                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-2">
+
+                   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-2">
                      <div class="box">
                        <div class="input-field">
-                         <%= f.label :primerApellidoConyuge, "Primer apellido conyuge" %>
-                         <%= f.email_field :primerApellidoConyuge%>
+
+                         <%= f.label :primerApellido, "Primer apellido" %>
+                         <%= f.text_field :primerApellido%>
                        </div>
                      </div>
-                 </div>
-                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-2">
+                   </div>
+                   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-2">
                      <div class="box">
                        <div class="input-field">
-                         <%= f.label :segundoApellidoConyuge, "Segundo apellido conyuge" %>
-                         <%= f.email_field :segundoApellidoConyuge%>
+
+                         <%= f.label :segundoApellido, "Segundo apellido" %>
+                         <%= f.text_field :segundoApellido%>
                        </div>
                      </div>
-                 </div>
-                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2">
-                   <div class="box">
-                     <div class="input-field">
-                       <%= f.select :confesionReligiosa, [['Seleccione',''],['Catolico','catolico'],['Cristiano','cristiano']]%>
-                       <%= f.label :confesionReligiosa, "Confesion religiosa" %>
+                   </div>
+                   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-2">
+                     <div class="box">
+                       <div class="input-field">
 
+                         <%= f.select :sexo, [['Seleccione',''],['Masculino','masculino'],['Femenino','femenino']]%>
+                         <%= f.label :sexo, "Sexo" %>
+                       </div>
+                     </div>
+                   </div>
+                   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-2">
+                     <div class="box">
+                       <div class="input-field validate">
+                         <%= f.number_field :telefono, class: "validate"%>
+                         <%= f.label :telefono, "Celular" %>
+                       </div>
                      </div>
                    </div>
                  </div>
-               </div>
-               <div class="row start-xs">
+                 <div class="row between-xs">
 
-                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2">
-                   <div class="box">
-                     <div class="input-field">
-                       <%= f.select :fueMiembroOtraIglesia, [['Seleccione',''],['Si','si'],['No','no']]%>
-                       <%= f.label :fueMiembroOtraIglesia, "Fue miembro de otra iglesia?"%>
+                   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2">
+                     <div class="box">
+                       <div class="input-field">
+                         <%= f.select :estadoCivil, [['Seleccione',''],['Soltero(a)','soltero'],['Casado(a)','casado'],['Union libre','union libre'],['Divorciado(a)','divorciado'],['Viudo(a)','viudo']]%>
+                         <%= f.label :estadoCivil, "Estado civil" %>
+
+                       </div>
+                     </div>
+                   </div>
+                   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-2">
+                       <div class="box">
+                         <div class="input-field">
+                           <%= f.label :fechaAniversario, "Fecha de aniversario" %>
+                           <%= f.text_field :fechaAniversario , class: "datepickerAni no-autoinit"%>
+                         </div>
+                       </div>
+                   </div>
+                   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-2">
+                     <div class="box">
+                       <div class="input-field">
+                         <%= f.label :primerNombreConyuge, "Primer nombre" %>
+                         <%= f.text_field :primerNombreConyuge, placeholder: "Cónyuge"%>
+                       </div>
+                     </div>
+                   </div>
+                   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-2">
+                     <div class="box">
+                       <div class="input-field">
+                         <%= f.label :segundoNombreConyuge, "Segundo nombre" %>
+                         <%= f.text_field :segundoNombreConyuge, placeholder: "Cónyuge"%>
+                       </div>
+                     </div>
+                   </div>
+                   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-2">
+                       <div class="box">
+                         <div class="input-field">
+                           <%= f.label :primerApellidoConyuge, "Primer apellido" %>
+                           <%= f.text_field :primerApellidoConyuge, placeholder: "Cónyuge"%>
+                         </div>
+                       </div>
+                   </div>
+                   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-2">
+                       <div class="box">
+                         <div class="input-field">
+                           <%= f.label :segundoApellidoConyuge, "Segundo apellido" %>
+                           <%= f.text_field :segundoApellidoConyuge, placeholder: "Cónyuge"%>
+                         </div>
+                       </div>
+                   </div>
+
+                 </div>
+                 <div class="row start-xs">
+
+                   <div class="col-xs-12 col-sm-12 col-md-6 col-lg-2">
+                     <div class="box">
+                       <div class="input-field col s12">
+                         <%= f.select :nivelAcademico, [['Seleccione',''],['Primaria','primaria'],['Secundaria','secundaria'],['Tecnico','tecnico'],['Tecnologo','tecnologo'],['Universitario','universitario'],['Postgrado','postgrado']]%>
+
+                         <label>Nivel academico</label>
+                       </div>
+                     </div>
+                   </div>
+                   <div class="col-xs-12 col-sm-12 col-md-6 col-lg-2">
+                     <div class="box">
+                       <div class="input-field">
+                         <%= f.label :profesionOficio, "Profesión ú oficio" %>
+                         <%= f.text_field :profesionOficio%>
+                       </div>
                      </div>
                    </div>
                  </div>
-                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2">
-                   <div class="box">
-                     <div class="input-field">
-                       <%= f.label :tiempoOtraIglesia, "Tiempo aproximado en la iglesia" %>
-                       <%= f.email_field :tiempoOtraIglesia%>
-                     </div>
-                   </div>
+                 <div class="step-actions">
+                    <!-- Here goes your actions buttons -->
+
+                    <button class="waves-effect waves-dark btn next-step borde-radio-18 robotoB">Continuar</button>
+                    <button class="waves-effect waves-dark btn-flat previous-step">Anterior</button>
+
                  </div>
-                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-2">
-                   <div class="box">
-                     <div class="input-field col s12">
-                       <%= f.select :nivelAcademico, [['Seleccione',''],['Primaria','primaria'],['Secundaria','secundaria'],['Tecnico','tecnico'],['Tecnologo','tecnologo'],['Universitario','universitario'],['Postgrado','postgrado']]%>
-
-                       <label>Nivel academico</label>
-                     </div>
-                   </div>
-                 </div>
-                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-2">
-                   <div class="box">
-                     <div class="input-field">
-                       <%= f.label :profesionOficio, "A que se dedica?" %>
-                       <%= f.email_field :profesionOficio%>
-                     </div>
-                   </div>
-                 </div>
-               </div>
-               <div class="step-actions">
-                  <!-- Here goes your actions buttons -->
-
-                  <button class="waves-effect waves-dark btn next-step borde-radio-18">Continuar</button>
-                  <button class="waves-effect waves-dark btn-flat previous-step">Anterior</button>
-
-               </div>
-            </div>
-          </li>
-          <li class="step">
-            <div class="step-title waves-effect">Cuenta</div>
-            <div class="step-content">
-               <!-- Your step content goes here (like inputs or so) -->
-               <div class="row around-xs">
-                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3">
-                   <div class="box">
-                     <div class="input-field validate">
-                       <i class="material-icons prefix">email</i>
-                       <%= f.email_field :email, class: "validate"%>
-                       <%= f.label :email, "Correo" %>
-                     </div>
-                   </div>
-                 </div>
-                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3">
-                   <div class="box">
-                     <div class="input-field">
-                       <i class="material-icons prefix">vpn_key</i>
-
-                       <%= f.label :password, "Contraseña" %>
-                       <%= f.password_field :password, autocomplete: "off" , placeholder: "#{@minimum_password_length} caracteres minimos" %>
-                     </div>
-                   </div>
-                 </div>
-                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3">
-                   <div class="box">
-                     <div class="input-field">
-                       <i class="material-icons prefix">vpn_key</i>
-
-                       <%= f.label :password_confirmation, "Confirmar contraseña" %>
-                       <%= f.password_field :password_confirmation, autocomplete: "off" %>
-                     </div>
-                   </div>
-                 </div>
-
-               </div>
-               <div class="step-actions">
-                  <!-- Here goes your actions buttons -->
-                  <button class="waves-effect waves-dark btn next-step borde-radio-18">Continuar</button>
-                  <button class="waves-effect waves-dark btn-flat previous-step">Anterior</button>
-
-               </div>
-            </div>
-          </li>
-          <li class="step">
-            <div class="step-title waves-effect">Confirmar</div>
-            <div class="step-content">
-               <!-- Your step content goes here (like inputs or so) -->
-               <div class="step-actions">
-                  <!-- Here goes your actions buttons -->
-                  <button class="waves-effect waves-dark btn next-step borde-radio-18">Continuar</button>
-                  <button class="waves-effect waves-dark btn-flat previous-step">Anterior</button>
-
-               </div>
-            </div>
-          </li>
-        </ul>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <% end %>
-      </div>
-
-    </div>
-  </div>
-    <div class=" col-xs-12 col-sm-8 col-md-6 col-lg-12">
-      <div class="card borde-radio-10">
-        <div class="card-content no-padding">
-
-          <span class="card-title">Regístrate</span>
-          <p>Queremos saber sobre ti</p>
-          <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-
-          <ul class="collapsible no-autoinit">
-            <li>
-              <div class="collapsible-header"><i class="material-icons prefix">account_circle</i>Datos basicos</div>
-              <div class="collapsible-body">
-
-
-              <div class="row around-xs">
-                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
-                  <div class="box">
-                    <div class="input-field col s12">
-                      <select>
-                        <option value="" disabled selected>Seleccione</option>
-                        <option value="CC">Cedula</option>
-                        <option value="TI">Tarjeta de identidad</option>
-                        <option value="PASAPORTE">Pasaporte</option>
-                      </select>
-                      <label>Tipo de documento</label>
-                    </div>
-                  </div>
-                </div>
-
-
-
-                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
-                  <div class="box">
-                    <div class="input-field col s12">
-
-                      <%= collection_select(:paisExpedicion,:id,Country.order(:nombre), :id, :nombre,options = {prompt: "Seleccione"} ,html_options ={onChange: "update_versions_div(this.options[this.selectedIndex].value,'paisExpedicion');"}) %>
-                      <label>Pais expedicion</label>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
-                  <div class="box">
-                    <div class="input-field col s12" id="departamentoExpedicion">
-                      <%= f.select :sexo, [['Seleccione','']]%>
-
-                      <label>Departamento expedicion</label>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
-                  <div class="box">
-                    <div class="input-field col s12" id="ciudadExpedicion">
-                      <%= f.select :sexo, [['Seleccione','']]%>
-                      <label>Ciudad expedicion</label>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
-                  <div class="box">
-                    <div class="input-field">
-                      <%= f.label :identificacion, "Identificacion" %>
-                      <%= f.number_field :identificacion, autofocus: true %>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
-                  <div class="box">
-                    <div class="input-field">
-
-                      <%= f.label :primerNombre, "Primer nombre"%>
-                      <%= f.text_field :primerNombre, class: "validate" %>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
-                  <div class="box">
-                    <div class="input-field">
-
-                      <%= f.label :segundoNombre, "Segundo nombre"%>
-                      <%= f.text_field :segundoNombre, class: "validate" %>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
-                  <div class="box">
-                    <div class="input-field">
-
-                      <%= f.label :primerApellido, "Primer apellido" %>
-                      <%= f.text_field :primerApellido%>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
-                  <div class="box">
-                    <div class="input-field">
-
-                      <%= f.label :segundoApellido, "Segundo apellido" %>
-                      <%= f.text_field :segundoApellido%>
-                    </div>
-                  </div>
-                </div>
-
-
-                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
-                  <div class="box">
-                    <div class="input-field validate">
-                      <%= f.number_field :telefono, class: "validate"%>
-                      <%= f.label :telefono, "Celular" %>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
-                  <div class="box">
-                    <div class="input-field">
-
-                      <%= f.select :sexo, [['Seleccione',''],['Masculino','masculino'],['Femenino','femenino']]%>
-                      <%= f.label :sexo, "Sexo" %>
-                    </div>
-                  </div>
-                </div>
-
-
-                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
-                  <div class="box">
-                    <div class="input-field col s12">
-
-                      <%= collection_select(:paisNacimiento,:id,Country.order(:nombre), :id, :nombre,options = {prompt: "Seleccione"} ,html_options ={onChange: "update_versions_div(this.options[this.selectedIndex].value,'paisNacimiento');"}) %>
-                      <label>Pais nacimiento</label>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
-                  <div class="box">
-                    <div class="input-field col s12" id="departamentoNacimiento">
-                      <%= f.select :sexo, [['Seleccione','']]%>
-
-                      <label>Departamento nacimiento</label>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
-                  <div class="box">
-                    <div class="input-field col s12" id="ciudadNacimiento">
-                      <%= f.select :sexo, [['Seleccione','']]%>
-                      <label>Ciudad nacimiento</label>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
-                  <div class="box">
-                    <div class="input-field">
-                      <%= f.label :fechaNacimiento, "Fecha de nacimiento" %>
-                      <%= f.text_field :fechaNacimiento , class: "datepicker no-autoinit"%>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
-                  <div class="box">
-                    <div class="input-field col s12">
-
-                      <%= collection_select(:paisResidencia,:id,Country.order(:nombre), :id, :nombre,options = {prompt: "Seleccione"} ,html_options ={onChange: "update_versions_div(this.options[this.selectedIndex].value,'paisResidencia');"}) %>
-                      <label>Pais residencia</label>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
-                  <div class="box">
-                    <div class="input-field col s12" id="departamentoResidencia">
-                      <%= f.select :sexo, [['Seleccione','']]%>
-                      <label>Departamento residencia</label>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
-                  <div class="box">
-                    <div class="input-field col s12" id="ciudadResidencia">
-                      <%= f.select :sexo, [['Seleccione','']]%>
-                      <label>Ciudad residencia</label>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
-                  <div class="box">
-                    <div class="input-field col s12" id="barrioResidencia">
-                      <%= f.select :sexo, [['Seleccione','']]%>
-                      <label>Barrio residencia</label>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
-                  <div class="box">
-                    <div class="input-field">
-                      <input  id="first_name" type="text" class="validate">
-                      <label for="first_name">Direccion</label>
-                    </div>
-                  </div>
-                </div>
-
-
-            </div>
-
-
-
-
-
               </div>
             </li>
-            <li>
-              <div class="collapsible-header"><i class="material-icons">place</i>Estado civil</div>
-              <div class="collapsible-body">
-              <div class="row around-xs">
-              <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
-                <div class="box">
-                  <div class="input-field col s12">
-                    <select>
-                      <option value="" disabled selected>Seleccione</option>
-                      <option value="soltero">Soltero</option>
-                      <option value="casado">Casado</option>
-                      <option value="union libre">Union libre</option>
-                    </select>
-                    <label>Estado civil</label>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
-                <div class="box">
-                  <div class="input-field">
-                    <%= f.label :primerNombreConyuge, "Nombre conyuge" %>
-                    <%= f.email_field :primerNombreConyuge%>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
-                <div class="box">
-                  <div class="input-field">
-                    <%= f.label :segundoNombreConyuge, "Segundo nombre conyuge" %>
-                    <%= f.email_field :segundoNombreConyuge%>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
-                  <div class="box">
-                    <div class="input-field">
-                      <%= f.label :primerApellidoConyuge, "Primer apellido conyuge" %>
-                      <%= f.email_field :primerApellidoConyuge%>
-                    </div>
-                  </div>
-              </div>
-              <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
-                  <div class="box">
-                    <div class="input-field">
-                      <%= f.label :segundoApellidoConyuge, "Segundo apellido conyuge" %>
-                      <%= f.email_field :segundoApellidoConyuge%>
-                    </div>
-                  </div>
-              </div>
-              <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
-                  <div class="box">
-                    <div class="input-field">
-                      <%= f.label :fechaAniversario, "Fecha de aniversario" %>
-                      <%= f.text_field :fechaAniversario , class: "datepicker no-autoinit"%>
-                    </div>
-                  </div>
-              </div>
+            <li class="step">
+              <div class="step-title waves-effect">Cuenta</div>
+              <div class="step-content">
+                 <!-- Your step content goes here (like inputs or so) -->
+                 <div class="row between-xs">
+                   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-2">
+                     <div class="box">
+                       <div class="input-field">
+                         <%= f.select :nuevoCreyente, [['Seleccione',''],['Si','yes'],['No','no']]%>
+                         <%= f.label :nuevoCreyente, "¿Es nuevo creyente?"%>
+                       </div>
+                     </div>
+                   </div>
+                   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-2">
+                     <div class="box">
+                       <div class="input-field">
+                         <%= f.select :bautizadoAdulto, [['Seleccione',''],['Si','yes'],['No','no']]%>
+                         <%= f.label :bautizadoAdulto, "¿Fue bautizado siendo adulto?"%>
+                       </div>
+                     </div>
+                   </div>
+                   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-2">
+                       <div class="box">
+                         <div class="input-field">
+                           <%= f.label :fechaBautizo, "Fecha de bautizo" %>
+                           <%= f.text_field :fechaBautizo , class: "datepickerBautizo no-autoinit"%>
+                         </div>
+                       </div>
+                   </div>
+                   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-2">
+                     <div class="box">
+                       <div class="input-field">
+                         <%= f.select :confesionReligiosa, [['Seleccione',''],['Catolico','catolico'],['Cristiano','cristiano']]%>
+                         <%= f.label :confesionReligiosa, "Confesion religiosa" %>
 
-              </div>
-              </div>
-            </li>
-            <li>
-              <div class="collapsible-header"><i class="material-icons">account_balance</i>Confesion religiosa</div>
-              <div class="collapsible-body">
-                <div class="row around-xs">
-                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3">
-                    <div class="box">
-                      <div class="input-field">
-                        <%= f.select :confesionReligiosa, [['Seleccione',''],['Catolico','catolico'],['Cristiano','cristiano']]%>
-                        <%= f.label :confesionReligiosa, "Confesion religiosa" %>
+                       </div>
+                     </div>
+                   </div>
+                   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-2">
+                     <div class="box">
+                       <div class="input-field">
+                         <%= f.select :fueMiembroOtraIglesia, [['Seleccione',''],['Si','si'],['No','no']]%>
+                         <%= f.label :fueMiembroOtraIglesia, "¿Ha sido miembro de otra iglesia?"%>
+                       </div>
+                     </div>
+                   </div>
 
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3">
-                    <div class="box">
-                      <div class="input-field">
-                        <%= f.select :fueMiembroOtraIglesia, [['Seleccione',''],['Si','si'],['No','no']]%>
-                        <%= f.label :fueMiembroOtraIglesia, "Fue miembro de otra iglesia?"%>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3">
-                    <div class="box">
-                      <div class="input-field">
-                        <%= f.label :tiempoOtraIglesia, "Tiempo aproximado en la iglesia" %>
-                        <%= f.email_field :tiempoOtraIglesia%>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="collapsible-header"><i class="material-icons">school</i>Academico</div>
-              <div class="collapsible-body">
-                <div class="row around-xs">
-                  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3">
-                    <div class="box">
-                      <div class="input-field col s12">
-                        <%= f.select :nivelAcademico, [['Seleccione',''],['Primaria','primaria'],['Secundaria','secundaria'],['Tecnico','tecnico'],['Tecnologo','tecnologo'],['Universitario','universitario'],['Postgrado','postgrado']]%>
 
-                        <label>Nivel academico</label>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5">
-                    <div class="box">
-                      <div class="input-field">
-                        <%= f.label :profesionOficio, "A que se dedica?" %>
-                        <%= f.email_field :profesionOficio%>
-                      </div>
-                    </div>
-                  </div>
+                 </div>
+                 <div class="row between-xs">
+                   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-2">
+                     <div class="box">
+                       <div class="input-field col s12">
 
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="collapsible-header"><i class="material-icons">assignment_ind</i>Cuenta</div>
-              <div class="collapsible-body">
-                <div class="row around-xs">
+                         <%= collection_select(:paisIglesia,:id,Country.order(:nombre), :id, :nombre,options = {prompt: "Seleccione"} ,html_options ={onChange: "obtenerDatos(this.options[this.selectedIndex].value,'paisIglesia');"}) %>
+                         <label>Pais iglesia</label>
+                       </div>
+                     </div>
+                   </div>
+                   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-2">
+                     <div class="box">
+                       <div class="input-field col s12" id="departamentoIglesia">
+                         <select>
+                           <option value="" disabled selected>Seleccione</option>
+
+                         </select>
+                         <label>Departamento iglesia</label>
+                       </div>
+                     </div>
+                   </div>
+                   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-2">
+                     <div class="box">
+                       <div class="input-field col s12" id="ciudadIglesia">
+                         <select>
+                           <option value="" disabled selected>Seleccione</option>
+
+                         </select>
+                         <label>Ciudad iglesia</label>
+                       </div>
+                     </div>
+                   </div>
+                   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2">
+                     <div class="box">
+                       <div class="input-field">
+                         <input id="iglesiaAnterior_tiempo" name="iglesiaAnterior[tiempo]" type="text" class="validate">
+                         <label for="iglesiaAnterior_tiempo">¿Por cuánto tiempo asistió?</label>
+                       </div>
+                     </div>
+                   </div>
+                   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2">
+                     <div class="box">
+                       <div class="input-field">
+                         <input id="iglesiaAnterior_nombre" name="iglesiaAnterior[nombre]" type="text" class="validate">
+                         <label for="iglesiaAnterior_nombre">Nombre de la iglesia</label>
+                       </div>
+                     </div>
+                   </div>
+
+                 </div>
+                 <div class="row start-xs">
                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3">
                     <div class="box">
                       <div class="input-field validate">
@@ -773,13 +467,7 @@
                         <i class="material-icons prefix">vpn_key</i>
 
                         <%= f.label :password, "Contraseña" %>
-
-                        <% if @minimum_password_length %>
-                        <%= f.label :password, "Contraseña (#{@minimum_password_length} caracteres minimos)" %>
-
-
-                        <% end %>
-                        <%= f.password_field :password, autocomplete: "off" %>
+                        <%= f.password_field :password, autocomplete: "off" , placeholder: "#{@minimum_password_length} caracteres minimos" %>
                       </div>
                     </div>
                   </div>
@@ -793,8 +481,136 @@
                       </div>
                     </div>
                   </div>
+                 </div>
+                 <div class="step-actions">
+                    <!-- Here goes your actions buttons -->
+                    <button class="waves-effect waves-dark btn next-step borde-radio-18 robotoB">Continuar</button>
+                    <button class="waves-effect waves-dark btn-flat previous-step">Anterior</button>
 
-                </div>
+                 </div>
+              </div>
+            </li>
+            <li class="step">
+              <div class="step-title waves-effect">Confirmar</div>
+              <div class="step-content padding-horizontal-5porcent">
+                 <!-- Your step content goes here (like inputs or so) -->
+                 <div class="row between-xs">
+                   <div class="start-xs col-xs-12 col-sm-8 col-md-6 col-lg-3">
+                     <p class="robotoM titulos-text ">Nombre:</p>
+                     <span id="nombre" class="secundario-text robotoM capitalize">joseph epiayu fernandez</span>
+                   </div>
+                   <div class="start-xs col-xs-12 col-sm-8 col-md-6 col-lg-3">
+                     <p class="robotoM titulos-text ">Fecha de nacimiento:</p>
+                     <span id="fechaNacimiento" class="secundario-text robotoM capitalize"></span>
+                   </div>
+                   <div class="start-xs col-xs-12 col-sm-8 col-md-6 col-lg-3">
+                     <p class="robotoM titulos-text ">Tipo de documento:</p>
+                     <span id="tipoDocumento" class="secundario-text robotoM capitalize"></span>
+                   </div>
+                   <div class="start-xs col-xs-12 col-sm-8 col-md-6 col-lg-3">
+                     <p class="capitalize robotoM titulos-text ">Identificacion:</p>
+                     <span id="identificacion" class="secundario-text robotoM"></span>
+                   </div>
+                 </div>
+                 <div class="row between-xs">
+                   <div class="start-xs col-xs-12 col-sm-8 col-md-6 col-lg-3">
+                     <p class="robotoM titulos-text ">Lugar de expedición:</p>
+                     <span id="lugarExpedicion" class="secundario-text robotoM capitalize">Fonseca - La Guajira - Colombia</span>
+                   </div>
+                   <div class="start-xs col-xs-12 col-sm-8 col-md-6 col-lg-3">
+                     <p class="robotoM titulos-text ">Sexo:</p>
+                     <span id="sexo" class="secundario-text robotoM capitalize">Masculino</span>
+                   </div>
+                   <div class="start-xs col-xs-12 col-sm-8 col-md-6 col-lg-3">
+                     <p class="robotoM titulos-text ">Telefono:</p>
+                     <span id="telefono" class="secundario-text robotoM capitalize">3116229946</span>
+                   </div>
+                   <div class="start-xs col-xs-12 col-sm-8 col-md-6 col-lg-3">
+                     <p class="capitalize robotoM titulos-text ">Lugar de nacimiento:</p>
+                     <span id="lugarNacimiento" class="secundario-text robotoM">Fonseca - La Guajira - Colombia</span>
+                   </div>
+                 </div>
+                 <div class="row between-xs">
+                   <div class="start-xs col-xs-12 col-sm-8 col-md-6 col-lg-3">
+                     <p class="robotoM titulos-text ">Direccion de residencia:</p>
+                     <span id="lugarResidencia" class="secundario-text robotoM capitalize">Calle 16 #20 - 56 Barrio la Popa - Valledupar - Cesar</span>
+                   </div>
+                   <div class="start-xs col-xs-12 col-sm-8 col-md-6 col-lg-3">
+                     <p class="robotoM titulos-text ">Estado civil:</p>
+                     <span id="estadoCivil" class="secundario-text robotoM capitalize">Soltero</span>
+                   </div>
+                   <div class="start-xs col-xs-12 col-sm-8 col-md-6 col-lg-3">
+                     <p class="robotoM titulos-text ">Nombre de cónyuge:</p>
+                     <span id="nombreConyuge" class="secundario-text robotoM capitalize">Maria Alejandra Bermudez Perez</span>
+                   </div>
+                   <div class="start-xs col-xs-12 col-sm-8 col-md-6 col-lg-3">
+                     <p class="capitalize robotoM titulos-text ">Fecha de aniversario:</p>
+                     <span id="fechaAniversario" class="secundario-text robotoM">01-01-2019</span>
+                   </div>
+                 </div>
+                 <div class="row between-xs">
+                   <div class="start-xs col-xs-12 col-sm-8 col-md-6 col-lg-3">
+                     <p class="robotoM titulos-text ">¿Es nuevo creyente?:</p>
+                     <span id="nuevoCreyente" class="secundario-text robotoM capitalize">Catolico</span>
+                   </div>
+                   <div class="start-xs col-xs-12 col-sm-8 col-md-6 col-lg-3">
+                     <p class="robotoM titulos-text ">¿Fue bautizado siendo adulto?:</p>
+                     <span id="bautizadoAdulto" class="secundario-text robotoM capitalize">Catolico</span>
+                   </div>
+                   <div class="start-xs col-xs-12 col-sm-8 col-md-6 col-lg-3">
+                     <p class="robotoM titulos-text ">Fecha de bautizo:</p>
+                     <span id="fechaBautizo" class="secundario-text robotoM capitalize">Catolico</span>
+                   </div>
+                   <div class="start-xs col-xs-12 col-sm-8 col-md-6 col-lg-3">
+                     <p class="robotoM titulos-text ">Confesión relogiosa:</p>
+                     <span id="confesionReligiosa" class="secundario-text robotoM capitalize">Catolico</span>
+                   </div>
+
+                 </div>
+                 <div class="row between-xs">
+
+                   <div class="start-xs col-xs-12 col-sm-8 col-md-6 col-lg-3">
+                     <p class="robotoM titulos-text ">¿Fue miembro de otra iglesia? :</p>
+                     <span id="fueMiembroOtraIglesia" class="secundario-text robotoM capitalize">Si</span>
+                   </div>
+                   <div class="start-xs col-xs-12 col-sm-8 col-md-6 col-lg-3">
+                     <p class="robotoM titulos-text ">Nombre de la iglesia:</p>
+                     <span id="nombreIglesia" class="secundario-text robotoM capitalize"></span>
+                   </div>
+                   <div class="start-xs col-xs-12 col-sm-8 col-md-6 col-lg-3">
+                     <p class="robotoM titulos-text ">Ubicación de iglesia:</p>
+                     <span id="lugarIglesia" class="secundario-text robotoM capitalize"></span>
+                   </div>
+                   <div class="start-xs col-xs-12 col-sm-8 col-md-6 col-lg-3">
+                     <p class="robotoM titulos-text ">Tiempo aproximado en la iglesia:</p>
+                     <span id="tiempoOtraIglesia" class="secundario-text robotoM capitalize"></span>
+                   </div>
+
+
+                 </div>
+                 <div class="row start-xs">
+                   <div class="start-xs col-xs-12 col-sm-8 col-md-6 col-lg-3">
+                     <p class="capitalize robotoM titulos-text ">Nivel académico:</p>
+                     <span id="nivelAcademico" class="secundario-text robotoM">Bachiller</span>
+                   </div>
+                   <div class="start-xs col-xs-12 col-sm-8 col-md-6 col-lg-3">
+                     <p class="robotoM titulos-text ">Ocupación:</p>
+                     <span id="profesionOficio" class="secundario-text robotoM capitalize">Estudiante</span>
+                   </div>
+                   <div class="start-xs col-xs-12 col-sm-8 col-md-6 col-lg-3">
+                     <p class="robotoM titulos-text ">Correo:</p>
+                     <span id="email" class="secundario-text robotoM">remixlebo@gmail.com</span>
+                   </div>
+
+                 </div>
+
+
+                 <div class="step-actions">
+                    <!-- Here goes your actions buttons -->
+                    <button class="waves-effect waves-dark btn borde-radio-18 robotoB" type="submit">Guardar</button>
+                    <button class="waves-effect waves-dark btn-flat previous-step">Anterior</button>
+
+                 </div>
               </div>
             </li>
           </ul>
@@ -813,23 +629,19 @@
 
 
 
-            <div class="actions ">
 
 
-              <%= link_to "Iniciar",new_user_session_path ,class: "btn waves-light margen-boton borde-radio-5"%>
-              <%= f.submit "Registrar",class: "btn  waves-light  borde-radio-5" %>
-              <br><br>
-
-
-
-            </div>
           <% end %>
         </div>
 
       </div>
+      </div>
+
+
+
     </div>
   </div>
-</div>
+
 </div>
 
 
@@ -839,78 +651,88 @@
       $(document).on("turbolinks:load", function() {
 
 
+        var stepper = document.querySelector('.stepper');
+        var stepperInstace = new MStepper(stepper, {
+           // options
+           firstActive: 0 // this is the default
+        });
+
+       dataBinding();
+
+       // inicilizar elementos de materialize
+       var elem = document.querySelector('.datepicker');
+       var fechaAni = document.querySelector('.datepickerAni');
+       var fechaBau = document.querySelector('.datepickerBautizo');
+
+       var aniversario = M.Datepicker.init(fechaAni,{
+
+         format: 'dd-mmmm-yyyy',
+         i18n: {
+           cancel: 'Cancelar',
+           clear:	'Limpiar',
+           done:	'Ok',
+           weekdaysAbbrev: ['D','L','M','M','J','V','S'],
+           months: [
+             'Enero',
+             'Febrero',
+             'Marzo',
+             'Abril',
+             'Mayo',
+             'Junio',
+             'Julio',
+             'Agosto',
+             'Septiembre',
+             'Octubre',
+             'Noviembre',
+             'Diciembre'
+           ],
+           monthsShort:
+           [
+             'Ene',
+             'Feb',
+             'Mar',
+             'Abr',
+             'May',
+             'Jun',
+             'Jul',
+             'Ago',
+             'Sep',
+             'Oct',
+             'Nov',
+             'Dic'
+           ],
+
+           weekdays:
+           [
+             'Domingo',
+             'Lunes',
+             'Martes',
+             'Miercoles',
+             'Jueves',
+             'Viernes',
+             'Sabado'
+           ],
+
+           weekdaysShort:
+           [
+             'Dom',
+             'Lun',
+             'Mar',
+             'Mie',
+             'Jue',
+             'Vie',
+             'Sab'
+           ],
+
+           weekdaysAbbrev:	['D','L','M','X','J','V','S']
+         }
 
 
-
-         var elem = document.querySelector('.datepicker');
-         var fechaAni = document.querySelector('.datepickerAni');
-         var aniversario = M.Datepicker.init(fechaAni,{
-           disableWeekends: true,
-           format: 'dd-mmmm-yyyy',
-           i18n: {
-             cancel: 'Cancelar',
-             clear:	'Limpiar',
-             done:	'Ok',
-             weekdaysAbbrev: ['D','L','M','M','J','V','S'],
-             months: [
-               'Enero',
-               'Febrero',
-               'Marzo',
-               'Abril',
-               'Mayo',
-               'Junio',
-               'Julio',
-               'Agosto',
-               'Septiembre',
-               'Octubre',
-               'Noviembre',
-               'Diciembre'
-             ],
-             monthsShort:
-             [
-               'Ene',
-               'Feb',
-               'Mar',
-               'Abr',
-               'May',
-               'Jun',
-               'Jul',
-               'Ago',
-               'Sep',
-               'Oct',
-               'Nov',
-               'Dic'
-             ],
-
-             weekdays:
-             [
-               'Domingo',
-               'Lunes',
-               'Martes',
-               'Miercoles',
-               'Jueves',
-               'Viernes',
-               'Sabado'
-             ],
-
-             weekdaysShort:
-             [
-               'Dom',
-               'Lun',
-               'Mar',
-               'Mie',
-               'Jue',
-               'Vie',
-               'Sab'
-             ],
-
-             weekdaysAbbrev:	['D','L','M','X','J','V','S']
-           }
-
-
-         });
-          var instance = M.Datepicker.init(elem,{
-            disableWeekends: true,
+       });
+       var instance = M.Datepicker.init(elem,{
+            autoClose: true,
+            maxDate: new Date(),
+            yearRange: [1900,new Date().getFullYear()],
             format: 'dd-mmmm-yyyy',
             i18n: {
               cancel: 'Cancelar',
@@ -974,21 +796,197 @@
 
 
           });
+       var bautizo = M.Datepicker.init(fechaBau,{
+               disableWeekends: true,
+               format: 'dd-mmmm-yyyy',
+               i18n: {
+                 cancel: 'Cancelar',
+                 clear:	'Limpiar',
+                 done:	'Ok',
+                 weekdaysAbbrev: ['D','L','M','M','J','V','S'],
+                 months: [
+                   'Enero',
+                   'Febrero',
+                   'Marzo',
+                   'Abril',
+                   'Mayo',
+                   'Junio',
+                   'Julio',
+                   'Agosto',
+                   'Septiembre',
+                   'Octubre',
+                   'Noviembre',
+                   'Diciembre'
+                 ],
+                 monthsShort:
+                 [
+                   'Ene',
+                   'Feb',
+                   'Mar',
+                   'Abr',
+                   'May',
+                   'Jun',
+                   'Jul',
+                   'Ago',
+                   'Sep',
+                   'Oct',
+                   'Nov',
+                   'Dic'
+                 ],
 
+                 weekdays:
+                 [
+                   'Domingo',
+                   'Lunes',
+                   'Martes',
+                   'Miercoles',
+                   'Jueves',
+                   'Viernes',
+                   'Sabado'
+                 ],
+
+                 weekdaysShort:
+                 [
+                   'Dom',
+                   'Lun',
+                   'Mar',
+                   'Mie',
+                   'Jue',
+                   'Vie',
+                   'Sab'
+                 ],
+
+                 weekdaysAbbrev:	['D','L','M','X','J','V','S']
+               }
+
+
+             });
 
           console.log('mi instancia ', instance);
         });
+
+
     $('.collapsible').collapsible();
 
+    //para obtener datos de ubicacion
+    // recibe como parametro el tipo de ubicacion(pais, departamento, ciudad)
+    // como segundo parametro recibe el id del elemento del DOM(id del comboBoX de origen)
+    function dataBinding(){
+      // inicio de prueba... usando databinding con el objeto user para validar campos
+      //-- arreglo con los datos
+      var parametrosPermitidos = <%= raw @parametrosPermitidos.to_json %>;
+      parametrosPermitidos["direccionVia"] = null;
+      parametrosPermitidos["direccionNumero"] = null;
+      parametrosPermitidos["direccionNumero2"] = null;
+      parametrosPermitidos["nombre"] = null;
+      parametrosPermitidos["lugarExpedicion"] = null;
+      parametrosPermitidos["lugarNacimiento"] = null;
+      parametrosPermitidos["lugarResidencia"] = null;
+      parametrosPermitidos["nombreConyuge"] = null;
+      parametrosPermitidos["tiempoOtraIglesia"] = null;
+      parametrosPermitidos["nombreIglesia"] = null;
 
-     function update_versions_div(location_i, comb) {
+      //- arreglo con la estructura del binding
+       var uiAux = {};
+
+       // llenado de arreglo auxiliar
+       for( var key in parametrosPermitidos){
+         uiAux["#user_"+key] = {bind: key};
+         uiAux["#"+key] = {bind: key,
+         watch: "#user_"+key
+         };
+       };
+
+       parametrosPermitidos["paisExpedicion"] = null;
+       parametrosPermitidos["departamentoExpedicion"] = null;
+       parametrosPermitidos["ciudadExpedicion"] = null;
+       parametrosPermitidos["paisNacimiento"] = null;
+       parametrosPermitidos["departamentoNacimiento"] = null;
+       parametrosPermitidos["ciudadNacimiento"] = null;
+       parametrosPermitidos["paisResidencia"] = null;
+       parametrosPermitidos["departamentoResidencia"] = null;
+       parametrosPermitidos["ciudadResidencia"] = null;
+       parametrosPermitidos["paisIglesia"] = null;
+       parametrosPermitidos["departamentoIglesia"] = null;
+       parametrosPermitidos["ciudadIglesia"] = null;
+
+
+       console.log('datos permitidos en la vista', parametrosPermitidos);
+
+
+       //modificando datos personalizados
+       uiAux["#direccionVia"] = {bind: "direccionVia", recalc: "#lugarResidencia"};
+       uiAux["#direccionNumero"] = {bind: "direccionNumero"};
+       uiAux["#direccionNumero2"] = {bind: "direccionNumero2"};
+       uiAux["#paisExpedicion_id"] = {bind: "paisExpedicion"}
+       uiAux["#departamentoExpedicion_id"] = {bind: "departamentoExpedicion"};
+       uiAux["#ciudadExpedicion_id"] = {bind: "ciudadExpedicion"};
+       uiAux["#paisNacimiento_id"] = {bind: "paisNacimiento"};
+       uiAux["#departamentoNacimiento_id"] = {bind: "departamentoNacimiento"};
+       uiAux["#ciudadNacimiento_id"] = {bind: "ciudadNacimiento"};
+       uiAux["#iglesiaAnterior_tiempo"] = {bind: "tiempoOtraIglesia"};
+       uiAux["#iglesiaAnterior_nombre"] = {bind: "nombreIglesia"};
+       uiAux["#iglesiaAnterior_id"] = {bind: "ciudadIglesia"};
+
+       uiAux["#tiempoOtraIglesia"] = {bind: "tiempoOtraIglesia", watch: "#iglesiaAnterior_tiempo"};
+       uiAux["#nombreIglesia"] = {bind: "nombreIglesia", watch: "#iglesiaAnterior_nombre"};
+
+
+       uiAux["#lugarResidencia"] = {
+         bind: function (data) {
+           return (data.direccionVia + " # " + data.direccionNumero + "-" + data.direccionNumero2);
+         },
+         watch: "#direccionNumero, #direccionNumero2"
+       }
+       //----------
+       uiAux["#nombre"] = {
+         bind: function (data) {
+           return (data.primerNombre + " " + data.segundoNombre + " " + data.primerApellido + " " + data.segundoApellido);
+         },
+         watch: "#user_primerNombre, #user_segundoNombre, #user_primerApellido, #user_segundoApellido"
+       }
+       //---------
+       uiAux["#nombreConyuge"] = {
+         bind: function (data) {
+           return (data.primerNombreConyuge + " " + data.segundoNombreConyuge + " " + data.primerApellidoConyuge + " " + data.segundoApellidoConyuge);
+         },
+         watch: "#user_primerNombre, #user_segundoNombre, #user_primerApellido, #user_segundoApellido"
+       }
+       //---------
+       uiAux["#lugarExpedicion"] = {
+         bind: function (data) {
+           return ($("#ciudadExpedicion_id :selected").text() +" - "+ $("#departamentoExpedicion_id :selected").text()+" - "+ $("#paisExpedicion_id :selected").text());
+         },
+         watch: "#ciudadExpedicion_id"
+       }
+       uiAux["#lugarNacimiento"] = {
+         bind: function (data) {
+           return ($("#ciudadNacimiento_id :selected").text() +" - "+ $("#departamentoNacimiento_id :selected").text()+" - "+ $("#paisNacimiento_id :selected").text());
+         },
+         watch: "#ciudadNacimiento_id"
+       }
+       uiAux["#lugarIglesia"] = {
+         bind: function (data) {
+           return ($("#iglesiaAnterior_id :selected").text() +" - "+ $("#departamentoIglesia_id :selected").text()+" - "+ $("#paisIglesia_id :selected").text());
+         },
+         watch: "#iglesiaAnterior_id"
+       }
+
+       console.log('arreglo de metrica ui', uiAux);
+       // ya construido el ui continuamos con la estructura databindig
+       // nota: solo se puede acceder a los datos hijos del componente html (#datos)
+       $("#datos").my({ui:uiAux}, parametrosPermitidos);
+      // fin de la pruba con databinding
+    }
+     function obtenerDatos(location_i, comb) {
 
           jQuery.ajax({
-            url: "/cargar_departamentos",
+            url: "/cargar_ubicacion",
             type: "GET",
-            data: {location_id: location_i, combo: comb},
+            data: {ubicacion_id: location_i, combo: comb},
             dataType: "html",
             success: (datos)=> {
+              //dependiendo de comboBoX dependera donde se anadiran los datos de respuesta
               //--------------------------------------------------------
               console.log('esto tiene data ', comb);
               if(comb == 'paisExpedicion'){
@@ -1023,18 +1021,16 @@
                   jQuery("#ciudadIglesia").html(datos);
               }
               //--------------------------------------------------------
+              //$('select').formSelect();
+              dataBinding();
             }
           });
-           $('select').formSelect();
+          //$('select').formSelect();
 
           console.log('entre a la funcion con ajax');
         }
-        $('select').formSelect();
+        //$('select').formSelect();
 
-   var stepper = document.querySelector('.stepper');
-   var stepperInstace = new MStepper(stepper, {
-      // options
-      firstActive: 0 // this is the default
-   })
+
 
   </script>

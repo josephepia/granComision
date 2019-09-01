@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class AddressChurchAndDocumentExpeditionTest < ActiveSupport::TestCase
+class PreviousChurchTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

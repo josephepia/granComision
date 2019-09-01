@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :previous_churches
   resources :supports
   resources :solicits
   resources :permissions
@@ -22,7 +23,6 @@ Rails.application.routes.draw do
   resources :perfil
   resources :groups, only: [:index]
   get '/inscribirme', to: 'groups#inscribirme'
-  resources :address_church_and_document_expeditions
 
   resources :discipleships, shallow: true do
     resources :groups do
@@ -54,7 +54,7 @@ Rails.application.routes.draw do
 
   }
   devise_scope :user do
-  get '/cargar_departamentos' => 'users/registrations#cargar_departamentos'
+  get '/cargar_ubicacion' => 'users/registrations#cargar_departamentos'
 
   end
   get '/cargar_grupos' => 'enrolls#cargar_grupos'

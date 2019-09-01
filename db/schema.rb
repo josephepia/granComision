@@ -10,31 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190626142958) do
+ActiveRecord::Schema.define(version: 20190901010829) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "address_church_and_document_expeditions", force: :cascade do |t|
-    t.string "nombreIglesiaAnterior"
-    t.boolean "iglesia", default: false
-    t.boolean "expedicion", default: false
-    t.boolean "origen", default: false
+  create_table "addresses", force: :cascade do |t|
+    t.string "tipo"
+    t.string "descripcion"
     t.bigint "user_id"
+    t.bigint "district_id"
     t.bigint "city_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["city_id"], name: "index_address_church_and_document_expeditions_on_city_id"
-    t.index ["user_id"], name: "index_address_church_and_document_expeditions_on_user_id"
-  end
-
-  create_table "addresses", force: :cascade do |t|
-    t.string "direccion"
-    t.string "nombreBarrio"
-    t.bigint "user_id"
-    t.bigint "district_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.index ["city_id"], name: "index_addresses_on_city_id"
     t.index ["district_id"], name: "index_addresses_on_district_id"
     t.index ["user_id"], name: "index_addresses_on_user_id"
   end
@@ -97,6 +86,7 @@ ActiveRecord::Schema.define(version: 20190626142958) do
   create_table "districts", force: :cascade do |t|
     t.string "nombre"
     t.integer "comuna"
+    t.string "estrato"
     t.bigint "city_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -219,6 +209,17 @@ ActiveRecord::Schema.define(version: 20190626142958) do
     t.index ["user_id"], name: "index_permissions_users_on_user_id"
   end
 
+  create_table "previous_churches", force: :cascade do |t|
+    t.string "nombre"
+    t.string "tiempo"
+    t.bigint "address_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["address_id"], name: "index_previous_churches_on_address_id"
+    t.index ["user_id"], name: "index_previous_churches_on_user_id"
+  end
+
   create_table "publications", force: :cascade do |t|
     t.string "imagen"
     t.string "multimedia"
@@ -295,7 +296,6 @@ ActiveRecord::Schema.define(version: 20190626142958) do
     t.string "segundoApellidoConyuge"
     t.string "confesionReligiosa"
     t.boolean "fueMiembroOtraIglesia"
-    t.string "tiempoOtraIglesia"
     t.string "nivelAcademico"
     t.string "profesionOficio"
     t.boolean "confirmado", default: false
@@ -303,6 +303,9 @@ ActiveRecord::Schema.define(version: 20190626142958) do
     t.boolean "suspendido", default: false
     t.boolean "liderComunitario", default: false
     t.string "rango"
+    t.boolean "nuevoCreyente"
+    t.boolean "bautizadoAdulto"
+    t.date "fechaBautizo"
     t.bigint "community_group_id"
     t.bigint "ministery_id"
     t.datetime "created_at", null: false
@@ -314,8 +317,7 @@ ActiveRecord::Schema.define(version: 20190626142958) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "address_church_and_document_expeditions", "cities"
-  add_foreign_key "address_church_and_document_expeditions", "users"
+  add_foreign_key "addresses", "cities"
   add_foreign_key "addresses", "districts"
   add_foreign_key "addresses", "users"
   add_foreign_key "cities", "departments"
@@ -339,6 +341,8 @@ ActiveRecord::Schema.define(version: 20190626142958) do
   add_foreign_key "materials", "users"
   add_foreign_key "permissions_users", "permissions"
   add_foreign_key "permissions_users", "users"
+  add_foreign_key "previous_churches", "addresses"
+  add_foreign_key "previous_churches", "users"
   add_foreign_key "publications", "groups"
   add_foreign_key "publications", "materials"
   add_foreign_key "publications", "users"

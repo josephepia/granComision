@@ -2,62 +2,56 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
   before_action :inicializar_modelos, only: [:new, :cargar_departamentos]
-  
+
 
   # GET /resource/sign_up
   def new
-  
+    puts "parametros permitidos en new"
+    puts devise_parameter_sanitizer.inspect
     super
 
   end
   def cargar_departamentos
+    #comoBox de origen en la vista
+    #puede ser
+    # 'paisExpedicion'
+    # "departamentoExpedicion"
+    # "paisResidencia"
+    # "departamentoResidencia"
+    # "ciudadResidencia"
+    # "paisNacimiento"
+    # "departamentoNacimiento"
+    # "paisIglesia"
+    # "departamentoIglesia
+
     @combo = params[:combo]
-    
-    
-    if params[:combo]== 'paisExpedicion'
-    @departments = Department.where(country_id: params[:location_id]).all
-      
+
+    if ["paisExpedicion","paisNacimiento", "paisResidencia", "paisIglesia"].include?(params[:combo])
+    @departments = Department.where(country_id: params[:ubicacion_id]).all
     end
-    if params[:combo]== 'departamentoExpedicion'
-    @cities = City.where(department_id: params[:location_id]).all
-      
+
+    if ["departamentoExpedicion", "departamentoNacimiento", "departamentoResidencia", "departamentoIglesia"].include?(params[:combo])
+    @cities = City.where(department_id: params[:ubicacion_id]).all
     end
-    if params[:combo]== 'paisResidencia'
-    @departments = Department.where(country_id: params[:location_id]).all
-      
-    end
-    if params[:combo]== 'departamentoResidencia'
-    @cities = City.where(department_id: params[:location_id]).all
-      
-    end
+
     if params[:combo]== 'ciudadResidencia'
-    @districts = District.where(city_id: params[:location_id]).all
-      
+    @districts = District.where(city_id: params[:ubicacion_id]).all
     end
-    if params[:combo]== 'paisNacimiento'
-    @departments = Department.where(country_id: params[:location_id]).all
-      
-    end
-    if params[:combo]== 'departamentoNacimiento'
-    @city = City.where(department_id: params[:location_id]).all
-      
-    end
-    if params[:combo]== 'paisIglesia'
-    @departments = Department.where(country_id: params[:location_id]).all
-      
-    end
-    if params[:combo]== 'departamentoIglesia'
-    @city = City.where(department_id: params[:location_id]).all
-      
-    end
-    
-    
+
+    #luego de traer los datos de la base de datos procedo a cargarlos en la vista
+    #en sus respectivos comboBox
+
     render :partial => "departamentos", object: @department
   end
   # POST /resource
   def create
 
     @user = build_resource(devise_parameter_sanitizer.sanitize(:sign_up))
+
+    # puts "parametros permitos en general"
+    # puts params.inspect
+    # puts "parametros permitidos en create para user"
+    # puts devise_parameter_sanitizer.inspect
     #@user.confirmado = true
     if User.exists?(identificacion: @user.identificacion)
       respond_to do |format|
@@ -67,7 +61,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       end
     elsif User.exists?(email: @user.email)
       respond_to do |format|
-        flash.now[:notice] = "Este correo ya se encuentra registrado"        
+        flash.now[:notice] = "Este correo ya se encuentra registrado"
         format.html { render :new}
         format.json { render :show, status: :created, location: @user }
       end
@@ -75,7 +69,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
         super
         #redirect_to root_path
     end
-    
+
   end
 
   # GET /resource/edit
@@ -124,14 +118,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
       :segundoApellidoConyuge,
       :confesionReligiosa,
       :fueMiembroOtraIglesia,
-      :tiempoOtraIglesia,
+
       :nivelAcademico,
       :profesionOficio,
       :email,
-      :encrypted_password,
-      :password_confirmation, 
-      :created_at,
-      :updated_at,])
+      :nuevoCreyente,
+      :bautizadoAdulto,
+      :fechaBautizo])
   end
 
   # If you have extra params to permit, append them to the sanitizer.
@@ -144,13 +137,48 @@ class Users::RegistrationsController < Devise::RegistrationsController
      super(resource)
    end
    def inicializar_modelos
+     @paisExpedicion = Country.new
+
+    @departamentoExpedicion = Department.new
+    @ciudadExpedicion = City.new
+
     @countries = Country.new
     @departments = Department.new
     @cities = City.new
     @districts = District.new
     @combo = params[:combo]
+    @parametros = [:tipoDocumento,
+      :identificacion,
+      :primerNombre,
+      :segundoNombre,
+      :primerApellido,
+      :segundoApellido,
+      :telefono,
+      :sexo,
+      :fechaNacimiento,
+      :fechaRegistro,
+      :estadoCivil,
+      :fechaAniversario,
+      :primerNombreConyuge,
+      :segundoNombreConyuge,
+      :primerApellidoConyuge,
+      :segundoApellidoConyuge,
+      :confesionReligiosa,
+      :fueMiembroOtraIglesia,
+      :tiempoOtraIglesia,
+      :nivelAcademico,
+      :profesionOficio,
+      :email,
+      :nuevoCreyente,
+      :bautizadoAdulto,
+      :fechaBautizo,
+      :nombreIglesiaAnterior]
+    @parametrosPermitidos = {}
+    @parametros.each do |param|
+      @parametrosPermitidos[param] = nil
+    end
    end
-   
+
   # The path used after sign up for inactive accounts.
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)

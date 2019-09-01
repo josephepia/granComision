@@ -17,4 +17,21 @@
 //= require materialize
 //= require Chart.bundle
 //= require chartkick
+//= require sugar.min
 //= require_tree .
+
+document.addEventListener('turbolinks:load', function() {
+   M.AutoInit();
+ elem = document.querySelector('#slide-out');
+ instance = new M.Sidenav(elem, {});
+ $(".dropdown-trigger").dropdown({  });
+
+});
+document.addEventListener('turbolinks:before-cache', () => {
+ M.AutoInit();
+ const elem = document.querySelector('#slide-out');
+ const instance = M.Sidenav.getInstance(elem);
+ if (instance) {
+   instance.destroy();
+ }
+});

@@ -8,9 +8,9 @@
                     <p>Datos</p>
                     <%= form_with(model: discipleship, local: true) do |f| %>
                 <div class="row around-xs">
-                    
+
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
-                    <div class="box">                               
+                    <div class="box">
                       <div class="input-field">
                         <i class="material-icons prefix">border_color</i>
                         <%= f.label :nombre , "Nombre"%>
@@ -19,41 +19,41 @@
                     </div>
                   </div>
                   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
-                    <div class="box">                               
+                    <div class="box">
                       <div class="input-field">
                         <i class="material-icons prefix">local_offer</i>
                         <%= f.label :rangoOtorgado ,"Rango otorgado"%>
                         <%= f.text_field :rangoOtorgado, id: :discipleship_rangoOtorgado %>
                       </div>
                     </div>
-                  </div> 
+                  </div>
                   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <div class="box">                               
+                    <div class="box">
                       <div class="input-field">
                         <i class="material-icons prefix">assignment</i>
                         <%= f.label :descripcion %>
                         <%= f.text_area :descripcion, id: :discipleship_descripcion, class: "materialize-textarea" %>
                       </div>
                     </div>
-                  </div> 
-                  
+                  </div>
+
                   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <div class="box">                               
+                    <div class="box">
                       <div class="input-field">
                         <i class="material-icons prefix">assignment</i>
                         <%= f.label :descripcionPacto, "Descripcion del compromiso" %>
                         <%= f.text_area :descripcionPacto, id: :discipleship_descripcionPacto, class: "materialize-textarea" %>
                       </div>
                     </div>
-                  </div>    
+                  </div>
                   </div>
                   <div class="actions ">
-                    
+
                     <%= f.submit "Aceptar",class: "btn  waves-light  borde-radio-5" %>
                     <br><br>
-                    
-                    
-                    
+
+
+
                     </div>
                     <%end%>
                 </div>

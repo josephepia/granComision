@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Previous Churches</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Tiempo</th>
+      <th>Address</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @previous_churches.each do |previous_church| %>
+      <tr>
+        <td><%= previous_church.nombre %></td>
+        <td><%= previous_church.tiempo %></td>
+        <td><%= previous_church.address %></td>
+        <td><%= previous_church.user %></td>
+        <td><%= link_to 'Show', previous_church %></td>
+        <td><%= link_to 'Edit', edit_previous_church_path(previous_church) %></td>
+        <td><%= link_to 'Destroy', previous_church, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Previous Church', new_previous_church_path %>

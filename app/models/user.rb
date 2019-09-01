@@ -6,15 +6,15 @@ class User < ApplicationRecord
   has_and_belongs_to_many :ministeries
   has_and_belongs_to_many :roles
   has_and_belongs_to_many :permissions
-  has_many :addresschurchanddocumentexpeditions
-  has_many :address
+  has_many :addresses
   has_many :groups
   has_many :given_courses #, :through => :teacher
   has_many :covenants #, :through => :student
   has_many :horaries, :through => :groups
-  has_many  :enrolls
+  has_many :enrolls
   has_many :failures, :through => :enroll
   has_many :extended_notes #, :through => :student
+  has_many :previous_church
   belongs_to :communitygroups,optional: true
   has_and_belongs_to_many :covenants
   def email_required?

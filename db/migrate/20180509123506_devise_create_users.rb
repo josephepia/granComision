@@ -31,12 +31,11 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.1]
       t.string    :estadoCivil
       t.date      :fechaAniversario
       t.string    :primerNombreConyuge
-      t.string    :segundoNombreConyuge,default: ""     
+      t.string    :segundoNombreConyuge,default: ""
       t.string    :primerApellidoConyuge
       t.string    :segundoApellidoConyuge
       t.string    :confesionReligiosa
       t.boolean   :fueMiembroOtraIglesia
-      t.string   :tiempoOtraIglesia
       t.string    :nivelAcademico
       t.string    :profesionOficio
       t.boolean   :confirmado, default: false
@@ -44,7 +43,10 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.1]
       t.boolean   :suspendido, default: false
       t.boolean   :liderComunitario, default: false
       t.string    :rango
-
+      t.boolean   :nuevoCreyente
+      t.boolean   :bautizadoAdulto
+      t.date      :fechaBautizo
+      t.boolean   :fueMiembroOtraIglesia
 
       t.references :community_group, foreign_key: true
       t.references :ministery, foreign_key: true
@@ -63,7 +65,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.1]
 
       t.timestamps null: false
     end
-    add_index :users, :identificacion,       unique: true    
+    add_index :users, :identificacion,       unique: true
     add_index :users, :email,                unique: true
     add_index :users, :reset_password_token, unique: true
     # add_index :users, :confirmation_token,   unique: true

@@ -15,66 +15,53 @@
 // 	 url(asset-path('Roboto-Black.ttf')),
 // 	 url(asset-path('Roboto-BlackItalic.ttf'));
 @font-face {
-    font-family: "Roboto Thin";
-    src: url(asset-path('Roboto-Thin.ttf'))
+  font-family: "Roboto Thin";
+  src: url(asset-path('Roboto-Thin.ttf'));
 }
-
 @font-face {
-    font-family: "Roboto Thin Italic";
-    src: url(asset-path('Roboto-Black.ttf'))
+  font-family: "Roboto Thin Italic";
+  src: url(asset-path('Roboto-Black.ttf'));
 }
-
 @font-face {
-    font-family: "Roboto Light";
-    src: url(asset-path('Roboto-Light.ttf'))
+  font-family: "Roboto Light";
+  src: url(asset-path('Roboto-Light.ttf'));
 }
-
 @font-face {
-    font-family: "Roboto Light Italic";
-    src: url(asset-path('Roboto-LightItalic.ttf'))
+  font-family: "Roboto Light Italic";
+  src: url(asset-path('Roboto-LightItalic.ttf'));
 }
-
 @font-face {
-    font-family: "Roboto Regular";
-    src: url(asset-path('Roboto-Regular.ttf'))
+  font-family: "Roboto Regular";
+  src: url(asset-path('Roboto-Regular.ttf'));
 }
-
 @font-face {
-    font-family: "Roboto Regular Italic";
-    src: url(asset-path('Roboto-Italic.ttf'))
+  font-family: "Roboto Regular Italic";
+  src: url(asset-path('Roboto-Italic.ttf'));
 }
-
 @font-face {
-    font-family: "Roboto Medium";
-    src: url(asset-path('Roboto-Medium.ttf'))
+  font-family: "Roboto Medium";
+  src: url(asset-path('Roboto-Medium.ttf'));
 }
-
 @font-face {
-    font-family: "Roboto Medium Italic";
-    src: url(asset-path('Roboto-MediumItalic.ttf'))
+  font-family: "Roboto Medium Italic";
+  src: url(asset-path('Roboto-MediumItalic.ttf'));
 }
-
 @font-face {
-    font-family: "Roboto Bold";
-    src: url(asset-path('Roboto-Bold.ttf'))
+  font-family: "Roboto Bold";
+  src: url(asset-path('Roboto-Bold.ttf'));
 }
-
 @font-face {
-    font-family: "Roboto Bold Italic";
-    src: url(asset-path('Roboto-BoldItalic.ttf'))
+  font-family: "Roboto Bold Italic";
+  src: url(asset-path('Roboto-BoldItalic.ttf'));
 }
-
 @font-face {
-    font-family: "Roboto Black";
-    src: url(asset-path('Roboto-Black.ttf'))
+  font-family: "Roboto Black";
+  src: url(asset-path('Roboto-Black.ttf'));
 }
-
 @font-face {
-    font-family: "Roboto Black Italic";
-    src: url(asset-path('Roboto-BlackItalic.ttf'))
+  font-family: "Roboto Black Italic";
+  src: url(asset-path('Roboto-BlackItalic.ttf'));
 }
-
-
 /*
 thin 100
 thin 100 Italic
@@ -89,155 +76,211 @@ bold 700 Italic
 black 900
 black 900 Italic
 */
-
-html,
-body {
-    height: 100%;
-    width: 100%;
-    font-family: 'Roboto Regular';
+body,
+html {
+  height: 100%;
+  width: 100%;
+  font-family: 'Roboto Regular';
 }
-
 $fuentes: (
-"robotoT": "Roboto Thin",
-"robotoTI": "Roboto Thin Italic",
-"robotoL": "Roboto Light",
-"robotoLI": "Roboto Light Italic",
-"robotoR": "Roboto Regular",
-"robotoI": "Roboto Italic",
-"robotoM": "Roboto Medium",
-"robotoMI": "Roboto Medium Italic",
-"robotoB": "Roboto Bold",
-"robotoBI": "Roboto Bold Italic",
-"robotoBlack": "Roboto Black",
-"robotoBlackI": "Roboto Black Italic"
+  "robotoT": "Roboto Thin",
+  "robotoTI": "Roboto Thin Italic",
+  "robotoL": "Roboto Light",
+  "robotoLI": "Roboto Light Italic",
+  "robotoR": "Roboto Regular",
+  "robotoI": "Roboto Italic",
+  "robotoM": "Roboto Medium",
+  "robotoMI": "Roboto Medium Italic",
+  "robotoB": "Roboto Bold",
+  "robotoBI": "Roboto Bold Italic",
+  "robotoBlack": "Roboto Black",
+  "robotoBlackI": "Roboto Black Italic"
 );
-
 @each $fuente_name,$fuente in $fuentes {
-    .#{$fuente_name} {
-        font-family: $fuente !important;
-    }
+  .#{$fuente_name} {
+    font-family: $fuente !important;
+  }
 }
 
 .mobile-fab-tip {
-    position: fixed;
-    right: 85px;
-    padding: 0px 0.5rem;
-    text-align: right;
-    background-color: #323232;
-    border-radius: 2px;
-    color: #FFF;
-    width: auto;
+  position: fixed;
+  right: 85px;
+  padding: 0 0.5rem;
+  text-align: right;
+  background-color: #323232;
+  border-radius: 2px;
+  color: #FFF;
+  width: auto;
 }
 
 .no-margin {
-    margin: 0;
+  margin: 0;
 }
 
 .no-padding {
-    padding: 0;
+  padding: 0;
 }
 
 .alto80 {
-    height: 80%;
+  height: 80%;
 }
 
 .altocompleto {
-    max-height: 100%;
+  max-height: 100%;
 }
 
 .anchocompleto {
-    max-width: 100%;
+  max-width: 100%;
 }
 
 .fondo-login {
-    background-image: url(#{asset_path('reserva2.jpg')});
-    background-size:cover;
-    background-repeat: none;
-
+  background-image: url(#{asset_path('reserva2.jpg')});
+  background-size: cover;
+  background-repeat: none;
 }
 
 .margen-boton {
-    margin: 5;
+  margin: 5;
 }
+
 .no-margin-bottom {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
+
 .logo-img {
-    max-height: 64px!important;
-    //padding: 15px 0!important;
+  max-height: 64px!important;
+  //padding: 15px 0!important;
 }
+
 .avatar-img {
-    max-height: 50px!important;
+  max-height: 50px!important;
+}
+//modificando texto
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.lowercase {
+  text-transform: lowercase;
+}
+
+.capitalize {
+  text-transform: capitalize;
 }
 // siclo repetitivo para ayuda, hasta el 100
 @for $i from 0 through 100 {
-    .borde-radio-#{$i} {
-        border-radius: #{$i}px;
-    }
+  .borde-radio-#{$i} {
+    border-radius: #{$i}px;
+  }
 
-    .borde-radio-top-#{$i} {
-        border-radius: #{$i}px #{$i}px 0px 0px;
-    }
+  .borde-radio-top-#{$i} {
+    border-radius: #{$i}px #{$i}px 0 0;
+  }
 
-    .borde-radio-buton-#{$i} {
-        border-radius: 0px 0px #{$i}px #{$i}px;
-    }
-//margin
-    .margin-#{$i} {
-        margin: #{$i}px;
-    }
-//margin vertical
-    .margin-vertical-#{$i} {
-        margin-top: #{$i}px;
-        margin-bottom: #{$i}px;
-    }
-//margin horizontal
-    .margin-horizontal-#{$i} {
-        margin-left: #{$i}px;
-        margin-right: #{$i}px;
-    }
-//margin top
-    .margin-top-#{$i} {
-        margin-top: #{$i}px;
-    }
-//marging bottom
-    .margin-bottom-#{$i} {
-        margin-bottom: #{$i}px !important;
-    }
-//margin margin-left
-    .margin-left-#{$i} {
-        margin-left: #{$i}px;
-    }
-//margin right
-    .margin-right-#{$i} {
-        margin-right: #{$i}px;
-    }
-//pading
-    .padding-#{$i} {
-        padding: #{$i}px !important;
-    }
+  .borde-radio-buton-#{$i} {
+    border-radius: 0 0 #{$i}px #{$i}px;
+  }
+  //margin
 
-    .padding-horizontal-#{$i} {
-        padding-left: #{$i}px;
-        padding-right: #{$i}px;
-    }
+  .margin-#{$i} {
+    margin: #{$i}px !important;
+  }
+  //margin vertical
+  .margin-vertical-#{$i} {
+    margin-top: #{$i}px !important;
+    margin-bottom: #{$i}px !important;
+  }
+  //margin horizontal
+  .margin-horizontal-#{$i} {
+    margin-left: #{$i}px !important;
+    margin-right: #{$i}px !important;
+  }
+  //margin top
+  .margin-top-#{$i} {
+    margin-top: #{$i}px !important;
+  }
+  //marging bottom
+  .margin-bottom-#{$i} {
+    margin-bottom: #{$i}px !important;
+  }
+  //margin margin-left
+  .margin-left-#{$i} {
+    margin-left: #{$i}px;
+  }
+  //margin right
+  .margin-right-#{$i} {
+    margin-right: #{$i}px;
+  }
+  //pading
+  .padding-#{$i} {
+    padding: #{$i}px !important;
+  }
 
-    .padding-vertical-#{$i} {
-        padding-top: #{$i}px;
-        padding-bottom: #{$i}px;
-    }
+  .padding-horizontal-#{$i} {
+    padding-left: #{$i}px !important;
+    padding-right: #{$i}px !important;
+  }
 
-    .text-#{$i} {
-        font-size: #{$i}px !important;
-    }
+  .padding-vertical-#{$i} {
+    padding-top: #{$i}px !important;
+    padding-bottom: #{$i}px !important;
+  }
+
+  .text-#{$i} {
+    font-size: #{$i}px !important;
+  }
 }
+// trabajando con porcentaje en lugar de pixeles
+@for $i from 0 through 100 {
+  //margin
+  .margin-#{$i}-porcent {
+    margin: 0% + $i !important;
+  }
+  //margin vertical
+  .margin-vertical-#{$i}porcent {
+    margin-top: 0% + $i !important;
+    margin-bottom: 0% + $i !important;
+  }
+  //margin horizontal
+  .margin-horizontal-#{$i}porcent {
+    margin-left: 0% + $i !important;
+    margin-right: 0% + $i !important;
+  }
+  //margin top
+  .margin-top-#{$i}porcent {
+    margin-top: 0% + $i !important;
+  }
+  //marging bottom
+  .margin-bottom-#{$i}porcent {
+    margin-bottom: 0% + $i !important;
+  }
+  //margin margin-left
+  .margin-left-#{$i}porcent {
+    margin-left: 0% + $i;
+  }
+  //margin right
+  .margin-right-#{$i}porcent {
+    margin-right: 0% + $i;
+  }
+  //pading
+  .padding-#{$i}porcent {
+    padding: 0% + $i !important;
+  }
 
-// .col-xs-12 > .btn {
-//   width: 100%;
-// }
+  .padding-horizontal-#{$i}porcent {
+    padding-left: 0% + $i !important;
+    padding-right: 0% + $i !important;
+  }
+
+  .padding-vertical-#{$i}porcent {
+    padding-top: 0% + $i !important;
+    padding-bottom: 0% + $i !important;
+  }
+}
 //siclo de ayuda hasta el 1000/mil
 @for $i from 1 through 1000 {
-    .ancho-#{$i} {
-        width: #{$i}px;
-    }
+  .ancho-#{$i} {
+    width: #{$i}px;
+  }
 }

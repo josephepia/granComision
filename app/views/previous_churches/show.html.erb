@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @previous_church.nombre %>
+</p>
+
+<p>
+  <strong>Tiempo:</strong>
+  <%= @previous_church.tiempo %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @previous_church.address %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @previous_church.user %>
+</p>
+
+<%= link_to 'Edit', edit_previous_church_path(@previous_church) %> |
+<%= link_to 'Back', previous_churches_path %>

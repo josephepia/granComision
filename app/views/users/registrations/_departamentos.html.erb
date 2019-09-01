@@ -1,48 +1,56 @@
-<%if @combo=='paisExpedicion' %>
-<%=collection_select(:departamentoExpedicion,:id ,@departments, :id, :nombre, options = {:prompt => 'Seleccione'}, html_options = {class: "no-autoinit",onChange: "update_versions_div(this.options[this.selectedIndex].value,'departamentoExpedicion');"})%>
+<%if @combo == 'paisExpedicion' %>
+<%=collection_select(:departamentoExpedicion,:id ,@departments, :id, :nombre, options = {:prompt => 'Seleccione'}, html_options = {class: "",
+onChange: "obtenerDatos(this.options[this.selectedIndex].value,'departamentoExpedicion');"})%>
 <label>Departamento expedicion</label>
 <%end %>
-<%if @combo=='departamentoExpedicion' %>
-<%=collection_select(:ciudadExpedicion,:id ,@cities, :id, :nombre, options = {:prompt => 'Seleccione'}, html_options = {class: "no-autoinit"})%>
+
+<%if @combo == 'departamentoExpedicion' %>
+<%=collection_select(:ciudadExpedicion,:id ,@cities, :id, :nombre, options = {:prompt => 'Seleccione'}, html_options = {class: ""})%>
 <label>Ciudad de expedicion</label>
 <%end %>
-<%if @combo=='paisResidencia' %>
-<%=collection_select(:departamentoResidencia,:id ,@departments, :id, :nombre, options = {:prompt => 'Seleccione'}, html_options = {class: "no-autoinit"})%>
-<label>Departamento residencia</label>
 
+<%if @combo == 'paisResidencia' %>
+<%=collection_select(:departamentoResidencia,:id ,@departments, :id, :nombre, options = {:prompt => 'Seleccione'}, html_options = {class: "",
+onChange: "obtenerDatos(this.options[this.selectedIndex].value,'departamentoResidencia');"})%>
+<label>Departamento residencia</label>
 <%end %>
-<%if @combo=='departamentoResidencia' %>
-<%=collection_select(:ciudadResidencia,:id ,@cities, :id, :nombre, options = {:prompt => 'Seleccione'}, html_options = {class: "no-autoinit"})%>
+
+<%if @combo == 'departamentoResidencia' %>
+<%=collection_select(:ciudadResidencia,:id ,@cities, :id, :nombre, options = {:prompt => 'Seleccione'}, html_options = {class: "",
+onChange: "obtenerDatos(this.options[this.selectedIndex].value,'ciudadResidencia');"})%>
 <label>Ciudad residencia</label>
 <%end %>
-<%if @combo=='ciudadResidencia' %>
-<%=collection_select(:barrioResidencia,:id ,barrios, :id, :nombre, options = {:prompt => 'Seleccione'}, html_options = {class: "no-autoinit"})%>
+
+<%if @combo == 'ciudadResidencia' %>
+<%=collection_select(:barrioResidencia,:id ,@districts, :id, :nombre, options = {:prompt => 'Seleccione'}, html_options = {class: ""})%>
 <label>Barrio de residencia</label>
 
 <%end %>
-<%if @combo=='paisNacimiento' %>
-<%=collection_select(:departamentoNacimiento,:id ,@departments, :id, :nombre, options = {:prompt => 'Seleccione'}, html_options = {class: "no-autoinit"})%>
+<%if @combo == 'paisNacimiento' %>
+<%=collection_select(:departamentoNacimiento,:id ,@departments, :id, :nombre, options = {:prompt => 'Seleccione'}, html_options = {class: "",
+onChange: "obtenerDatos(this.options[this.selectedIndex].value,'departamentoNacimiento');"})%>
 <label>Departamento de nacimiento</label>
 
 <%end %>
-<%if @combo=='departamentoNacimiento' %>
-<%=collection_select(:ciudadNacimiento,:id ,@cities, :id, :nombre, options = {:prompt => 'Seleccione'}, html_options = {class: "no-autoinit"})%>
+<%if @combo == 'departamentoNacimiento' %>
+<%=collection_select(:ciudadNacimiento,:id ,@cities, :id, :nombre, options = {:prompt => 'Seleccione'}, html_options = {class: "",
+})%>
 <label>Ciudad de nacimiento</label>
 <%end %>
-<%if @combo=='paisIglesia' %>
-<%=collection_select(:departamentoIglesia,:id ,@departments, :id, :nombre, options = {:prompt => 'Seleccione'}, html_options = {class: "no-autoinit"})%>
+<%if @combo == 'paisIglesia' %>
+<%=collection_select(:departamentoIglesia,:id ,@departments, :id, :nombre, options = {:prompt => 'Seleccione'}, html_options = {class: "",
+onChange: "obtenerDatos(this.options[this.selectedIndex].value,'departamentoIglesia');"})%>
 <label>Departamento iglesia</label>
 
 <%end %>
-<%if @combo=='departamentoIglesia' %>
-<%=collection_select(:ciudadIglesia,:id ,@cities, :id, :nombre, options = {:prompt => 'Seleccione'}, html_options = {class: "no-autoinit"})%>
-<label>Ciudad de iglesia</label>
+<%if @combo == 'departamentoIglesia' %>
+<%=collection_select(:iglesiaAnterior,:id ,@cities, :id, :nombre, options = {:prompt => 'Seleccione'}, html_options = {class: ""})%>
+<label>Ciudad iglesia</label>
 
 <%end %>
-<script type="text/javascript">
 
-$(document).ready(function(){
+<script type="text/javascript">
+  $(document).ready(function(){
     $('select').formSelect();
   });
-
 </script>
