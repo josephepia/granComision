@@ -212,11 +212,11 @@ ActiveRecord::Schema.define(version: 20190901010829) do
   create_table "previous_churches", force: :cascade do |t|
     t.string "nombre"
     t.string "tiempo"
-    t.bigint "address_id"
+    t.bigint "city_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["address_id"], name: "index_previous_churches_on_address_id"
+    t.index ["city_id"], name: "index_previous_churches_on_city_id"
     t.index ["user_id"], name: "index_previous_churches_on_user_id"
   end
 
@@ -341,7 +341,7 @@ ActiveRecord::Schema.define(version: 20190901010829) do
   add_foreign_key "materials", "users"
   add_foreign_key "permissions_users", "permissions"
   add_foreign_key "permissions_users", "users"
-  add_foreign_key "previous_churches", "addresses"
+  add_foreign_key "previous_churches", "cities"
   add_foreign_key "previous_churches", "users"
   add_foreign_key "publications", "groups"
   add_foreign_key "publications", "materials"

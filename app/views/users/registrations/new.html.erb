@@ -14,9 +14,9 @@
           <span class="card-title robotoB text-20 primario-text">Queremos conocerte</span>
 
           <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-          <ul class="stepper horizontal robotoR maring-vertical-0" >
+          <ul class="stepper linear horizontal robotoR maring-vertical-0" >
             <li class="step ">
-              <div class="step-title waves-effect titulos-text robotoB">Ubicación</div>
+              <div class="step-title waves-effect titulos-text robotoB">Paso 1</div>
               <div class="step-content">
                  <!-- Your step content goes here (like inputs or so) -->
                  <div class="row between-xs">
@@ -211,7 +211,7 @@
               </div>
             </li>
             <li class="step">
-              <div class="step-title waves-effect titulos-text robotoB">Sobre ti</div>
+              <div class="step-title waves-effect titulos-text robotoB">Paso 2</div>
               <div class="step-content">
                  <!-- Your step content goes here (like inputs or so) -->
                  <div class="row between-xs">
@@ -353,14 +353,14 @@
               </div>
             </li>
             <li class="step">
-              <div class="step-title waves-effect">Cuenta</div>
+              <div class="step-title waves-effect titulos-text robotoB">Paso 3</div>
               <div class="step-content">
                  <!-- Your step content goes here (like inputs or so) -->
                  <div class="row between-xs">
                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-2">
                      <div class="box">
                        <div class="input-field">
-                         <%= f.select :nuevoCreyente, [['Seleccione',''],['Si','yes'],['No','no']]%>
+                         <%= f.select :nuevoCreyente, [['Seleccione',''],['Si','t'],['No','f']]%>
                          <%= f.label :nuevoCreyente, "¿Es nuevo creyente?"%>
                        </div>
                      </div>
@@ -368,7 +368,7 @@
                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-2">
                      <div class="box">
                        <div class="input-field">
-                         <%= f.select :bautizadoAdulto, [['Seleccione',''],['Si','yes'],['No','no']]%>
+                         <%= f.select :bautizadoAdulto, [['Seleccione',''],['Si','t'],['No','f']]%>
                          <%= f.label :bautizadoAdulto, "¿Fue bautizado siendo adulto?"%>
                        </div>
                      </div>
@@ -393,7 +393,7 @@
                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-2">
                      <div class="box">
                        <div class="input-field">
-                         <%= f.select :fueMiembroOtraIglesia, [['Seleccione',''],['Si','si'],['No','no']]%>
+                         <%= f.select :fueMiembroOtraIglesia, [['Seleccione',''],['Si','si'],['No','f']]%>
                          <%= f.label :fueMiembroOtraIglesia, "¿Ha sido miembro de otra iglesia?"%>
                        </div>
                      </div>
@@ -491,13 +491,13 @@
               </div>
             </li>
             <li class="step">
-              <div class="step-title waves-effect">Confirmar</div>
+              <div class="step-title waves-effect titulos-text robotoB">Confirmar</div>
               <div class="step-content padding-horizontal-5porcent">
                  <!-- Your step content goes here (like inputs or so) -->
                  <div class="row between-xs">
                    <div class="start-xs col-xs-12 col-sm-8 col-md-6 col-lg-3">
                      <p class="robotoM titulos-text ">Nombre:</p>
-                     <span id="nombre" class="secundario-text robotoM capitalize">joseph epiayu fernandez</span>
+                     <span id="nombre" class="secundario-text robotoM capitalize">inconsistencia</span>
                    </div>
                    <div class="start-xs col-xs-12 col-sm-8 col-md-6 col-lg-3">
                      <p class="robotoM titulos-text ">Fecha de nacimiento:</p>
@@ -515,55 +515,55 @@
                  <div class="row between-xs">
                    <div class="start-xs col-xs-12 col-sm-8 col-md-6 col-lg-3">
                      <p class="robotoM titulos-text ">Lugar de expedición:</p>
-                     <span id="lugarExpedicion" class="secundario-text robotoM capitalize">Fonseca - La Guajira - Colombia</span>
+                     <span id="lugarExpedicion" class="secundario-text robotoM capitalize">inconsistencia</span>
                    </div>
                    <div class="start-xs col-xs-12 col-sm-8 col-md-6 col-lg-3">
                      <p class="robotoM titulos-text ">Sexo:</p>
-                     <span id="sexo" class="secundario-text robotoM capitalize">Masculino</span>
+                     <span id="sexo" class="secundario-text robotoM capitalize">inconsistencia</span>
                    </div>
                    <div class="start-xs col-xs-12 col-sm-8 col-md-6 col-lg-3">
                      <p class="robotoM titulos-text ">Telefono:</p>
-                     <span id="telefono" class="secundario-text robotoM capitalize">3116229946</span>
+                     <span id="telefono" class="secundario-text robotoM capitalize">inconsistencia</span>
                    </div>
                    <div class="start-xs col-xs-12 col-sm-8 col-md-6 col-lg-3">
                      <p class="capitalize robotoM titulos-text ">Lugar de nacimiento:</p>
-                     <span id="lugarNacimiento" class="secundario-text robotoM">Fonseca - La Guajira - Colombia</span>
+                     <span id="lugarNacimiento" class="secundario-text robotoM">inconsistencia</span>
                    </div>
                  </div>
                  <div class="row between-xs">
                    <div class="start-xs col-xs-12 col-sm-8 col-md-6 col-lg-3">
                      <p class="robotoM titulos-text ">Direccion de residencia:</p>
-                     <span id="lugarResidencia" class="secundario-text robotoM capitalize">Calle 16 #20 - 56 Barrio la Popa - Valledupar - Cesar</span>
+                     <span id="lugarResidencia" class="secundario-text robotoM capitalize">inconsistencia</span>
                    </div>
                    <div class="start-xs col-xs-12 col-sm-8 col-md-6 col-lg-3">
                      <p class="robotoM titulos-text ">Estado civil:</p>
-                     <span id="estadoCivil" class="secundario-text robotoM capitalize">Soltero</span>
+                     <span id="estadoCivil" class="secundario-text robotoM capitalize">inconsistencia</span>
                    </div>
                    <div class="start-xs col-xs-12 col-sm-8 col-md-6 col-lg-3">
                      <p class="robotoM titulos-text ">Nombre de cónyuge:</p>
-                     <span id="nombreConyuge" class="secundario-text robotoM capitalize">Maria Alejandra Bermudez Perez</span>
+                     <span id="nombreConyuge" class="secundario-text robotoM capitalize">inconsistencia</span>
                    </div>
                    <div class="start-xs col-xs-12 col-sm-8 col-md-6 col-lg-3">
                      <p class="capitalize robotoM titulos-text ">Fecha de aniversario:</p>
-                     <span id="fechaAniversario" class="secundario-text robotoM">01-01-2019</span>
+                     <span id="fechaAniversario" class="secundario-text robotoM">inconsistencia</span>
                    </div>
                  </div>
                  <div class="row between-xs">
                    <div class="start-xs col-xs-12 col-sm-8 col-md-6 col-lg-3">
                      <p class="robotoM titulos-text ">¿Es nuevo creyente?:</p>
-                     <span id="nuevoCreyente" class="secundario-text robotoM capitalize">Catolico</span>
+                     <span id="nuevoCreyente" class="secundario-text robotoM capitalize">inconsistencia</span>
                    </div>
                    <div class="start-xs col-xs-12 col-sm-8 col-md-6 col-lg-3">
                      <p class="robotoM titulos-text ">¿Fue bautizado siendo adulto?:</p>
-                     <span id="bautizadoAdulto" class="secundario-text robotoM capitalize">Catolico</span>
+                     <span id="bautizadoAdulto" class="secundario-text robotoM capitalize">inconsistencia</span>
                    </div>
                    <div class="start-xs col-xs-12 col-sm-8 col-md-6 col-lg-3">
                      <p class="robotoM titulos-text ">Fecha de bautizo:</p>
-                     <span id="fechaBautizo" class="secundario-text robotoM capitalize">Catolico</span>
+                     <span id="fechaBautizo" class="secundario-text robotoM capitalize">inconsistencia</span>
                    </div>
                    <div class="start-xs col-xs-12 col-sm-8 col-md-6 col-lg-3">
                      <p class="robotoM titulos-text ">Confesión relogiosa:</p>
-                     <span id="confesionReligiosa" class="secundario-text robotoM capitalize">Catolico</span>
+                     <span id="confesionReligiosa" class="secundario-text robotoM capitalize">inconsistencia</span>
                    </div>
 
                  </div>
@@ -571,7 +571,7 @@
 
                    <div class="start-xs col-xs-12 col-sm-8 col-md-6 col-lg-3">
                      <p class="robotoM titulos-text ">¿Fue miembro de otra iglesia? :</p>
-                     <span id="fueMiembroOtraIglesia" class="secundario-text robotoM capitalize">Si</span>
+                     <span id="fueMiembroOtraIglesia" class="secundario-text robotoM capitalize">inconsistencia</span>
                    </div>
                    <div class="start-xs col-xs-12 col-sm-8 col-md-6 col-lg-3">
                      <p class="robotoM titulos-text ">Nombre de la iglesia:</p>
@@ -591,15 +591,15 @@
                  <div class="row start-xs">
                    <div class="start-xs col-xs-12 col-sm-8 col-md-6 col-lg-3">
                      <p class="capitalize robotoM titulos-text ">Nivel académico:</p>
-                     <span id="nivelAcademico" class="secundario-text robotoM">Bachiller</span>
+                     <span id="nivelAcademico" class="secundario-text robotoM">inconsistencia</span>
                    </div>
                    <div class="start-xs col-xs-12 col-sm-8 col-md-6 col-lg-3">
                      <p class="robotoM titulos-text ">Ocupación:</p>
-                     <span id="profesionOficio" class="secundario-text robotoM capitalize">Estudiante</span>
+                     <span id="profesionOficio" class="secundario-text robotoM capitalize">inconsistencia</span>
                    </div>
                    <div class="start-xs col-xs-12 col-sm-8 col-md-6 col-lg-3">
                      <p class="robotoM titulos-text ">Correo:</p>
-                     <span id="email" class="secundario-text robotoM">remixlebo@gmail.com</span>
+                     <span id="email" class="secundario-text robotoM">inconsistencia</span>
                    </div>
 
                  </div>
@@ -875,6 +875,8 @@
       // inicio de prueba... usando databinding con el objeto user para validar campos
       //-- arreglo con los datos
       var parametrosPermitidos = <%= raw @parametrosPermitidos.to_json %>;
+      console.log('datos permitidos en la vista al llegar', parametrosPermitidos);
+
       parametrosPermitidos["direccionVia"] = null;
       parametrosPermitidos["direccionNumero"] = null;
       parametrosPermitidos["direccionNumero2"] = null;
@@ -909,9 +911,13 @@
        parametrosPermitidos["paisIglesia"] = null;
        parametrosPermitidos["departamentoIglesia"] = null;
        parametrosPermitidos["ciudadIglesia"] = null;
+       parametrosPermitidos["nuevoCreyente"] = null;
+       parametrosPermitidos["fueMiembroOtraIglesia"] = null;
+       parametrosPermitidos["bautizadoAdulto"] = null;
 
 
-       console.log('datos permitidos en la vista', parametrosPermitidos);
+
+       console.log('datos permitidos en la vista final', parametrosPermitidos);
 
 
        //modificando datos personalizados
@@ -927,6 +933,16 @@
        uiAux["#iglesiaAnterior_tiempo"] = {bind: "tiempoOtraIglesia"};
        uiAux["#iglesiaAnterior_nombre"] = {bind: "nombreIglesia"};
        uiAux["#iglesiaAnterior_id"] = {bind: "ciudadIglesia"};
+
+       uiAux["#user_nuevoCreyente"] = {bind: "nuevoCreyente"};
+       uiAux["#user_bautizadoAdulto"] = {bind: "bautizadoAdulto"};
+       uiAux["#user_fueMiembroOtraIglesia"] = {bind: "fueMiembroOtraIglesia"};
+
+       uiAux["#nuevoCreyente"] = {
+         bind: function(){ return $("#user_nuevoCreyente :selected").text()}, whatch: "#user_nuevoCreyente"};
+       uiAux["#bautizadoAdulto"] = {bind: function(){ return $("#user_bautizadoAdulto :selected").text()}, whatch: "#user_bautizadoAdulto"};
+       uiAux["#fueMiembroOtraIglesia"] = {bind: function(){ return $("#user_fueMiembroOtraIglesia :selected").text()}, whatch: "#user_fueMiembroOtraIglesia"};
+
 
        uiAux["#tiempoOtraIglesia"] = {bind: "tiempoOtraIglesia", watch: "#iglesiaAnterior_tiempo"};
        uiAux["#nombreIglesia"] = {bind: "nombreIglesia", watch: "#iglesiaAnterior_nombre"};

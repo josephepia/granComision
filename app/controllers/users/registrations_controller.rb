@@ -47,7 +47,27 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
 
     @user = build_resource(devise_parameter_sanitizer.sanitize(:sign_up))
-
+    # ActiveRecord::Base.transaction do
+    #   direccionExpedicion = Address.new
+    #   direccionOrigen =     Address.new
+    #   direccionResiencia =  Address.new
+    #   if @user.fueMiembroOtraIglesia
+    #   direccionIglesia =        Address.new
+    #   direccionIglesia.user =   @user
+    #   direccionIglesia.tipo =   'iglesia'
+    #   end
+    #
+    #   direccionExpedicion.user =  @user
+    #   direccionOrigen.user =      @user
+    #   direccionResiencia.user =  @user
+    #
+    #   direccionExpedicion.tipo = 'expedicion'
+    #   direccionOrigen.tipo =     'origen'
+    #   direccionResiencia.tipo =  'residencia'
+    #   direccion
+    #
+    #   Address
+    # end
     # puts "parametros permitos en general"
     # puts params.inspect
     # puts "parametros permitidos en create para user"
@@ -164,13 +184,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
       :primerApellidoConyuge,
       :segundoApellidoConyuge,
       :confesionReligiosa,
-      :fueMiembroOtraIglesia,
+      
       :tiempoOtraIglesia,
       :nivelAcademico,
       :profesionOficio,
       :email,
-      :nuevoCreyente,
-      :bautizadoAdulto,
+
       :fechaBautizo,
       :nombreIglesiaAnterior]
     @parametrosPermitidos = {}
