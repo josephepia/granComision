@@ -938,10 +938,9 @@
        uiAux["#user_bautizadoAdulto"] = {bind: "bautizadoAdulto"};
        uiAux["#user_fueMiembroOtraIglesia"] = {bind: "fueMiembroOtraIglesia"};
 
-       uiAux["#nuevoCreyente"] = {
-         bind: function(){ return $("#user_nuevoCreyente :selected").text()}, whatch: "#user_nuevoCreyente"};
-       uiAux["#bautizadoAdulto"] = {bind: function(){ return $("#user_bautizadoAdulto :selected").text()}, whatch: "#user_bautizadoAdulto"};
-       uiAux["#fueMiembroOtraIglesia"] = {bind: function(){ return $("#user_fueMiembroOtraIglesia :selected").text()}, whatch: "#user_fueMiembroOtraIglesia"};
+       uiAux["#nuevoCreyente"] = {bind: function(){ return $("#user_nuevoCreyente :selected").text()}, watch: "#user_nuevoCreyente"};
+       uiAux["#bautizadoAdulto"] = {bind: function(){ return $("#user_bautizadoAdulto :selected").text()}, watch: "#user_bautizadoAdulto"};
+       uiAux["#fueMiembroOtraIglesia"] = {bind: function(){ return $("#user_fueMiembroOtraIglesia :selected").text()}, watch: "#user_fueMiembroOtraIglesia"};
 
 
        uiAux["#tiempoOtraIglesia"] = {bind: "tiempoOtraIglesia", watch: "#iglesiaAnterior_tiempo"};

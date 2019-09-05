@@ -47,48 +47,67 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
 
     @user = build_resource(devise_parameter_sanitizer.sanitize(:sign_up))
-    # ActiveRecord::Base.transaction do
-    #   direccionExpedicion = Address.new
-    #   direccionOrigen =     Address.new
-    #   direccionResiencia =  Address.new
-    #   if @user.fueMiembroOtraIglesia
-    #   direccionIglesia =        Address.new
-    #   direccionIglesia.user =   @user
-    #   direccionIglesia.tipo =   'iglesia'
-    #   end
-    #
-    #   direccionExpedicion.user =  @user
-    #   direccionOrigen.user =      @user
-    #   direccionResiencia.user =  @user
-    #
-    #   direccionExpedicion.tipo = 'expedicion'
-    #   direccionOrigen.tipo =     'origen'
-    #   direccionResiencia.tipo =  'residencia'
-    #   direccion
-    #
-    #   Address
-    # end
+    ActiveRecord::Base.transaction do
+      direccionExpedicion = Address.new
+      direccionOrigen =     Address.new
+      direccionResiencia =  Address.new
+      puts "fue miembro de otra iglesia"
+      puts @user.inspect
+
+
+      direccionExpedicion.user =  @user
+      direccionOrigen.user =      @user
+      direccionResiencia.user =   @user
+
+      direccionExpedicion.tipo = 'expedicion'
+      direccionOrigen.tipo =     'origen'
+      direccionResiencia.tipo =  'residencia'
+
+      #direccionExpedicion.descripcion
+      #direccionOrigen.descripcion =     'origen'
+      direccionResiencia.descripcion =  params[:direccionVia] +' # '+ params[:direccionNumero]+' - '+ params[:direccionNumero2]
+
+      direccionExpedicion.city_id =     params[:ciudadExpedicion][:id]
+      direccionOrigen.city_id =         params[:ciudadNacimiento][:id]
+      direccionResiencia.district_id =  params[:barrioResidencia][:id]
+
+      #guardar todos los objetos restantes
+      if @user.fueMiembroOtraIglesia
+        iglesiaAnterior = PreviousChurch.new
+        iglesiaAnterior.user =   @user
+        iglesiaAnterior.nombre = params[:iglesiaAnterior][:nombre]
+        iglesiaAnterior.tiempo = params[:iglesiaAnterior][:tiempo]
+        iglesiaAnterior.city_id = params[:iglesiaAnterior][:id]
+        iglesiaAnterior.save
+      end
+      direccionExpedicion.save
+      direccionOrigen.save
+      direccionResiencia.save
+      @user.confirmado = true
+      if User.exists?(identificacion: @user.identificacion)
+        respond_to do |format|
+          flash.now[:notice] = "Esta identificacion ya se encuentra registrada"
+          format.html { render :new}
+          format.json { render :show, status: :created, location: @user }
+        end
+      elsif User.exists?(email: @user.email)
+        respond_to do |format|
+          flash.now[:notice] = "Este correo ya se encuentra registrado"
+          format.html { render :new}
+          format.json { render :show, status: :created, location: @user }
+        end
+      else
+          super
+          #redirect_to root_path
+      end
+
+    end
     # puts "parametros permitos en general"
     # puts params.inspect
     # puts "parametros permitidos en create para user"
     # puts devise_parameter_sanitizer.inspect
-    #@user.confirmado = true
-    if User.exists?(identificacion: @user.identificacion)
-      respond_to do |format|
-        flash.now[:notice] = "Esta identificacion ya se encuentra registrada"
-        format.html { render :new}
-        format.json { render :show, status: :created, location: @user }
-      end
-    elsif User.exists?(email: @user.email)
-      respond_to do |format|
-        flash.now[:notice] = "Este correo ya se encuentra registrado"
-        format.html { render :new}
-        format.json { render :show, status: :created, location: @user }
-      end
-    else
-        super
-        #redirect_to root_path
-    end
+
+
 
   end
 
@@ -184,7 +203,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       :primerApellidoConyuge,
       :segundoApellidoConyuge,
       :confesionReligiosa,
-      
+
       :tiempoOtraIglesia,
       :nivelAcademico,
       :profesionOficio,
