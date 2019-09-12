@@ -1,4 +1,4 @@
 class PreviousChurch < ApplicationRecord
-  belongs_to :address
+  belongs_to :city
   belongs_to :user
 end

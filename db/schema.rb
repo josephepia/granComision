@@ -268,8 +268,8 @@ ActiveRecord::Schema.define(version: 20190901010829) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
+    t.string "email"
+    t.string "encrypted_password", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -281,7 +281,7 @@ ActiveRecord::Schema.define(version: 20190901010829) do
     t.string "tipoDocumento"
     t.string "identificacion", null: false
     t.string "primerNombre"
-    t.string "segundoNombre", default: ""
+    t.string "segundoNombre"
     t.string "primerApellido"
     t.string "segundoApellido"
     t.string "telefono"
@@ -291,7 +291,7 @@ ActiveRecord::Schema.define(version: 20190901010829) do
     t.string "estadoCivil"
     t.date "fechaAniversario"
     t.string "primerNombreConyuge"
-    t.string "segundoNombreConyuge", default: ""
+    t.string "segundoNombreConyuge"
     t.string "primerApellidoConyuge"
     t.string "segundoApellidoConyuge"
     t.string "confesionReligiosa"
