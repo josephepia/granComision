@@ -157,18 +157,50 @@ $fuentes: (
 }
 
 .avatar{
+  overflow: hidden;
+  width: 113px !important;
   height: 113px !important;
 }
 .img-card{
   max-width: 100% !important;
 
 }
+.noticias{
+  background-image: url(#{asset_path('noticias.jpg')});
+}
 
-.image-card-noticias{
-  background-image: image-url('noticias.jpg');
+.notasExtendidas{
+  background-image: url(#{asset_path('notasExtendidas.jpg')});
+}
+
+.discipulados{
+  background-image: url(#{asset_path('discipulados.jpg')});
+
+}
+
+.horario {
+  background-image: url(#{asset_path('horario.jpg')});
+}
+
+.historialInscripciones {
+  background-image: url(#{asset_path('historialInscripciones.jpg')});
+
+}
+.img {
+  width: 100%;
+}
+.image-card {
+  height: 109px;
   background-position: center;
-
   background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.image-card-50 {
+  height: 109px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 45%;
 }
 //modificando texto
 
