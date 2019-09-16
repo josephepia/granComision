@@ -1,13 +1,77 @@
+<div class="container padding-vertical-24">
+  <div class="row start-xs ">
+
+      <div class="row middle-xs no-margin">
+
+          <%= image_tag "avatar.png", class: "circle avatar" %>
+
+        <div class="col-xs no-margin">
+          <span class="text-24 secundario-text robotoB"><%=user.nombre_completo%></span>
+          <span>Nombre del rango</span>
+          <span>Correo@gmail.com</span>
+
+        </div>
+
+      </div>
+
+  </div>
+  <div class="row start-xs">
+      <div class="col-xs-12 col-lg-4">
+          <div class="card borde-radio-8" style="overflow: hidden;">
+            <section style="height: 109px;" class="image-card-noticias">
+
+
+            </section>
+              <div class="card-content padding-top-0">
+
+                  <span class=" principal-text left-align text-20 robotoB">Noticias</span>
+                  <p class="left-align robotoB text-14 borde-text">Mantente informado de lo que la Gran Comisión Comunidad Cristiana Integral tiene para ti</p>
+              </div>
+
+          </div>
+      </div>
+      <div class="col-xs-12 col-lg-4">
+          <div class="card borde-radio-8">
+              <div class="card-content">
+                  <section>
+                      <%=image_tag("horario.jpg", class: "img-card")%>
+
+                  </section>
+                  <span class="principal-text left-align text-20 robotoB">Horario</span>
+                  <p class="left-align robotoB text-14 borde-text">Mantente informado de lo que la Gran Comisión Comunidad Cristiana Integral tiene para ti</p>
+
+              </div>
+
+          </div>
+      </div>
+      <div class="col-xs-12 col-lg-4">
+          <div class="card borde-radio-8" >
+              <div class="card-content" >
+                  <section >
+                      <%=image_tag("notasExtendidas.jpg", class: "img-card")%>
+
+                  </section>
+                  <span class="principal-text left-align text-20 robotoB">Notas extendidas</span>
+                  <p class="left-align robotoB text-14 borde-text">Mantente informado de lo que la Gran Comisión Comunidad Cristiana Integral tiene para ti</p>
+
+              </div>
+
+          </div>
+      </div>
+  </div>
+</div>
+
+
 <% @publicaciones.each do |publication|%>
     <div class="row center-xs">
-        <div class="col-xs-12 col-lg-6">
+        <div class="col-xs-12 col-lg-4">
             <div class="card borde-radio-8">
                 <div class="card-content">
                     <section>
                         <%=image_tag(publication.imagen.thumb.url)%>
 
                     </section>
-                    <span class="card-title verdeBri-text left-align"><%=publication.titulo%></span>
+                    <span class="card-title verdeBri-text left-align">Historial de inscripciones</span>
                     <p class="left-align">
                         <%= publication.descripcion%>
                     </p>

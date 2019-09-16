@@ -30,7 +30,7 @@ class User < ApplicationRecord
   end
 
   def nombre_completo
-    "#{primerNombre} #{primerApellido}"
+    "#{primerNombre} #{segundoNombre} #{primerApellido} #{segundoApellido}".titleize
   end
   def apellidos
     "#{primerApellido} #{segundoApellido}"

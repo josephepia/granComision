@@ -155,6 +155,21 @@ $fuentes: (
 .avatar-img {
   max-height: 50px!important;
 }
+
+.avatar{
+  height: 113px !important;
+}
+.img-card{
+  max-width: 100% !important;
+
+}
+
+.image-card-noticias{
+  background-image: image-url('noticias.jpg');
+  background-position: center;
+
+  background-repeat: no-repeat;
+}
 //modificando texto
 
 .uppercase {
@@ -215,6 +230,10 @@ $fuentes: (
   //pading
   .padding-#{$i} {
     padding: #{$i}px !important;
+  }
+
+  .padding-top-#{$i} {
+    padding-top: #{$i}px !important;
   }
 
   .padding-horizontal-#{$i} {
