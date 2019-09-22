@@ -1,30 +1,29 @@
-<div class="card-content padding-10">
-  <span class="card-title">Lista de asistencia</span>
-  <table class="highlight striped ">
+<div class="card-content">
+  <span class="robotoB text-20 primario-text">Lista de asistencia</span>
+
+  <table class="highlight">
     <thead>
     <tr>
-      <th><p>Identificacion</p></th>
-      <th>Apellidos</th>
-      <th>Nombres</th>
-      <th>Asistencia</th>
+      <th class="robotoB text-20 primario-text"><p>Identificacion</p></th>
+      
+      <th class="robotoB text-20 primario-text">Nombres</th>
+      <th class="robotoB text-20 primario-text">Asistencia</th>
     </tr>
     </thead>
     <tbody>
     <tr>
- 
+
 
       <%= collection_check_boxes(:asistencia, :lista, @students, :id, :nombre_completo) do |b| %>
-        
-        <td>
+
+        <td class=" text-14 primario-text">
           <p><%= b.object.identificacion%></p>
         </td>
-        <td>
-          <p><%= b.object.apellidos%></p>
+        <td class=" text-14 primario-text">
+          <p><%= b.object.nombre_asistencia%></p>
         </td>
-        <td>
-          <p><%= b.object.nombres%></p>
-        </td>
-        <td class="center-xs">
+
+        <td class="center-xs text-14 primario-text">
             <label>
               <% if @dia.to_date == Time.now().to_date and !Failure.where(created_at: (@dia.beginning_of_day)..@dia.end_of_day,group: @group).exists?%>
               <%= b.check_box %>

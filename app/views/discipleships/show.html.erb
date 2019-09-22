@@ -1,82 +1,138 @@
-<div class="row  middle-xs no-margin">
-    <div class="container">
-        <div class="row center-xs">
+<div class="fixed-action-btn ">
+  <a class="btn-floating btn-large blue-grey darken-2">
+    <i class="large material-icons">settings</i>
+  </a>
+  <ul>
+    <li>
 
-            <div class="col-xs-12
+      <a class="btn-floating red btn modal-trigger" data-target= "modal1"><i class="material-icons">clear</i></a>
+      <a class="mobile-fab-tip borde-radio-10">Eliminar</a>
+    </li>
+    <li><%= link_to '<i class="material-icons">mode_edit</i></a>'.html_safe, edit_discipleship_path, class: "btn-floating blue" %>
+      <a class="mobile-fab-tip borde-radio-10">Editar</a>
+    </li>
+
+
+    <li>
+      <%= link_to '<i class="material-icons">perm_contact_calendar</i></a>'.html_safe, new_discipleship_group_path(@discipleship,@group), class: "btn-floating amber darken-1" %>
+      <a class="mobile-fab-tip borde-radio-10">Crear grupo</a>
+    </li>
+
+
+
+  </ul>
+</div>
+
+<div style="flex: 1;" class="blanco">
+    <div class="container padding-top-24">
+      <div class="row between-xs">
+        <div class="col-xs-12 col-lg-4 start-xs">
+
+
+
+            <div class="card borde-radio-8 waves-effect hoverable" style="overflow: hidden;">
+              <section class="image-card-50 discipulados"></section>
+              <div class="card-content padding-vertical-0 maxmin-h-77 ">
+                  <span class=" primario-text left-align text-20 robotoB"><%=@discipleship.nombre%></span>
+                  <p class="left-align robotoB text-14 borde-text padding-bottom-4 trunc-2"><%=@discipleship.descripcion%></p>
+              </div>
+              <section class="col-xs-12 center-xs verdeAdo waves-effect pulse">
+                <%= link_to  "Inscribirme", @discipleship, class: "btn-flat white-text robotoB " %>
+
+              </section>
+            </div>
+
+
+            <div class="row start-xs ">
+
+                <div class="row middle-xs no-margin">
+                  <div class=" avatar-86 circle  z-depth-2">
+                    <%= image_tag "http://www.requitix.io/mypics/max/68/686472_person-vector-png.jpg", class: "img" %>
+
+                  </div>
+
+                  <div class="col-xs no-margin">
+                    <span class="text-24 secundario-text robotoB"><%=user.nombre_completo%></span>
+                    <span class="titulos-text robotoL">Docente</span>
+                    <span class="titulos-text"><%=user.email ||= 'correo no encontrado'%></span>
+
+                  </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+        <div class="col-xs-12 col-lg-7 start-xs">
+
+          <span class="primario-text robotoB text-20"><%=@discipleship.nombre.capitalize%></span>
+          <span class="borde-text robotoB text-14"><%=@discipleship.descripcion.capitalize%></span>
+          <span class="primario-text robotoB text-20">Rango otorgado</span>
+          <span class="borde-text robotoB text-14"><%=@discipleship.rangoOtorgado.capitalize%></span>
+          <span class="primario-text robotoB text-20">Descripcion del pacto</span>
+          <span class="borde-text robotoB text-14"><%=@discipleship.descripcionPacto.capitalize%></span>
+          <br>
+          <span class="primario-text robotoB text-20">Lecciones</span>
+          <% if @discipleship.lessons.empty? %>
+          <ul style="margin-left:20px;">
+            <li><span class="borde-text robotoB text-14">Informacion suministrada por el docente</span></li>
+          </ul>
+
+
+          <% else  %>
+          <span class="borde-text robotoB text-14">Hay lecciones</span>
+
+          <% end %>
+
+
+          <span class="primario-text robotoB text-20">Horario</span>
+          <ul style="margin-left:20px;">
+            <li><span class="primario-text robotoB text-14">Lunes: </span><span class="primario-text text-14">09:00 am - 11:00 am </span> <span class="primario-text robotoB text-14">Martes: </span><span class="primario-text text-14">09:00 am - 11:00 am</span></li>
+          </ul>
+
+
+
+
+        </div>
+      </div>
+      <hr style="border:1px dashed;" class="primario-text">
+      <br>
+      <span class="primario-text robotoB text-20">Grupos</span>
+      <div class="row center-xs margin-bottom-0">
+          <% @discipleship.groups.sort_by{|a| a.activo ? 0 : 1}.each do |grupo|%>
+              <div class="col-xs-12
                     col-sm-8
                     col-md-6
-                    col-lg-6 ">
-                <div class="box">
-                    <div class="card z-depth-3 borde-radio-10">
-                        <div class="card-content black-text start-xs">
-                            <span class="card-title center"><%=@discipleship.nombre%></span>
-                            <b>Descripcion: </b>
-                            <p>
-                                <%=@discipleship.descripcion%>
-                            </p>
-                            <b>Rango otorgado: </b>
-                            <p>
-                                <%=@discipleship.rangoOtorgado%>
-                            </p>
-                            <b>Pacto asociado: </b>
-                            <p>Pacto de compromiso</p>
-                            <b>Descripcion del convenio: </b>
-                            <p>
-                                <%=@discipleship.descripcionPacto%>
-                            </p>
-                            <div class="actions center">
-                                <%= link_to  "Crear grupo", new_discipleship_group_path(@discipleship,@group), class: "waves-effect waves-teal btn-flat " %>
-                                    <%= link_to  "Volver", discipleships_path, class: "waves-effect waves-teal btn-flat " %>
-                                        <%= link_to  "Editar", edit_discipleship_path, class: "waves-effect waves-teal btn-flat " %>
-                                            <%= link_to  "Eliminar", @discipleship, data: { confirm: 'Esta seguro?' },class: "waves-effect waves-teal btn-flat ", method: :delete %>
+                    col-lg-4 ">
+                  <div class="box">
+                      <div class="card z-depth-3 borde-radio-10">
+                          <div class="card-content black-text start-xs">
+                              <span class="card-title center robotoB primario-text"><%=grupo.codigo%></span>
 
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div>
-            <div class="center-xs">
-                <h4>Grupos</h4>
-            </div>
-            <br>
-            <hr>
-        </div>
-        <div class="row center-xs">
-            <% @discipleship.groups.sort_by{|a| a.activo ? 0 : 1}.each do |grupo|%>
-                <div class="col-xs-12
-                      col-sm-8
-                      col-md-6
-                      col-lg-4 ">
-                    <div class="box">
-                        <div class="card z-depth-3 borde-radio-10">
-                            <div class="card-content black-text start-xs">
-                                <span class="card-title center"><%=grupo.codigo%></span>
-                                <b>Discipulado: </b>
-                                <p>
-                                    <%=@discipleship.nombre%>
-                                </p>
-                                <b>Docente a cargo: </b>
-                                <p>
-                                    <%= grupo.user.presence ? grupo.user.nombre_completo : "Sin docente asignado" %>
-                                </p>
-                                <b>Estudiantes inscritos: </b>
-                                <p>
-                                    <%=Enroll.where(group_id: grupo.id).count %>
-                                </p>
-                            </div>
-                            <section <%=grupo.activo? ? "class='verdeAdo white-text borde-radio-buton-10'".html_safe : 'class="grey borde-radio-buton-10"'.html_safe %> >
-                                <div class="actions center ">
-                                    <%= link_to  "Ver detalles", group_path(grupo), class: "waves-effect waves-teal btn-flat white-text " %>
+                              <b class="robotoB primario-text">Docente a cargo: </b>
+                              <p class="robotoB text-14 borde-text">
+                                  <%= grupo.user.presence ? grupo.user.nombre_completo : "Sin docente asignado" %>
+                              </p>
+                              <b class="robotoB primario-text">Estudiantes inscritos: </b>
+                              <p class="robotoB text-14 borde-text">
+                                  <%=Enroll.where(group_id: grupo.id).count %>
+                              </p>
+                          </div>
+                          <section <%=grupo.activo? ? "class='verdeAdo white-text borde-radio-buton-10'".html_safe : 'class="grey borde-radio-buton-10"'.html_safe %> >
+                              <div class="actions center ">
+                                  <%= link_to  "Ver detalles", group_path(grupo), class: "waves-effect waves-teal btn-flat white-text robotoB" %>
 
-                                </div>
-                            </section>
-                        </div>
-                    </div>
-                </div>
-                <%end%>
-        </div>
+                              </div>
+                          </section>
+                      </div>
+                  </div>
+              </div>
+              <%end%>
+      </div>
+
+
+
 
 
 

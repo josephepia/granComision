@@ -47,132 +47,190 @@
   </div>
 <!-- fin del modal advertencia de eliminacion -->
 
-<div class="row middle-xs no-margin">
-  <div class="container">
-    <div class="row center-xs" >
 
-        <div class="col-xs-12
-                    col-sm-8
-                    col-md-6
-                    col-lg-6 ">
-          <div class="box">
-            <div class="card z-depth-3 borde-radio-10">
-              <div class="card-content black-text start-xs">
-                <span class="card-title center"><%=@group.codigo%></span>
-                <b>Discipulado: </b><p><%=@group.discipleship.nombre%></p>
-                <b>Rango otorgado: </b><p><%=@group.discipleship.rangoOtorgado%></p>
-                <b>Pacto asociado: </b><p>Pacto de compromiso</p>
-                <b>Descripcion del convenio: </b><p><%=@group.discipleship.descripcionPacto%></p>
+  <div class="container padding-top-24">
+    <div class="row start-xs ">
 
-              </div>
-            </div>
+        <div class="row middle-xs no-margin">
+          <div class=" avatar-86 circle  z-depth-2">
+            <%= image_tag "http://www.requitix.io/mypics/max/68/686472_person-vector-png.jpg", class: "img" %>
+
           </div>
+
+          <div class="col-xs no-margin">
+            <span class="text-24 secundario-text robotoB"><%= @group.user ? @group.user.nombre_completo : 'sin docente asigando'%></span>
+            <span class="titulos-text robotoL">Docente</span>
+            <span class="titulos-text"><%= @group.user ? @group.user.email : 'correo no encontrado'%></span>
+
+          </div>
+
         </div>
 
     </div>
-    <div class="row center-xs" >
+    <div class="row between'xs">
 
-        <div class="col-xs-12
-                    col-sm-8
-                    col-md-6
-                    col-lg-6 ">
-          <div class="box">
-            <div class="card z-depth-3 borde-radio-10">
-              <div class="card-content black-text start-xs">
-                <span class="card-title center">Horario</span>
-                <table class="bordered striped white">
-        <thead>
-          <tr>
-              <th>Dias</th>
-              <th>Horas</th>
-          </tr>
-        </thead>
+      <div class="col-xs-12 col-lg-4 start-xs">
+        <!-- inicio de informacion de docente avatar -->
 
-        <tbody>
-          <tr>
-            <th>Lunes</th>
-            <td><%=@group.horary.lunes%></td>
-          </tr>
-          <tr>
-            <th>Martes</th>
-            <td><%=@group.horary.martes%></td>
-          </tr>
-          <tr>
-            <th>Miercoles</th>
-            <td><%=@group.horary.miercoles%></td>
-          </tr>
-          <tr>
-            <th>Jueves</th>
-            <td><%=@group.horary.jueves%></td>
-          </tr>
-          <tr>
-            <th>Viernes</th>
+<div class="card borde-radio-8 waves-effect hoverable" style="overflow: hidden;">
 
-            <td><%=@group.horary.viernes%></td>
-          </tr>
-          <tr>
-            <th>Sabado</th>
+  <div class="card-content">
+    <div class="row middle-xs margin-bottom-0">
+      <div class="col-xs-8">
+        <span class=" primario-text left-align text-20 robotoB ">Codigo</span>
+      </div>
+      <div class="col-xs-4">
+        <span class=" borde-text right-align text-20 robotoB"><%=@group.codigo%></span>
 
-            <td><%=@group.horary.sabado%></td>
-          </tr>
-          <tr>
-              <th>Domingo</th>
-
-            <td><%=@group.horary.domingo%></td>
-          </tr>
-        </tbody>
-      </table>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-      <div class="col-xs-12
-                    col-sm-8
-                    col-md-6
-                    col-lg-6 ">
-          <div class="box">
-            <div class="card z-depth-3 borde-radio-10">
-              <div class="card-content black-text start-xs">
-                <span class="card-title center">Estudiantes inscritos</span>
-                <table class="striped highlight">
-        <thead>
-          <tr >
-              <th>Identificacion</th>
-              <th>Nombre</th>
-              <th>Correo</th>
-              <th>Telefono</th>
-
-          </tr>
-        </thead>
-
-        <tbody>
-          <%@students.each do |student|%>
-          <tr>
-            <td><%=student.user.identificacion%></td>
-            <td><%=student.user.nombre_completo%></td>
-            <td><%=student.user.email%></td>
-            <td><%=student.user.telefono%></td>
-
-          </tr>
-
-          <% end %>
-        </tbody>
-      </table>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-
-
+      </div>
     </div>
+    <div class="row middle-xs margin-bottom-0">
+      <div class="col-xs-8">
+        <span class=" primario-text left-align text-20 robotoB">Estudiantes inscritos</span>
+      </div>
+      <div class="col-xs-4">
+        <span class=" borde-text right-align text-20 robotoB"><%=Enroll.where(group_id: @group).count %></span>
+
+      </div>
+    </div>
+
+  </div>
+  <section <%=@group.activo? ? "class='verdeAdo white-text borde-radio-buton-8'".html_safe : 'class="grey borde-radio-buton-8"'.html_safe %> >
+      <% if @group.activo? %>
+      <div class="actions center ">
+        <span class=" blanco-text left-align text-20 robotoB">Activo</span>
+      </div>
+      <% else %>
+      <div class="actions center ">
+        <span class=" blanco-text left-align text-20 robotoB">Inactivo</span>
+      </div>
+      <% end %>
+
+  </section>
+</div>
+<!-- fin de la carta -->
+
+
+
+<!-- inicio del horario -->
+<div class="card borde-radio-8 waves-effect hoverable" >
+
+  <div class="card-content">
+<div class="row center-xs margin-bottom-0">
+  <span class="primario-text center-align text-20 robotoB">Horario</span>
+</div>
+<div class="row margin-bottom-0">
+  <div class="col-xs-6">
+    <span class="primario-text start-align text-20 robotoB">Dias</span>
+  </div>
+  <div class="col-xs-6">
+    <span class="primario-text start-align text-20 robotoB">Horas</span>
+  </div>
+</div>
+<div class="row margin-bottom-0">
+  <div class="col-xs-6">
+    <span class="primario-text start-align text-14 robotoB">Luens</span>
+  </div>
+  <div class="col-xs-6">
+    <span class="borde-text start-align text-14 robotoB"><%=@group.horary.lunes%></span>
+  </div>
+</div>
+<div class="row margin-bottom-0">
+  <div class="col-xs-6">
+    <span class="primario-text start-align text-14 robotoB">Martes</span>
+  </div>
+  <div class="col-xs-6">
+    <span class="borde-text start-align text-14 robotoB"><%=@group.horary.martes%></span>
+  </div>
+</div>
+<div class="row margin-bottom-0">
+  <div class="col-xs-6">
+    <span class="primario-text start-align text-14 robotoB">Miercoles</span>
+  </div>
+  <div class="col-xs-6">
+    <span class="borde-text start-align text-14 robotoB"><%=@group.horary.miercoles%></span>
+  </div>
+</div>
+<div class="row margin-bottom-0">
+  <div class="col-xs-6">
+    <span class="primario-text start-align text-14 robotoB">Jueves</span>
+  </div>
+  <div class="col-xs-6">
+    <span class="borde-text start-align text-14 robotoB"><%=@group.horary.jueves%></span>
+  </div>
+</div>
+<div class="row margin-bottom-0">
+  <div class="col-xs-6">
+    <span class="primario-text start-align text-14 robotoB">Viernes</span>
+  </div>
+  <div class="col-xs-6">
+    <span class="borde-text start-align text-14 robotoB"><%=@group.horary.viernes%></span>
+  </div>
+</div>
+<div class="row margin-bottom-0">
+  <div class="col-xs-6">
+    <span class="primario-text start-align text-14 robotoB">Sabado</span>
+  </div>
+  <div class="col-xs-6">
+    <span class="borde-text start-align text-14 robotoB"><%=@group.horary.sabado%></span>
+  </div>
+</div>
+<div class="row margin-bottom-0">
+  <div class="col-xs-6">
+    <span class="primario-text start-align text-14 robotoB">Domingo</span>
+  </div>
+  <div class="col-xs-6">
+    <span class="borde-text start-align text-14 robotoB"><%=@group.horary.domingo%></span>
+  </div>
+</div>
 
 
   </div>
+
 </div>
+
+      </div>
+      <div class="col-lg-8 start-xs">
+
+        <div class="card borde-radio-8 waves-effect hoverable" >
+
+        <div class="card-content center">
+          <span class="robotoB text-20 primario-text">Estudiantes inscritos</span>
+          <table class="no-lines highlight">
+  <thead>
+    <tr >
+        <th class="robotoB text-20 primario-text">Identificacion</th>
+        <th class="robotoB text-20 primario-text">Nombre</th>
+        <th class="robotoB text-20 primario-text">Correo</th>
+        <th class="robotoB text-20 primario-text">Telefono</th>
+
+    </tr>
+  </thead>
+
+  <tbody>
+    <%@students.each do |student|%>
+    <tr>
+      <td class=" text-14 primario-text"><%=student.user.identificacion%></td>
+      <td class=" text-14 primario-text"><%=student.user.nombre_completo%></td>
+      <td class=" text-14 primario-text"><%=student.user.email%></td>
+      <td class=" text-14 primario-text"><%=student.user.telefono%></td>
+
+    </tr>
+
+    <% end %>
+  </tbody>
+</table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+
+
+  </div>
+
 <script>
 $(document).ready(function(){
     $('.fixed-action-btn').floatingActionButton();

@@ -7,59 +7,36 @@
 
 
         <%if @group%>
-        <table class="bordered striped white">
-          <thead>
+
             <tr>
-                <th>Dias</th>
-                <th>Horas</th>
+              <td class="primario-text robotoB"><%=@group.horary.presence ? @group.horary.lunes : '' %></td>
+              <td class="primario-text robotoB"><%=@group.horary.presence ? @group.horary.martes : '' %></td>
+              <td class="primario-text robotoB"><%=@group.horary.presence ? @group.horary.miercoles : '' %></td>
+              <td class="primario-text robotoB"><%=@group.horary.presence ? @group.horary.jueves : '' %></td>
+              <td class="primario-text robotoB"><%=@group.horary.presence ? @group.horary.jueves : '' %></td>
+              <td class="primario-text robotoB"><%=@group.horary.presence ? @group.horary.sabado : '' %></td>
+              <td class="primario-text robotoB"><%=@group.horary.presence ? @group.horary.domingo : '' %></td>
             </tr>
-          </thead>
 
-          <tbody>
-            <tr>
-              <th>Lunes</th>
-              <td><%=@group.horary.presence ? @group.horary.lunes : '' %></td>
-            </tr>
-            <tr>
-              <th>Martes</th>
-              <td><%=@group.horary.presence ? @group.horary.martes : '' %></td>
-            </tr>
-            <tr>
-              <th>Miercoles</th>
-              <td><%=@group.horary.presence ? @group.horary.miercoles : '' %></td>
-
-            </tr>
-            <tr>
-              <th>Jueves</th>
-              <td><%=@group.horary.presence ? @group.horary.jueves : '' %></td>
-
-            </tr>
-            <tr>
-              <th>Viernes</th>
-
-              <td><%=@group.horary.presence ? @group.horary.jueves : '' %></td>
-
-            </tr>
-            <tr>
-              <th>Sabado</th>
-
-              <td><%=@group.horary.presence ? @group.horary.sabado : '' %></td>
-
-            </tr>
-            <tr>
-                <th>Domingo</th>
-
-              <td><%=@group.horary.presence ? @group.horary.domingo : '' %></td>
-
-            </tr>
-          </tbody>
-        </table>
       <% end %>
 <%end%>
 <%if @combo=='estudiante' %>
-  <b>Nombre: </b><p><%=@estudiante.nombre_completo%></p>
-  <b>Telefono </b><p><%=@estudiante.telefono%></p>
-  <b>Correo </b><p><%=@estudiante.email%></p>
+<div class="row middle-xs">
+  <div class=" avatar-76 circle  z-depth-2">
+    <%= image_tag "http://www.requitix.io/mypics/max/68/686472_person-vector-png.jpg", class: "img" %>
+
+  </div>
+
+  <div class="col-xs no-margin">
+    <span class="text-14 secundario-text robotoB left-align"><%= @estudiante.nombre_completo%></span>
+    <span class="titulos-text robotoL left-align"><%= @estudiante.rango %></span>
+    <span class="titulos-text left-align"><%= @estudiante.telefono%></span>
+    <span class="titulos-text left-align"><%= @estudiante.email%></span>
+
+  </div>
+
+</div>
+
 <% end %>
 
 

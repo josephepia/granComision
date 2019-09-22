@@ -11,7 +11,8 @@ $myColors: (
     "secundario": #51B133,
     "titulos": #707070,
     "borde": #BCBCBC,
-    "disable": #B2B2B2
+    "disable": #B2B2B2,
+    "blanco": #FFFFFF
 );
 
 $anidado: (
@@ -26,10 +27,10 @@ $prueba: (
 
 @each $color_name,$color in $myColors{
     .#{$color_name}{
-        background-color: $color;
+        background-color: $color !important;
     }
     .#{$color_name}-text{
-        color: $color;
+        color: $color !important;
     }
 }
 

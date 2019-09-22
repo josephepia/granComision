@@ -39,6 +39,10 @@ class User < ApplicationRecord
   def nombres
     "#{primerNombre} #{segundoNombre}"
   end
+  def nombre_asistencia
+    "#{primerApellido} #{segundoApellido} #{primerNombre} #{segundoNombre}".titleize
+
+  end
 
   def is_student
     if self.roles.where(nombre: 'estudiante')

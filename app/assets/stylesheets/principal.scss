@@ -80,7 +80,7 @@ body,
 html {
   height: 100%;
   width: 100%;
-  font-family: 'Roboto Regular';
+  font-family: 'Roboto Regular' !important;
 }
 $fuentes: (
   "robotoT": "Roboto Thin",
@@ -156,11 +156,7 @@ $fuentes: (
   max-height: 50px!important;
 }
 
-.avatar{
-  overflow: hidden;
-  width: 113px !important;
-  height: 113px !important;
-}
+
 .img-card{
   max-width: 100% !important;
 
@@ -202,6 +198,28 @@ $fuentes: (
   background-repeat: no-repeat;
   background-size: 45%;
 }
+.loading {
+  position: relative;
+  margin-bottom: 4px !important;
+
+  overflow: hidden;
+  &::after {
+    display: block;
+    content: ' ';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform: translateX(-100%);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .2), transparent);
+    animation: loading 1.0s infinite;
+  }
+}
+
+@keyframes loading {
+  100% {
+    transform: translateX(100%);
+  }
+}
 //modificando texto
 
 .uppercase {
@@ -215,6 +233,8 @@ $fuentes: (
 .capitalize {
   text-transform: capitalize;
 }
+
+
 // siclo repetitivo para ayuda, hasta el 100
 @for $i from 0 through 100 {
   .borde-radio-#{$i} {
@@ -267,6 +287,9 @@ $fuentes: (
   .padding-top-#{$i} {
     padding-top: #{$i}px !important;
   }
+  .padding-bottom-#{$i} {
+    padding-bottom: #{$i}px !important;
+  }
 
   .padding-horizontal-#{$i} {
     padding-left: #{$i}px !important;
@@ -280,6 +303,24 @@ $fuentes: (
 
   .text-#{$i} {
     font-size: #{$i}px !important;
+  }
+
+  .w-p-#{$i} {
+    width: 0% + $i !important;
+  }
+
+  .h-p-#{$i} {
+    height: 0% + $i !important;
+  }
+
+
+  .trunc-#{$i} {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-line-clamp: $i;
+    /* autoprefixer: off */
+    -webkit-box-orient: vertical;
+    /* autoprefixer: on */
   }
 }
 // trabajando con porcentaje en lugar de pixeles
@@ -333,5 +374,27 @@ $fuentes: (
 @for $i from 1 through 1000 {
   .ancho-#{$i} {
     width: #{$i}px;
+  }
+  .avatar-#{$i} {
+    overflow: hidden;
+    width: #{$i}px !important;
+    height: #{$i}px !important;
+  }
+
+  .max-h-#{$i} {
+    max-width: #{$i}px !important;
+  }
+
+  .w-#{$i} {
+    width: #{$i}px !important;
+  }
+
+  .h-#{$i} {
+    height: #{$i}px !important;
+  }
+
+  .maxmin-h-#{$i} {
+    min-height: #{$i}px !important;
+    max-height: #{$i}px !important;
   }
 }
