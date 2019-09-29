@@ -18,6 +18,8 @@ class DiscipleshipsController < ApplicationController
   # GET /discipleships/new
   def new
     @discipleship = Discipleship.new
+    @discipleship.lessons.build
+    @discipleship.covenants.build
 
   end
 
@@ -30,20 +32,51 @@ class DiscipleshipsController < ApplicationController
   def create
     @discipleship = Discipleship.new(discipleship_params)
 
-    respond_to do |format|
-      if @discipleship.save
-        format.html { redirect_to @discipleship, notice: 'Discipulado creado correctamente.' }
-        format.json { render :show, status: :created, location: @discipleship }
-      else
-        format.html { render :new }
-        format.json { render json: @discipleship.errors, status: :unprocessable_entity }
+      # lesson= Lesson.new(leccion)
+
+
+      respond_to do |format|
+        if @discipleship.save
+          format.html { redirect_to @discipleship, notice: 'Discipulado creado correctamente.' }
+          format.json { render :show, status: :created, location: @discipleship }
+        else
+          format.html { render :new }
+          format.json { render json: @discipleship.errors, status: :unprocessable_entity }
+        end
       end
-    end
+
+    # ActiveRecord::Base.transaction do
+    #   @discipleship.save
+    #   params[:discipleship][:lecciones].each do |leccion, datos|
+    #     lesson = Lesson.new
+    #     lesson.discipleship = @discipleship
+    #     lesson.nombre = datos[:nombre]
+    #     lesson.descripcion = datos[:descripcion]
+    #     lesson.save
+    #     respond_to do |format|
+    #         format.html { redirect_to @discipleship, notice: 'Discipulado creado correctamente.' }
+    #         format.json { render :show, status: :created, location: @discipleship }
+    #     end
+    #   end
+    #
+    # end
+    # respond_to do |format|
+    #   if @discipleship.save
+    #     format.html { redirect_to @discipleship, notice: 'Discipulado creado correctamente.' }
+    #     format.json { render :show, status: :created, location: @discipleship }
+    #   else
+    #     format.html { render :new }
+    #     format.json { render json: @discipleship.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # PATCH/PUT /discipleships/1
   # PATCH/PUT /discipleships/1.json
   def update
+    ActiveRecord::Base.transaction do
+
+    end
     respond_to do |format|
       if @discipleship.update(discipleship_params)
         format.html { redirect_to @discipleship, notice: 'Discipleship actualizado correctamente' }
@@ -73,6 +106,6 @@ class DiscipleshipsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def discipleship_params
-      params.require(:discipleship).permit(:nombre, :rangoOtorgado, :descripcion, :descripcionPacto)
+      params.require(:discipleship).permit(:nombre, :rangoOtorgado, :descripcion, :descripcionPacto, lessons_attributes: [:nombre,:descripcion,:id], covenants_attributes: [:pdf, :id] )
     end
 end

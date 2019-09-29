@@ -5,21 +5,21 @@
       <div class="card-content padding-10">
       <span class="card-title">Registrar pacto</span>
       <%= form_with(model: covenant, local: true) do |form| %>
-  <% if covenant.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(covenant.errors.count, "error") %> prohibited this covenant from being saved:</h2>
+        <% if covenant.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(covenant.errors.count, "error") %> prohibited this covenant from being saved:</h2>
 
-      <ul>
-      <% covenant.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+            <ul>
+            <% covenant.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
 
 
   <div class="file-field input-field">
-    <div class="btn">
+    <div class=" btn-small">
       <span>Seleccionar</span>
       <%= form.file_field :pdf, class: 'file_input' %>
 
@@ -29,7 +29,9 @@
       <input class="file-path validate" type="text">
     </div>
   </div>
+  <%= form.file_field :pdf, class: ' archivo' %>
 
+  
   <div class="field">
     <%= form.label :discipleship_id %>
     <%= form.text_field :discipleship_id, id: :covenant_discipleship_id %>

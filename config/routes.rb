@@ -25,9 +25,9 @@ Rails.application.routes.draw do
   get '/inscribirme', to: 'groups#inscribirme'
 
   resources :discipleships, shallow: true do
+    resources :lessons
     resources :groups do
       resources :failures
-      resources :lessons
       resources :horaries
       get 'asistencia', to: 'asistencia#index'
       post 'asistencia', to: 'asistencia#create'

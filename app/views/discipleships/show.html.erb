@@ -74,16 +74,20 @@
           <span class="borde-text robotoB text-14"><%=@discipleship.descripcionPacto.capitalize%></span>
           <br>
           <span class="primario-text robotoB text-20">Lecciones</span>
-          <% if @discipleship.lessons.empty? %>
           <ul style="margin-left:20px;">
-            <li><span class="borde-text robotoB text-14">Informacion suministrada por el docente</span></li>
+            <% if @discipleship.lessons.empty? %>
+              <li><span class="borde-text robotoB text-14">Informacion suministrada por el docente</span></li>
+
+            <% else  %>
+              <% @discipleship.lessons.each do |lesson|%>
+
+                <li>
+                  <span class="primario-text robotoB text-14"><%= lesson.nombre.capitalize%></span>
+                  <p class="borde-text text-14 robotoB margin-top-0"><%= lesson.descripcion.capitalize%></p>
+                </li>
+              <% end %>
+            <% end %>
           </ul>
-
-
-          <% else  %>
-          <span class="borde-text robotoB text-14">Hay lecciones</span>
-
-          <% end %>
 
 
           <span class="primario-text robotoB text-20">Horario</span>

@@ -198,6 +198,19 @@ $fuentes: (
   background-repeat: no-repeat;
   background-size: 45%;
 }
+::-webkit-file-upload-button {
+  padding: 10px;
+  background: #51B133;
+  color: #FFFFFF;
+  font-size: 12px;
+  
+  border-radius: 10px;
+  font-family: "Roboto Bold";
+  border: 0;
+
+
+}
+
 .loading {
   position: relative;
   margin-bottom: 4px !important;
