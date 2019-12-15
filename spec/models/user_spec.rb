@@ -1,14 +1,132 @@
 require 'rails_helper'
+# tipos de pruebas que se pueden realizar con la gema Should
+
+# Pruebas de enrutamiento
+# Pruebas de control
+# Pruebas de modelo
+# Pruebas de características
+# Ver pruebas
+# Pruebas de correo
 
 RSpec.describe User, type: :model do
-  it { should validate_presence_of(:tipoDocumento) }
+	# User.validators
+	# comprueba si la validacion existe en el modelo.
+	describe 'validaciones del modelo' do
+		#campos obligatorios
+		it { should validate_presence_of(:tipoDocumento) }
+	  it { should validate_presence_of(:identificacion) }
+	  it { should validate_presence_of(:primerNombre) }
+	  it { should validate_presence_of(:primerApellido) }
+	  it { should validate_presence_of(:sexo) }
+	  it { should validate_presence_of(:fechaNacimiento) }
+	  it { should validate_presence_of(:estadoCivil) }
+	  it { should validate_presence_of(:confesionReligiosa) }
+	  it { should validate_presence_of(:nivelAcademico) }
+	  it { should validate_presence_of(:profesionOficio) }
+	  it { should validate_presence_of(:email) }
 
-  describe "#validar_rol_de_usuario" do
-  	#se crea un objeto osuario, con parametros por defecto, establecidos en FactoryGirl
-  	#es decir, crea usuarios con atributos estaticos par correo y contrasena
-  	let(:user){FactoryGirl.build(:user)}
-  	it "deberia ser estudiante" do
-  		expect(user.valid?).to be_falsy
-  	end
-  end
+
+	  #campos numericos
+	  it { should validate_numericality_of(:identificacion) }
+
+	  #campos con valores en un rango o tamanos
+	  it { should validate_length_of(:identificacion).is_at_least(6).is_at_most(11) }
+	  it { should validate_length_of(:primerNombre).is_at_least(2).is_at_most(30) }
+	  it { should validate_length_of(:primerApellido).is_at_least(2).is_at_most(30) }
+	  it { should validate_length_of(:email).is_at_least(10).is_at_most(20) }
+	  it { should validate_length_of(:telefono).is_equal_to(10) }
+	  it { should_not allow_value(nil).for(:fueMiembroOtraIglesia) }
+		it { should_not allow_value(nil).for(:bautizadoAdulto) }
+	  it { should validate_inclusion_of(:sexo).in_array(['masculino', 'femenino']) }
+	  it { should validate_inclusion_of(:nivelAcademico).in_array(['primaria','secundaria','tecnico','tecnologo','universitario','postgrado']) }
+
+	  #validacion para expresion regular
+	  #-> expresion regular usada por la gema devise para el  correo -> /^[^@]+@[^@]+\.[a-zA-Z]{2,}$/
+	  it { should allow_value('correo@gmail.com').for(:email) }
+
+	end
+	
+	#pruebas unitarias para instancias creadas
+	#prueba unitaria para el correo
+	describe "#validar_correo_regex" do 
+		it 'no deberia permitir correos con tamano menor a 10' do
+			user = User.new(email: "abc@a.co")
+			user.save
+
+			#espero que el usuario ingresado sea incorrecto
+			expect(user.errors[:email]).to be_empty
+		end
+		it 'no deberia permitir correos con tamano mayor a 20' do
+			user = User.new(email: "abcdddddddddddddddddddddddd@a.co")
+			user.save
+			
+			#espero que el usuario ingresado sea incorrecto
+			expect(user.errors[:email]).to be_empty
+			
+			
+		end
+		it 'deberia permitir correos con formato valido' do
+			user = User.new(email: "correo@gmail.com")
+			user.save
+			#espero que el usuario ingresado sea correcto
+			expect(user.errors[:email]).to be_empty
+			
+		end
+	end
+
+	describe 'prueba para registro de usuario' do
+		#molde para crear instancia de usuario completa
+		#user = User.new(email: "correo@gmail.com", password: "123456", tipoDocumento: "cc",identificacion: "1234567890",primerNombre: "primer nombre",primerApellido: "primer apellido",sexo: "masculino",fechaNacimiento: "10/10/10",estadoCivil: "soltero",confesionReligiosa: "catolico",nivelAcademico: "secundaria",profesionOficio: "ninguno",fueMiembroOtraIglesia: true,bautizadoAdulto: true,telefono: "12345")
+		it 'todos los campos deberian estar correctos' do
+			user = User.new(email: "correo@gmail.com", password: "123456", tipoDocumento: "cc",identificacion: "1234567890",primerNombre: "primer nombre",primerApellido: "primer apellido",sexo: "masculino",fechaNacimiento: "10/10/10",estadoCivil: "soltero",confesionReligiosa: "catolico",nivelAcademico: "secundaria",profesionOficio: "ninguno",fueMiembroOtraIglesia: true,bautizadoAdulto: true,telefono: "1234567891")
+			user.save
+			expect(user.errors).to be_empty
+		end
+
+	end
+
+	describe 'prueba para la identificacion' do
+		
+		it 'la identificacion no debe ser menor de 6 digitos' do
+			user = User.new(identificacion: "12345")
+			user.save
+			expect(user.errors[:identificacion]).to be_empty
+		end
+		it 'la identificacion no debe ser mayor de 11 digitos' do
+			user = User.new(identificacion: "123456789011")
+			user.save
+			expect(user.errors[:identificacion]).to be_empty
+		end
+		it 'la identificacion no debe ser nula' do
+			user = User.new(identificacion: nil)
+			user.save
+			expect(user.errors[:identificacion]).to be_empty
+		end
+	end
+	
+	describe 'prueba para el primer nombre' do
+		
+		it 'el primer nombre no debe ser menor a 2 caracteres' do
+			user = User.new(primerNombre: "J")
+			user.save
+			expect(user.errors[:primerNombre]).to be_empty
+		end
+		it 'el primer nombre no debe ser mayor a 30 caracteres' do
+			user = User.new(primerNombre: "Joseph Epiayu Fernandez Solano Perez")
+			user.save
+			expect(user.errors[:primerNombre]).to be_empty
+		end
+		it 'el primer nombre no debe ser nulo' do
+			user = User.new(primerNombre: nil)
+			user.save
+			expect(user.errors[:primerNombre]).to be_empty
+		end
+
+		it 'el primer nombre debe ser correcto' do
+			user = User.new(primerNombre: "Joseph")
+			user.save
+			expect(user.errors[:primerNombre]).to be_empty
+		end
+	end
+
 end

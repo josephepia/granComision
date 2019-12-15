@@ -22,8 +22,28 @@ class User < ApplicationRecord
   has_and_belongs_to_many :covenants
   #fin de validaciones de integridad referencial 
   #validaciones
+    #validacion de presencia
+    validates :email,:tipoDocumento,:identificacion,:primerNombre,:primerApellido,:sexo,:fechaNacimiento,:estadoCivil,:confesionReligiosa,:nivelAcademico,:profesionOficio,:telefono, presence: true
+    #validacion valores entre un rago o tamano
+    validates :fueMiembroOtraIglesia,:bautizadoAdulto, inclusion: { in: [true, false] }
+    validates :sexo, inclusion: { in: ['masculino', 'femenino'] }
+    validates :nivelAcademico, inclusion: { in: ['primaria','secundaria','tecnico','tecnologo','universitario','postgrado'] }
 
-  validates :tipoDocumento,:identificacion,:primerNombre,:primerApellido,:sexo,:fechaNacimiento,:estadoCivil,:confesionReligiosa,:fueMiembroOtraIglesia,:nivelAcademico,:profesionOficio,:bautizadoAdulto, presence: true
+    validates :primerNombre,    length: { in: 2..30 }
+    validates :primerApellido,  length: { in: 2..30 }
+    validates :identificacion,  length: { in: 6..11 }
+    validates :email,           length: { in: 10..20 }
+
+    validates :telefono,        length: { is: 10}
+
+    #validacion de campos numericos
+    validates :identificacion, numericality: true
+    validates :telefono, numericality: true
+    
+  #validacion personalizada
+  validate :validar_correo_regex
+
+  #------------------todos los atributos del modelo ----
   # validates: :identificacion
   # validates: :primerNombre
   # validates: :segundoNombre
@@ -53,8 +73,10 @@ class User < ApplicationRecord
   # validates: :fechaBautizo
   # validates: :community_group_id
   # validates: :ministery_id
-
+  # -------------------fin de atributos del modelo ---------
   #fin validaciones
+
+
   def email_required?
     false
   end
@@ -118,7 +140,13 @@ class User < ApplicationRecord
     return false
   end
 
-
+  private
+    def validar_correo_regex
+      unless email =~ /^[^@]+@[^@]+\.[a-zA-Z]{2,}$/
+        errors.add(:email, "el correo debe ser alfanumerico@alfanumerico.alfanumerico")
+      end
+      
+    end
 
 
 end
