@@ -1,8 +1,11 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :authentication_keys => [:identificacion]
+  # validaciones de integridad referencial        
   has_and_belongs_to_many :ministeries
   has_and_belongs_to_many :roles
   has_and_belongs_to_many :permissions
@@ -17,6 +20,41 @@ class User < ApplicationRecord
   has_many :previous_church
   belongs_to :communitygroups,optional: true
   has_and_belongs_to_many :covenants
+  #fin de validaciones de integridad referencial 
+  #validaciones
+
+  validates :tipoDocumento,:identificacion,:primerNombre,:primerApellido,:sexo,:fechaNacimiento,:estadoCivil,:confesionReligiosa,:fueMiembroOtraIglesia,:nivelAcademico,:profesionOficio,:bautizadoAdulto, presence: true
+  # validates: :identificacion
+  # validates: :primerNombre
+  # validates: :segundoNombre
+  # validates: :primerApellido
+  # validates: :segundoApellido
+  # validates: :telefono
+  # validates: :sexo
+  # validates: :fechaNacimiento
+  # validates: :fechaRegistro
+  # validates: :estadoCivil
+  # validates: :fechaAniversario
+  # validates: :primerNombreConyuge
+  # validates: :segundoNombreConyuge
+  # validates: :primerApellidoConyuge
+  # validates: :segundoApellidoConyuge
+  # validates: :confesionReligiosa
+  # validates: :fueMiembroOtraIglesia
+  # validates: :nivelAcademico
+  # validates: :profesionOficio
+  # validates: :confirmado
+  # validates: :activo
+  # validates: :suspendido
+  # validates: :liderComunitario
+  # validates: :rango
+  # validates: :nuevoCreyente
+  # validates: :bautizadoAdulto
+  # validates: :fechaBautizo
+  # validates: :community_group_id
+  # validates: :ministery_id
+
+  #fin validaciones
   def email_required?
     false
   end
@@ -32,6 +70,7 @@ class User < ApplicationRecord
   def nombre_completo
     "#{primerNombre} #{segundoNombre} #{primerApellido} #{segundoApellido}".titleize
   end
+
   def apellidos
     "#{primerApellido} #{segundoApellido}"
   end
