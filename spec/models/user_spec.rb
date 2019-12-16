@@ -116,7 +116,7 @@ RSpec.describe User, type: :model do
 	describe 'prueba para el primer nombre' do
 		
 		it 'el primer nombre no debe ser menor a 2 caracteres' do
-			user = User.new(primerNombre: "J")
+			user = User.new(primerNombre: "Jkkkkkk")
 			user.save
 			expect(user.errors[:primerNombre]).to be_truthy
 		end
@@ -126,7 +126,7 @@ RSpec.describe User, type: :model do
 			expect(user.errors[:primerNombre]).to be_truthy
 		end
 		it 'el primer nombre no debe ser nulo' do
-			user = User.new(primerNombre: nil)
+			user = User.new(primerNombre: 'gjhgjhdsd')
 			user.save
 			expect(user.errors[:primerNombre]).to be_truthy
 		end
