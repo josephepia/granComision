@@ -54,14 +54,14 @@ RSpec.describe User, type: :model do
 			user.save
 
 			#espero que el usuario ingresado sea incorrecto
-			expect(user.errors[:email]).to be_truthy
+			expect(user.errors[:email]).to include("is too short (minimum is 10 characters)")
 		end
 		it 'no deberia permitir correos con tamano mayor a 20' do
 			user = User.new(email: "abcdddddddddddddddddddddddd@a.co")
 			user.save
 			
 			#espero que el usuario ingresado sea incorrecto
-			expect(user.errors[:email]).to be_truthy
+			expect(user.errors[:email]).to include("is too long (maximum is 20 characters)")
 			
 			
 		end
@@ -88,23 +88,20 @@ RSpec.describe User, type: :model do
 	describe 'prueba para la identificacion' do
 		
 		it 'la identificacion no debe ser menor de 6 digitos' do
-			user = User.new(identificacion: "12345")
+			user = User.new(identificacion: "12")
 			user.save
-			#espero que hayan errores al intentar guardar esta identificacion
-			#espero que el arreglo de errores de identificacion este lleno de algo 
-			#espero que user.errors[:identificacion] != null
-			#be_truthy significa que sea true... cualquier cosa que no sea false o null es verdadero
- 			expect(user.errors[:identificacion]).to be_truthy
+	
+ 			expect(user.errors[:identificacion]).to include("is too short (minimum is 6 characters)")
 		end
 		it 'la identificacion no debe ser mayor de 11 digitos' do
 			user = User.new(identificacion: "123456789011")
 			user.save
-			expect(user.errors[:identificacion]).to be_truthy
+			expect(user.errors[:identificacion]).to include("is too long (maximum is 11 characters)")
 		end
 		it 'la identificacion no debe ser nula' do
 			user = User.new(identificacion: nil)
 			user.save
-			expect(user.errors[:identificacion]).to be_truthy
+			expect(user.errors[:identificacion]).to include("can't be blank")
 		end
 		it 'la identificacion no es nula y cumple con el tamaño esperado' do
 			user = User.new(identificacion: "1234567890")
@@ -118,17 +115,18 @@ RSpec.describe User, type: :model do
 		it 'el primer nombre no debe ser menor a 2 caracteres' do
 			user = User.new(primerNombre: "Jkkkkkk")
 			user.save
-			expect(user.errors[:primerNombre]).to be_truthy
+			expect(user.errors[:primerNombre]).to include("is too short (minimum is 2 characters)")
 		end
 		it 'el primer nombre no debe ser mayor a 30 caracteres' do
 			user = User.new(primerNombre: "Joseph Epiayu Fernandez Solano Perez")
 			user.save
-			expect(user.errors[:primerNombre]).to be_truthy
+			expect(user.errors[:primerNombre]).to include("is too long (maximum is 30 characters)")
 		end
 		it 'el primer nombre no debe ser nulo' do
 			user = User.new(primerNombre: 'gjhgjhdsd')
 			user.save
-			expect(user.errors[:primerNombre]).to be_truthy
+			#puts user.errors.messages
+			expect(user.errors[:primerNombre]).to include("can't be blank")
 		end
 
 		it 'el primer nombre debe ser correcto' do
@@ -139,3 +137,20 @@ RSpec.describe User, type: :model do
 	end
 
 end
+
+# posibles cadenas de errores
+
+# :password=>["can't be blank"],
+# :email=>["can't be blank","is too short (minimum is 10 characters)","el correo debe ser alfanumerico@alfanumerico.alfanumerico"],
+# :tipoDocumento=>["can't be blank"],
+# :identificacion=>["can't be blank","is too short (minimum is 6 characters)","is not a number"],
+# :primerApellido=>["can't be blank","is too short (minimum is 2 characters)"],
+# :sexo=>["can't be blank","is not included in the list"],
+# :fechaNacimiento=>["can't be blank"],
+# :estadoCivil=>["can't be blank"],
+# :confesionReligiosa=>["can't be blank"],
+# :nivelAcademico=>["can't be blank","is not included in the list"],
+# :profesionOficio=>["can't be blank"],
+# :telefono=>["can't be blank","is the wrong length (should be 10 characters)","is not a number"],
+# :fueMiembroOtraIglesia=>["is not included in the list"],
+# :bautizadoAdulto=>["is not included in the list"]
