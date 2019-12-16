@@ -54,14 +54,14 @@ RSpec.describe User, type: :model do
 			user.save
 
 			#espero que el usuario ingresado sea incorrecto
-			expect(user.errors[:email]).to be_empty
+			expect(user.errors[:email]).to be_truthy
 		end
 		it 'no deberia permitir correos con tamano mayor a 20' do
 			user = User.new(email: "abcdddddddddddddddddddddddd@a.co")
 			user.save
 			
 			#espero que el usuario ingresado sea incorrecto
-			expect(user.errors[:email]).to be_empty
+			expect(user.errors[:email]).to be_truthy
 			
 			
 		end
@@ -90,15 +90,20 @@ RSpec.describe User, type: :model do
 		it 'la identificacion no debe ser menor de 6 digitos' do
 			user = User.new(identificacion: "12345")
 			user.save
-			expect(user.errors[:identificacion]).to be_empty
+			expect(user.errors[:identificacion]).to be_truthy
 		end
 		it 'la identificacion no debe ser mayor de 11 digitos' do
 			user = User.new(identificacion: "123456789011")
 			user.save
-			expect(user.errors[:identificacion]).to be_empty
+			expect(user.errors[:identificacion]).to be_truthy
 		end
 		it 'la identificacion no debe ser nula' do
 			user = User.new(identificacion: nil)
+			user.save
+			expect(user.errors[:identificacion]).to be_truthy
+		end
+		it 'la identificacion no es nula y cumple con el tamaño esperado' do
+			user = User.new(identificacion: "1234567890")
 			user.save
 			expect(user.errors[:identificacion]).to be_empty
 		end
@@ -109,17 +114,17 @@ RSpec.describe User, type: :model do
 		it 'el primer nombre no debe ser menor a 2 caracteres' do
 			user = User.new(primerNombre: "J")
 			user.save
-			expect(user.errors[:primerNombre]).to be_empty
+			expect(user.errors[:primerNombre]).to be_truthy
 		end
 		it 'el primer nombre no debe ser mayor a 30 caracteres' do
 			user = User.new(primerNombre: "Joseph Epiayu Fernandez Solano Perez")
 			user.save
-			expect(user.errors[:primerNombre]).to be_empty
+			expect(user.errors[:primerNombre]).to be_truthy
 		end
 		it 'el primer nombre no debe ser nulo' do
 			user = User.new(primerNombre: nil)
 			user.save
-			expect(user.errors[:primerNombre]).to be_empty
+			expect(user.errors[:primerNombre]).to be_truthy
 		end
 
 		it 'el primer nombre debe ser correcto' do
