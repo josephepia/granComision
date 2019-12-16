@@ -90,7 +90,11 @@ RSpec.describe User, type: :model do
 		it 'la identificacion no debe ser menor de 6 digitos' do
 			user = User.new(identificacion: "12345")
 			user.save
-			expect(user.errors[:identificacion]).to be_truthy
+			#espero que hayan errores al intentar guardar esta identificacion
+			#espero que el arreglo de errores de identificacion este lleno de algo 
+			#espero que user.errors[:identificacion] != null
+			#be_truthy significa que sea true... cualquier cosa que no sea false o null es verdadero
+ 			expect(user.errors[:identificacion]).to be_truthy
 		end
 		it 'la identificacion no debe ser mayor de 11 digitos' do
 			user = User.new(identificacion: "123456789011")
